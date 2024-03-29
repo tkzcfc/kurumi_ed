@@ -20,7 +20,7 @@ G_MAC.IS_PC = TARGET_PALTFORM == cc.PLATFORM_OS_WINDOWS or TARGET_PALTFORM == cc
 G_MAC.DEFAULT_SYSTEM_FONT = "Helvetica"
 
 -- 屏幕宽高
-G_MAC.SCREEN_SIZE = cc.Director:getInstance():getOpenGLView():getVisibleSize()
+G_MAC.SCREEN_SIZE = cc.Director:getInstance():getVisibleSize()
 
 G_MAC.SCREEN_WIDTH = G_MAC.SCREEN_SIZE.width
 G_MAC.SCREEN_HEIGHT = G_MAC.SCREEN_SIZE.height

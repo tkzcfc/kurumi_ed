@@ -3,11 +3,13 @@
 -- cc.FileUtils:getInstance():addSearchPath("src/")
 -- cc.FileUtils:getInstance():addSearchPath("res/")
 
+AX_USE_FRAMEWORK = true
 CREATE_OPENGL_VIEW_TML_IN_CPP = true
-require "config"
-require "axmol.init"
 
 local function main()
+    require "config"
+    require "axmol.init"
+
     cc.exports.logL = print
 	cc.exports.logI = print
 	cc.exports.logW = print
@@ -19,7 +21,7 @@ end
 
 __G__TRACKBACK__ = function(msg)
     local msg = debug.traceback(msg, 3)
-    logE(msg)
+    print(msg)
     return msg
 end
 

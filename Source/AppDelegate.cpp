@@ -26,6 +26,8 @@
 #include "AppDelegate.h"
 #include "lua-bindings/manual/LuaEngine.h"
 #include "lua-bindings/manual/lua_module_register.h"
+#include "lua-modules/lua_modules.h"
+#include "lua_function/LuaFunction.h"
 
 #define USE_AUDIO_ENGINE 1
 
@@ -52,6 +54,37 @@ void AppDelegate::initGLContextAttrs()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+    // initialize director
+    auto director = Director::getInstance();
+    auto glview   = director->getGLView();
+    if (!glview)
+    {
+#if AX_TARGET_PLATFORM == AX_PLATFORM_WIN32
+        // 获取可用桌面大小
+        ::RECT rect;
+        ::SystemParametersInfo(SPI_GETWORKAREA, 0, &rect, 0);
+        int cx = rect.right - rect.left;
+        int cy = rect.bottom - rect.top;
+
+        float width  = cx * 0.9f;
+        float height = cy * 0.9f;
+#else
+        float width  = 1920 * 0.8f;
+        float height = 1080 * 0.8f;
+#endif
+        glview = GLViewImpl::createWithRect("Cpp Tests", Rect(0, 0, width, height), 1.0f, true);
+        director->setGLView(glview);
+    }
+    auto frameSize = glview->getFrameSize();
+    glview->setDesignResolutionSize(frameSize.width, frameSize.height, ResolutionPolicy::NO_BORDER);
+
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->addCustomEventListener(GLViewImpl::EVENT_WINDOW_RESIZED, [=](EventCustom* event) {
+        auto size = glview->getFrameSize();
+        // ResolutionPolicy::SHOW_ALL
+        glview->setDesignResolutionSize(size.width, size.height, ResolutionPolicy::NO_BORDER);
+    });
+
     // set default FPS
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
 
@@ -59,7 +92,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto engine = LuaEngine::getInstance();
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
+    LuaFunction::setGlobalLuaState(L);
     lua_module_register(L);
+    preload_lua_modules(L);
 
     LuaStack* stack = engine->getLuaStack();
 
