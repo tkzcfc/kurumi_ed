@@ -2,9 +2,9 @@
 
 // ref https://www.flipcode.com/archives/Efficient_Polygon_Triangulation.shtml
 
-#include "cocos2d.h"
+#include "axmol.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 // Typedef an STL vector of vertices which are used to represent
 // a polygon/contour and a series of triangles.

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "axmol.h"
 #include "cocostudio/CocoStudio.h"
 #include "type/StringArray.h"
 #include "imgui.h"
 #include "lua_function/LuaFunction.h"
 
-using namespace cocos2d;
+using namespace ax;
 using namespace cocostudio;
 
 class Tools
@@ -31,7 +31,7 @@ public:
 
 	static bool isInRect(Node* InNode, const float InX, const float InY);
 
-	// ºÁÃë
+	// æ¯«ç§’
 	static long getMillisecond();
 
 	static bool copyFile(const std::string& existingFileName, const std::string& newFileName, bool bFailIfExists);
@@ -84,7 +84,7 @@ public:
 
 	static bool copyFile(const std::string& srcFile, const std::string& dstFile);
 
-	static void enumerateChildren(cocos2d::Node* node, const std::string& name, LuaFunction& handle);
+	static void enumerateChildren(ax::Node* node, const std::string& name, LuaFunction& handle);
 
 	static std::string prettyJson(const char* json);
 

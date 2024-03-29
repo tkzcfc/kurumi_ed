@@ -3,7 +3,7 @@
 #include "imgui_internal.h"
 #include "cocos2d.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 /*
 ----------------------
@@ -25,9 +25,9 @@ namespace Sequentity {
 		return ImVec2{ vec.x + value, vec.y + value };
 	}
 
-	//inline ImVec2 operator+(const ImVec2& vec, const ImVec2 value) {
-	//	return ImVec2{ vec.x + value.x, vec.y + value.y };
-	//}
+	inline ImVec2 operator+(const ImVec2& vec, const ImVec2 value) {
+		return ImVec2{ vec.x + value.x, vec.y + value.y };
+	}
 
 	inline void operator-=(ImVec2& vec, const float value) {
 		vec.x -= value;
@@ -38,17 +38,17 @@ namespace Sequentity {
 		return ImVec2{ vec.x - value, vec.y - value };
 	}
 
-	//inline ImVec2 operator-(const ImVec2& vec, const ImVec2 value) {
-	//	return ImVec2{ vec.x - value.x, vec.y - value.y };
-	//}
+	inline ImVec2 operator-(const ImVec2& vec, const ImVec2 value) {
+		return ImVec2{ vec.x - value.x, vec.y - value.y };
+	}
 
 	inline ImVec2 operator*(const ImVec2& vec, const float value) {
 		return ImVec2{ vec.x * value, vec.y * value };
 	}
 
-	//inline ImVec2 operator*(const ImVec2& vec, const ImVec2 value) {
-	//	return ImVec2{ vec.x * value.x, vec.y * value.y };
-	//}
+	inline ImVec2 operator*(const ImVec2& vec, const ImVec2 value) {
+		return ImVec2{ vec.x * value.x, vec.y * value.y };
+	}
 
 	static float global_scale = 1.0f;
 
@@ -523,7 +523,7 @@ namespace Sequentity {
 						painter->AddRect(
 							cursor + pos + event.thickness * 0.25f,
 							cursor + pos + size - event.thickness * 0.25f,
-							ImColor(EditorTheme.selection), CommonTheme.event_radius, ImDrawCornerFlags_All, event.thickness
+							ImColor(EditorTheme.selection), CommonTheme.event_radius, 0, event.thickness
 						);
 					}
 					else {
@@ -701,13 +701,13 @@ namespace Sequentity {
 
 			if (ImGui::BeginChild("sequentity_right_panel", ImVec2(0.0f, 0.0f), ImGuiWindowFlags_NoBackground))
 			{
-				if (ImGui::GetContentRegionAvailWidth() > 5) {
+				if (ImGui::GetContentRegionAvail().x > 5) {
 					ImVec2 curPos = ImGui::GetCursorScreenPos();
 					auto* painter = ImGui::GetWindowDrawList();
 					// top 
 					painter->AddRectFilled(
 						curPos,
-						curPos + ImVec2(ImGui::GetContentRegionAvailWidth(), TimelineTheme.height * global_scale),
+						curPos + ImVec2(ImGui::GetContentRegionAvail().x, TimelineTheme.height * global_scale),
 						ImColor(TimelineTheme.background)
 					);
 
@@ -715,7 +715,7 @@ namespace Sequentity {
 					// line
 					painter->AddLine(
 						curPos + ImVec2(0, TimelineTheme.height * global_scale),
-						curPos + ImVec2(ImGui::GetContentRegionAvailWidth(), TimelineTheme.height * global_scale),
+						curPos + ImVec2(ImGui::GetContentRegionAvail().x, TimelineTheme.height * global_scale),
 						ImGui::GetColorU32(ImGuiCol_Separator));
 
 

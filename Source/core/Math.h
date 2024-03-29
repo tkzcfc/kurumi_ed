@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "axmol.h"
 
-using namespace cocos2d;
+using namespace ax;
 
 namespace Math {
 	void CreateTranslation(float xTranslation, float yTranslation, float zTranslation, Mat4* dst);
@@ -34,50 +34,50 @@ namespace Math {
 		float zNearPlane, float zFarPlane, Mat4* dst);
 
 	/*
-	* ´íÇĞ¾ØÕó
+	* é”™åˆ‡çŸ©é˜µ
 	* http://blog.sina.com.cn/s/blog_6163bdeb0102du6p.html
 	* [1 B C 0]
 	* [D 1 F 0]
 	* [H I 1 0]
 	* [0 0 0 1]
 	*
-	* (1)ÑØXÖáº¬YÏò´íÇĞ
+	* (1)æ²¿Xè½´å«Yå‘é”™åˆ‡
 	*  [1 0 0 0]
 	*  [D 1 0 0]
 	*  [0 0 1 0]
 	*  [0 0 0 1]
-	*  ¼´ÔÚXYÆ½Ãæ¸Ä±äX×ø±ê
+	*  å³åœ¨XYå¹³é¢æ”¹å˜Xåæ ‡
 	*  -----------				  -----------
 	*  |		 |			     /		   /
 	*  |		 |     ->	    /		  /
 	*  |		 |			   /		 /
 	*  -----------			  -----------
 	*
-	* (2)ÑØXÖáº¬ZÏò´íÇĞ
+	* (2)æ²¿Xè½´å«Zå‘é”™åˆ‡
 	*  [1 0 0 0]
 	*  [0 1 0 0]
 	*  [H 0 1 0]
 	*  [0 0 0 1]
 	*
-	* (3)ÑØYÖáº¬XÏò´íÇĞ
+	* (3)æ²¿Yè½´å«Xå‘é”™åˆ‡
 	*  [1 B 0 0]
 	*  [0 1 0 0]
 	*  [0 0 1 0]
 	*  [0 0 0 1]
 	*
-	* (4)ÑØYÖáº¬ZÏò´íÇĞ
+	* (4)æ²¿Yè½´å«Zå‘é”™åˆ‡
 	*  [1 0 0 0]
 	*  [0 1 0 0]
 	*  [0 I 1 0]
 	*  [0 0 0 1]
 	*
-	* (5)ÑØZÖáº¬XÏò´íÇĞ
+	* (5)æ²¿Zè½´å«Xå‘é”™åˆ‡
 	*  [1 0 C 0]
 	*  [0 1 0 0]
 	*  [0 0 1 0]
 	*  [0 0 0 1]
 	*
-	* (6)ÑØZÖáº¬YÏò´íÇĞ
+	* (6)æ²¿Zè½´å«Yå‘é”™åˆ‡
 	*  [1 0 0 0]
 	*  [0 1 F 0]
 	*  [0 0 1 0]
@@ -85,6 +85,6 @@ namespace Math {
 	*/
 	void CreateShear(float B, float C, float D, float F, float H, float I, Mat4* dst);
 
-	// skewx skewy ½Ç¶È
+	// skewx skewy è§’åº¦
 	void CreateSkewXY(float skewx, float skewy, Mat4* dst);
 }

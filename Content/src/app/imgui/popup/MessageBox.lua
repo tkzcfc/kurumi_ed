@@ -26,7 +26,7 @@ function MessageBox:iOnGUI()
     ImGui.Text(self.content)
     ImGui.Separator()
 
-    msgBox_LayoutSize.x = ImGui.GetContentRegionAvailWidth()
+    msgBox_LayoutSize.x = ImGui.GetContentRegionAvail().x
     ImGui.BeginHorizontal("h1", msgBox_LayoutSize, 0.5)
 
     msgBox_WidgetSize.x = msgBox_LayoutSize.x / (#self.btns + 1)

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: game
-** Generated automatically by tolua++-1.0.92 on 02/01/22 20:30:24.
+** Generated automatically by tolua++-1.0.92 on 03/29/24 18:11:05.
 */
 
 #ifndef __cplusplus
@@ -24,10 +24,8 @@ TOLUA_API int  tolua_game_open (lua_State* tolua_S);
 #include "core/CCircle.h"
 #include "core/CLine.h"
 #include "core/CPolygon.h"
-#include "ilayer/ILayer.h"
 #include "log/Logger.h"
 #include "editor/EditorContext.h"
-#include "editor/ScissorLayer.h"
 #include "lua-modules/tiny-process/CProcess.h"
 #include "sequentity/CSequentity.h"
 #include "editor/Theme.h"
@@ -180,41 +178,38 @@ static int tolua_collect_CSequentity (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
+ tolua_usertype(tolua_S,"Theme");
  tolua_usertype(tolua_S,"std::vector<int>");
+ tolua_usertype(tolua_S,"std::vector<Sequentity::Track*>");
  tolua_usertype(tolua_S,"Vec2");
- tolua_usertype(tolua_S,"CProcess");
- tolua_usertype(tolua_S,"Tools");
- tolua_usertype(tolua_S,"CRect");
- tolua_usertype(tolua_S,"Logger");
- tolua_usertype(tolua_S,"LineValue");
- tolua_usertype(tolua_S,"std::vector<std::string>");
- tolua_usertype(tolua_S,"ILayer");
- tolua_usertype(tolua_S,"CCircle");
- tolua_usertype(tolua_S,"Vec2Value");
- tolua_usertype(tolua_S,"cc.Texture2D");
- tolua_usertype(tolua_S,"ImVec2");
- tolua_usertype(tolua_S,"std::vector<Sequentity::Channel*>");
- tolua_usertype(tolua_S,"CSequentity");
- tolua_usertype(tolua_S,"StringArray");
- tolua_usertype(tolua_S,"cc.Layer");
  tolua_usertype(tolua_S,"Sequentity::Event");
+ tolua_usertype(tolua_S,"CProcess");
+ tolua_usertype(tolua_S,"std::vector<Sequentity::Channel*>");
  tolua_usertype(tolua_S,"ccs.Armature");
  tolua_usertype(tolua_S,"std::vector<Vec2>");
  tolua_usertype(tolua_S,"std::vector<Sequentity::Event*>");
  tolua_usertype(tolua_S,"Sequentity::Track");
- tolua_usertype(tolua_S,"EditorContext");
- tolua_usertype(tolua_S,"Size");
- tolua_usertype(tolua_S,"ScissorLayer");
- tolua_usertype(tolua_S,"ImVec4");
- tolua_usertype(tolua_S,"CLine");
- tolua_usertype(tolua_S,"Theme");
- tolua_usertype(tolua_S,"std::vector<Sequentity::Track*>");
  tolua_usertype(tolua_S,"LuaFunction");
+ tolua_usertype(tolua_S,"Tools");
  tolua_usertype(tolua_S,"Sequentity::Channel");
+ tolua_usertype(tolua_S,"CRect");
+ tolua_usertype(tolua_S,"Size");
+ tolua_usertype(tolua_S,"Logger");
  tolua_usertype(tolua_S,"LUA_FUNCTION");
- tolua_usertype(tolua_S,"cc.DrawNode");
- tolua_usertype(tolua_S,"cc.Node");
+ tolua_usertype(tolua_S,"ImVec4");
+ tolua_usertype(tolua_S,"LineValue");
+ tolua_usertype(tolua_S,"EditorContext");
  tolua_usertype(tolua_S,"CPolygon");
+ tolua_usertype(tolua_S,"std::vector<std::string>");
+ tolua_usertype(tolua_S,"CLine");
+ tolua_usertype(tolua_S,"StringArray");
+ tolua_usertype(tolua_S,"cc.DrawNode");
+ tolua_usertype(tolua_S,"CCircle");
+ tolua_usertype(tolua_S,"Vec2Value");
+ tolua_usertype(tolua_S,"cc.Texture2D");
+ tolua_usertype(tolua_S,"ImVec2");
+ tolua_usertype(tolua_S,"cc.Node");
+ tolua_usertype(tolua_S,"CSequentity");
 }
 
 /* method: new of class  StringArray */
@@ -4687,366 +4682,6 @@ static int tolua_game_CPolygon_setVisible00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: create of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_create00
-static int tolua_game_ILayer_create00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ILayer* tolua_ret = (ILayer*)  ILayer::create();
-    tolua_ext_object_to_luaval<ILayer>(tolua_S,(void*)tolua_ret,"ILayer");
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: updateImGUI of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_updateImGUI00
-static int tolua_game_ILayer_updateImGUI00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateImGUI'", NULL);
-#endif
-  {
-   self->updateImGUI();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'updateImGUI'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: removeImGUI of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_removeImGUI00
-static int tolua_game_ILayer_removeImGUI00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-  std::string name = ((std::string)  tolua_tocppstring(tolua_S,2,0));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeImGUI'", NULL);
-#endif
-  {
-   self->removeImGUI(name);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'removeImGUI'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: IsAnyWindowHovered of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_IsAnyWindowHovered00
-static int tolua_game_ILayer_IsAnyWindowHovered00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsAnyWindowHovered'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->IsAnyWindowHovered();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'IsAnyWindowHovered'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setChineseFont of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_setChineseFont00
-static int tolua_game_ILayer_setChineseFont00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-  std::string fontFileName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
-  float size_pixels = ((float)  tolua_tonumber(tolua_S,3,0));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setChineseFont'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->setChineseFont(fontFileName,size_pixels);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setChineseFont'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setSystemChineseFont of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_setSystemChineseFont00
-static int tolua_game_ILayer_setSystemChineseFont00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-  std::string fontFileName = ((std::string)  tolua_tocppstring(tolua_S,2,0));
-  float size_pixels = ((float)  tolua_tonumber(tolua_S,3,0));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setSystemChineseFont'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->setSystemChineseFont(fontFileName,size_pixels);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setSystemChineseFont'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: registerLuaHandle of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_registerLuaHandle00
-static int tolua_game_ILayer_registerLuaHandle00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluafix_isfunction(tolua_S,3,"LUA_FUNCTION",0,&tolua_err)) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-  std::string name = ((std::string)  tolua_tocppstring(tolua_S,2,0));
-  LUA_FUNCTION handle = (  toluafix_ref_function(tolua_S,3,0));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'registerLuaHandle'", NULL);
-#endif
-  {
-   self->registerLuaHandle(name,handle);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'registerLuaHandle'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: unregisterLuaHandle of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_unregisterLuaHandle00
-static int tolua_game_ILayer_unregisterLuaHandle00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-  std::string name = ((std::string)  tolua_tocppstring(tolua_S,2,0));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unregisterLuaHandle'", NULL);
-#endif
-  {
-   self->unregisterLuaHandle(name);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'unregisterLuaHandle'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: clearLuaHandle of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_clearLuaHandle00
-static int tolua_game_ILayer_clearLuaHandle00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clearLuaHandle'", NULL);
-#endif
-  {
-   self->clearLuaHandle();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'clearLuaHandle'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setEngulfAllTouchs of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_setEngulfAllTouchs00
-static int tolua_game_ILayer_setEngulfAllTouchs00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-  bool value = ((bool)  tolua_toboolean(tolua_S,2,0));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setEngulfAllTouchs'", NULL);
-#endif
-  {
-   self->setEngulfAllTouchs(value);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setEngulfAllTouchs'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: isEngulfAllTouchs of class  ILayer */
-#ifndef TOLUA_DISABLE_tolua_game_ILayer_isEngulfAllTouchs00
-static int tolua_game_ILayer_isEngulfAllTouchs00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ILayer",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ILayer* self = (ILayer*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'isEngulfAllTouchs'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->isEngulfAllTouchs();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'isEngulfAllTouchs'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: new of class  Logger */
 #ifndef TOLUA_DISABLE_tolua_game_Logger_new00
 static int tolua_game_Logger_new00(lua_State* tolua_S)
@@ -5412,38 +5047,6 @@ static int tolua_game_EditorContext_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getIlayer of class  EditorContext */
-#ifndef TOLUA_DISABLE_tolua_game_EditorContext_getIlayer00
-static int tolua_game_EditorContext_getIlayer00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getIlayer'", NULL);
-#endif
-  {
-   ILayer* tolua_ret = (ILayer*)  self->getIlayer();
-    tolua_ext_object_to_luaval<ILayer>(tolua_S,(void*)tolua_ret,"ILayer");
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getIlayer'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: getBackgroundNode of class  EditorContext */
 #ifndef TOLUA_DISABLE_tolua_game_EditorContext_getBackgroundNode00
 static int tolua_game_EditorContext_getBackgroundNode00(lua_State* tolua_S)
@@ -5794,34 +5397,6 @@ static int tolua_game_EditorContext_clearLuaHandle00(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'clearLuaHandle'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: create of class  ScissorLayer */
-#ifndef TOLUA_DISABLE_tolua_game_ScissorLayer_create00
-static int tolua_game_ScissorLayer_create00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"ScissorLayer",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ScissorLayer* tolua_ret = (ScissorLayer*)  ScissorLayer::create();
-    tolua_ext_object_to_luaval<ScissorLayer>(tolua_S,(void*)tolua_ret,"ScissorLayer");
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
  return 0;
 #endif
 }
@@ -8147,20 +7722,6 @@ TOLUA_API int tolua_game_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getColor",tolua_game_CPolygon_getColor00);
    tolua_function(tolua_S,"setVisible",tolua_game_CPolygon_setVisible00);
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"ILayer","ILayer","cc.Layer",NULL);
-  tolua_beginmodule(tolua_S,"ILayer");
-   tolua_function(tolua_S,"create",tolua_game_ILayer_create00);
-   tolua_function(tolua_S,"updateImGUI",tolua_game_ILayer_updateImGUI00);
-   tolua_function(tolua_S,"removeImGUI",tolua_game_ILayer_removeImGUI00);
-   tolua_function(tolua_S,"IsAnyWindowHovered",tolua_game_ILayer_IsAnyWindowHovered00);
-   tolua_function(tolua_S,"setChineseFont",tolua_game_ILayer_setChineseFont00);
-   tolua_function(tolua_S,"setSystemChineseFont",tolua_game_ILayer_setSystemChineseFont00);
-   tolua_function(tolua_S,"registerLuaHandle",tolua_game_ILayer_registerLuaHandle00);
-   tolua_function(tolua_S,"unregisterLuaHandle",tolua_game_ILayer_unregisterLuaHandle00);
-   tolua_function(tolua_S,"clearLuaHandle",tolua_game_ILayer_clearLuaHandle00);
-   tolua_function(tolua_S,"setEngulfAllTouchs",tolua_game_ILayer_setEngulfAllTouchs00);
-   tolua_function(tolua_S,"isEngulfAllTouchs",tolua_game_ILayer_isEngulfAllTouchs00);
-  tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Logger","Logger","",tolua_collect_Logger);
   #else
@@ -8183,7 +7744,6 @@ TOLUA_API int tolua_game_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"EditorContext","EditorContext","cc.Node",NULL);
   tolua_beginmodule(tolua_S,"EditorContext");
    tolua_function(tolua_S,"create",tolua_game_EditorContext_create00);
-   tolua_function(tolua_S,"getIlayer",tolua_game_EditorContext_getIlayer00);
    tolua_function(tolua_S,"getBackgroundNode",tolua_game_EditorContext_getBackgroundNode00);
    tolua_function(tolua_S,"getLeftPaneWidth",tolua_game_EditorContext_getLeftPaneWidth00);
    tolua_function(tolua_S,"getCenterPaneWidth",tolua_game_EditorContext_getCenterPaneWidth00);
@@ -8195,10 +7755,6 @@ TOLUA_API int tolua_game_open (lua_State* tolua_S)
    tolua_function(tolua_S,"registerLuaHandle",tolua_game_EditorContext_registerLuaHandle00);
    tolua_function(tolua_S,"unregisterLuaHandle",tolua_game_EditorContext_unregisterLuaHandle00);
    tolua_function(tolua_S,"clearLuaHandle",tolua_game_EditorContext_clearLuaHandle00);
-  tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"ScissorLayer","ScissorLayer","cc.Layer",NULL);
-  tolua_beginmodule(tolua_S,"ScissorLayer");
-   tolua_function(tolua_S,"create",tolua_game_ScissorLayer_create00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"CProcess","CProcess","",tolua_collect_CProcess);

@@ -147,7 +147,7 @@ function M:onGUI()
 			ImGui.Separator()
 
 			if self.contentRegionAvailWidth == nil then
-				self.contentRegionAvailWidth = ImGui.GetContentRegionAvailWidth()
+				self.contentRegionAvailWidth = ImGui.GetContentRegionAvail().x
 			end
 			local width = self.contentRegionAvailWidth
 			ImGui.BeginHorizontal("h1", {x = width, y = 40}, 0.5)

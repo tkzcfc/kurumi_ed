@@ -87,7 +87,7 @@ float CRect::getRotation()
 	return angle_ex;
 }
 
-// ÇĞ±ä
+// åˆ‡å˜
 void CRect::setSkewX(float skewx)
 {
 	if (skew.x == skewx)
@@ -179,7 +179,7 @@ void CRect::getBaseVertex(Vec2* pointArr)
 
 const Vec2& CRect::getVertexByIndex(int index)
 {
-	CC_ASSERT(index >= 0 && index <= 3);
+	AX_ASSERT(index >= 0 && index <= 3);
 	apply();
 	return vertex_vec2_value[index];
 }

@@ -12,7 +12,8 @@ function CenterWindow:ctor()
 	self.cache_ceontex_w = 0
 	self.cache_ceontex_h = 0
 
-	local render = ScissorLayer:create()
+	local render = axui.Layout:create()
+    render:setClippingType(1)
 	_MyG.MainScene.rootNode:addChild(render)
 
 	self.render = render

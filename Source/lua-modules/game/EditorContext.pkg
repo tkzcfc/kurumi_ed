@@ -5,8 +5,6 @@ class EditorContext : public cc.Node
 public:
 
 	static EditorContext* create();
-
-	ILayer* getIlayer();
 	
 	cc.Node* getBackgroundNode();
 	

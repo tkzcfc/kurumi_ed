@@ -197,7 +197,7 @@ local layout_size = cc.p(0, 0)
 
 -- @brief 时间轴左上角GUI绘制
 function RoleTimelineBase:onSequentityLTGUI()
-    layout_size.x = ImGui.GetContentRegionAvailWidth()
+    layout_size.x = ImGui.GetContentRegionAvail().x
     ImGui.BeginHorizontal("h1", layout_size, -1)
 
     -- 上一帧

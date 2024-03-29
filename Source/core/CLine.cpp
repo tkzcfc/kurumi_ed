@@ -22,8 +22,8 @@ CLine::CLine()
 
 CLine::~CLine()
 {
-	CC_SAFE_DELETE_ARRAY(m_normalLines);
-	CC_SAFE_DELETE_ARRAY(m_normals);
+	AX_SAFE_DELETE_ARRAY(m_normalLines);
+	AX_SAFE_DELETE_ARRAY(m_normals);
 }
 
 int CLine::getPointCount()
@@ -205,8 +205,8 @@ void CLine::apply()
 	m_normalCount = MAX(m_pointArr.size() - 1, 0);
 	if (preCount != m_normalCount)
 	{
-		CC_SAFE_DELETE_ARRAY(m_normals);
-		CC_SAFE_DELETE_ARRAY(m_normalLines);
+		AX_SAFE_DELETE_ARRAY(m_normals);
+		AX_SAFE_DELETE_ARRAY(m_normalLines);
 	}
 	if (m_normalCount <= 0)
 	{

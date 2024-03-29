@@ -1,9 +1,5 @@
 #include "Tools.h"
-#include "json/rapidjson.h"
-#include "json/prettywriter.h"
-#include "json/document.h"
-#include <Windows.h>
-#include "SimulatorWin.h"
+#include <windows.h>
 #include "sequentity/Sequentity.h"
 
 std::map<std::string, std::vector<std::string> > Tools::cache_plistSubs;
@@ -39,89 +35,89 @@ std::string Tools::wstringToString(const std::wstring& InStr)
 
 bool Tools::openFileMultiSelect(const std::string& InFilter, StringArray* OutPathArr)
 {
-	std::wstring wsFilter = stringToWString(Utf8ToGbk(InFilter));
-	
-	wchar_t szFilterBuf[512];
-	memset(szFilterBuf, '\0', sizeof(szFilterBuf));
-	lstrcpy(szFilterBuf, wsFilter.c_str());
+	//std::wstring wsFilter = stringToWString(Utf8ToGbk(InFilter));
+	//
+	//wchar_t szFilterBuf[512];
+	//memset(szFilterBuf, '\0', sizeof(szFilterBuf));
+	//lstrcpy(szFilterBuf, wsFilter.c_str());
 
-	OPENFILENAME ofn;
-	TCHAR szOpenFileNames[80 * MAX_PATH];
-	TCHAR szPath[MAX_PATH];
-	TCHAR szFileName[80 * MAX_PATH];
-	TCHAR* p;
-	int nLen = 0;
-	ZeroMemory(&ofn, sizeof(ofn));
-	ofn.Flags = OFN_EXPLORER | OFN_ALLOWMULTISELECT;
-	ofn.lStructSize = sizeof(ofn);
-	ofn.lpstrFile = szOpenFileNames;
-	ofn.nMaxFile = sizeof(szOpenFileNames);
-	ofn.lpstrFile[0] = '\0';
-	ofn.lpstrFilter = szFilterBuf;//TEXT("All Files(*.*)\0*.*\0");
-	if (GetOpenFileName(&ofn))
-	{
-		//°ÑµÚÒ»¸öÎÄ¼þÃûÇ°µÄ¸´ÖÆµ½szPath,¼´:
-		//Èç¹ûÖ»Ñ¡ÁËÒ»¸öÎÄ¼þ,¾Í¸´ÖÆµ½×îºóÒ»¸ö'\'
-		//Èç¹ûÑ¡ÁË¶à¸öÎÄ¼þ,¾Í¸´ÖÆµ½µÚÒ»¸öNULL×Ö·û
-		lstrcpyn(szPath, szOpenFileNames, ofn.nFileOffset);
+	//OPENFILENAME ofn;
+	//TCHAR szOpenFileNames[80 * MAX_PATH];
+	//TCHAR szPath[MAX_PATH];
+	//TCHAR szFileName[80 * MAX_PATH];
+	//TCHAR* p;
+	//int nLen = 0;
+	//ZeroMemory(&ofn, sizeof(ofn));
+	//ofn.Flags = OFN_EXPLORER | OFN_ALLOWMULTISELECT;
+	//ofn.lStructSize = sizeof(ofn);
+	//ofn.lpstrFile = szOpenFileNames;
+	//ofn.nMaxFile = sizeof(szOpenFileNames);
+	//ofn.lpstrFile[0] = '\0';
+	//ofn.lpstrFilter = szFilterBuf;//TEXT("All Files(*.*)\0*.*\0");
+	//if (GetOpenFileName(&ofn))
+	//{
+	//	//æŠŠç¬¬ä¸€ä¸ªæ–‡ä»¶åå‰çš„å¤åˆ¶åˆ°szPath,å³:
+	//	//å¦‚æžœåªé€‰äº†ä¸€ä¸ªæ–‡ä»¶,å°±å¤åˆ¶åˆ°æœ€åŽä¸€ä¸ª'\'
+	//	//å¦‚æžœé€‰äº†å¤šä¸ªæ–‡ä»¶,å°±å¤åˆ¶åˆ°ç¬¬ä¸€ä¸ªNULLå­—ç¬¦
+	//	lstrcpyn(szPath, szOpenFileNames, ofn.nFileOffset);
 
-		//µ±Ö»Ñ¡ÁËÒ»¸öÎÄ¼þÊ±,ÏÂÃæÕâ¸öNULL×Ö·ûÊÇ±ØÐèµÄ.
-		//ÕâÀï²»Çø±ð¶Ô´ýÑ¡ÁËÒ»¸öºÍ¶à¸öÎÄ¼þµÄÇé¿ö
-		szPath[ofn.nFileOffset] = '\0';
-		nLen = lstrlen(szPath);
+	//	//å½“åªé€‰äº†ä¸€ä¸ªæ–‡ä»¶æ—¶,ä¸‹é¢è¿™ä¸ªNULLå­—ç¬¦æ˜¯å¿…éœ€çš„.
+	//	//è¿™é‡Œä¸åŒºåˆ«å¯¹å¾…é€‰äº†ä¸€ä¸ªå’Œå¤šä¸ªæ–‡ä»¶çš„æƒ…å†µ
+	//	szPath[ofn.nFileOffset] = '\0';
+	//	nLen = lstrlen(szPath);
 
-		//Èç¹ûÑ¡ÁË¶à¸öÎÄ¼þ,Ôò±ØÐë¼ÓÉÏ'\\'
-		if (szPath[nLen - 1] != '\\')   
-		{
-			lstrcat(szPath, TEXT("\\"));
-		}
+	//	//å¦‚æžœé€‰äº†å¤šä¸ªæ–‡ä»¶,åˆ™å¿…é¡»åŠ ä¸Š'\\'
+	//	if (szPath[nLen - 1] != '\\')   
+	//	{
+	//		lstrcat(szPath, TEXT("\\"));
+	//	}
 
-		//°ÑÖ¸ÕëÒÆµ½µÚÒ»¸öÎÄ¼þ
-		p = szOpenFileNames + ofn.nFileOffset; 
+	//	//æŠŠæŒ‡é’ˆç§»åˆ°ç¬¬ä¸€ä¸ªæ–‡ä»¶
+	//	p = szOpenFileNames + ofn.nFileOffset; 
 
 
-		std::string filterExtension = FileUtils::getInstance()->getFileExtension(InFilter);
+	//	std::string filterExtension = FileUtils::getInstance()->getFileExtension(InFilter);
 
-		ZeroMemory(szFileName, sizeof(szFileName));
-		while (*p)
-		{
-			std::wstring wspath = szPath;
-			wspath.append(p);
+	//	ZeroMemory(szFileName, sizeof(szFileName));
+	//	while (*p)
+	//	{
+	//		std::wstring wspath = szPath;
+	//		wspath.append(p);
 
-			if (OutPathArr)
-			{
-				std::string fullpath = GbkToUtf8(wstringToString(wspath));
-				OutPathArr->addString(fullpath);
-				//std::string extension = FileUtils::getInstance()->getFileExtension(fullpath);
-				//if (filterExtension == extension)
-				//{
-				//	OutPathArr->addString(fullpath);
-				//}
-			}
+	//		if (OutPathArr)
+	//		{
+	//			std::string fullpath = GbkToUtf8(wstringToString(wspath));
+	//			OutPathArr->addString(fullpath);
+	//			//std::string extension = FileUtils::getInstance()->getFileExtension(fullpath);
+	//			//if (filterExtension == extension)
+	//			//{
+	//			//	OutPathArr->addString(fullpath);
+	//			//}
+	//		}
 
-			//ÒÆÖÁÏÂÒ»¸öÎÄ¼þ
-			p += lstrlen(p) + 1;    
-		}
-		return true;
-	}
+	//		//ç§»è‡³ä¸‹ä¸€ä¸ªæ–‡ä»¶
+	//		p += lstrlen(p) + 1;    
+	//	}
+	//	return true;
+	//}
 	return false;
 }
 
-//gbk×ªUTF-8
-std::string Tools::GbkToUtf8(const std::string& strGbk)//´«ÈëµÄstrGbkÊÇGBK±àÂë
+//gbkè½¬UTF-8
+std::string Tools::GbkToUtf8(const std::string& strGbk)//ä¼ å…¥çš„strGbkæ˜¯GBKç¼–ç 
 {
-	//gbk×ªunicode
+	//gbkè½¬unicode
 	int len = MultiByteToWideChar(CP_ACP, 0, strGbk.c_str(), -1, NULL, 0);
 	wchar_t *strUnicode = new wchar_t[len];
 	wmemset(strUnicode, 0, len);
 	MultiByteToWideChar(CP_ACP, 0, strGbk.c_str(), -1, strUnicode, len);
 
-	//unicode×ªUTF-8
+	//unicodeè½¬UTF-8
 	len = WideCharToMultiByte(CP_UTF8, 0, strUnicode, -1, NULL, 0, NULL, NULL);
 	char * strUtf8 = new char[len];
 	WideCharToMultiByte(CP_UTF8, 0, strUnicode, -1, strUtf8, len, NULL, NULL);
 
-	std::string strTemp(strUtf8);//´ËÊ±µÄstrTempÊÇUTF-8±àÂë
+	std::string strTemp(strUtf8);//æ­¤æ—¶çš„strTempæ˜¯UTF-8ç¼–ç 
 	delete[]strUnicode;
 	delete[]strUtf8;
 	strUnicode = NULL;
@@ -129,22 +125,22 @@ std::string Tools::GbkToUtf8(const std::string& strGbk)//´«ÈëµÄstrGbkÊÇGBK±àÂë
 	return strTemp;
 }
 
-//UTF-8×ªgbk
-std::string Tools::Utf8ToGbk(const std::string& strUtf8)//´«ÈëµÄstrUtf8ÊÇUTF-8±àÂë
+//UTF-8è½¬gbk
+std::string Tools::Utf8ToGbk(const std::string& strUtf8)//ä¼ å…¥çš„strUtf8æ˜¯UTF-8ç¼–ç 
 {
-	//UTF-8×ªunicode
+	//UTF-8è½¬unicode
 	int len = MultiByteToWideChar(CP_UTF8, 0, strUtf8.c_str(), -1, NULL, 0);
 	wchar_t * strUnicode = new wchar_t[len];//len = 2
 	wmemset(strUnicode, 0, len);
 	MultiByteToWideChar(CP_UTF8, 0, strUtf8.c_str(), -1, strUnicode, len);
 
-	//unicode×ªgbk
+	//unicodeè½¬gbk
 	len = WideCharToMultiByte(CP_ACP, 0, strUnicode, -1, NULL, 0, NULL, NULL);
-	char *strGbk = new char[len];//len=3 ±¾À´Îª2£¬µ«ÊÇchar*ºóÃæ×Ô¶¯¼ÓÉÏÁË\0
+	char *strGbk = new char[len];//len=3 æœ¬æ¥ä¸º2ï¼Œä½†æ˜¯char*åŽé¢è‡ªåŠ¨åŠ ä¸Šäº†\0
 	memset(strGbk, 0, len);
 	WideCharToMultiByte(CP_ACP, 0, strUnicode, -1, strGbk, len, NULL, NULL);
 
-	std::string strTemp(strGbk);//´ËÊ±µÄstrTempÊÇGBK±àÂë
+	std::string strTemp(strGbk);//æ­¤æ—¶çš„strTempæ˜¯GBKç¼–ç 
 	delete[]strUnicode;
 	delete[]strGbk;
 	strUnicode = NULL;
@@ -152,29 +148,29 @@ std::string Tools::Utf8ToGbk(const std::string& strUtf8)//´«ÈëµÄstrUtf8ÊÇUTF-8±à
 	return strTemp;
 }
 
-//gbk×ªunicode (ÏÂÃæµÄÀý×ÓÃ»ÓÃµ½)
-std::wstring Tools::GbkToUnicode(const std::string& strGbk)//·µ»ØÖµÊÇwstring
+//gbkè½¬unicode (ä¸‹é¢çš„ä¾‹å­æ²¡ç”¨åˆ°)
+std::wstring Tools::GbkToUnicode(const std::string& strGbk)//è¿”å›žå€¼æ˜¯wstring
 {
 	int len = MultiByteToWideChar(CP_ACP, 0, strGbk.c_str(), -1, NULL, 0);
 	wchar_t *strUnicode = new wchar_t[len];
 	wmemset(strUnicode, 0, len);
 	MultiByteToWideChar(CP_ACP, 0, strGbk.c_str(), -1, strUnicode, len);
 
-	std::wstring strTemp(strUnicode);//´ËÊ±µÄstrTempÊÇUnicode±àÂë
+	std::wstring strTemp(strUnicode);//æ­¤æ—¶çš„strTempæ˜¯Unicodeç¼–ç 
 	delete[]strUnicode;
 	strUnicode = NULL;
 	return strTemp;
 }
 
-//Unicode×ªgbk
-std::string Tools::UnicodeToGbk(const std::wstring& strUnicode)//²ÎÊýÊÇwstring
+//Unicodeè½¬gbk
+std::string Tools::UnicodeToGbk(const std::wstring& strUnicode)//å‚æ•°æ˜¯wstring
 {
 	int len = WideCharToMultiByte(CP_ACP, 0, strUnicode.c_str(), -1, NULL, 0, NULL, NULL);
-	char *strGbk = new char[len];//len=3 ±¾À´Îª2£¬µ«ÊÇchar*ºóÃæ×Ô¶¯¼ÓÉÏÁË\0
+	char *strGbk = new char[len];//len=3 æœ¬æ¥ä¸º2ï¼Œä½†æ˜¯char*åŽé¢è‡ªåŠ¨åŠ ä¸Šäº†\0
 	memset(strGbk, 0, len);
 	WideCharToMultiByte(CP_ACP, 0, strUnicode.c_str(), -1, strGbk, len, NULL, NULL);
 
-	std::string strTemp(strGbk);//´ËÊ±µÄstrTempÊÇGBK±àÂë
+	std::string strTemp(strGbk);//æ­¤æ—¶çš„strTempæ˜¯GBKç¼–ç 
 	delete[]strGbk;
 	strGbk = NULL;
 	return strTemp;
@@ -279,7 +275,7 @@ void Tools::runExe(std::string exe, std::string cmd)
 			s_ProcessInfomation);
 		if(!bRet)
 		{
-			//Èç¹û´´½¨½ø³ÌÊ§°Ü£¬²é¿´´íÎóÂë
+			//å¦‚æžœåˆ›å»ºè¿›ç¨‹å¤±è´¥ï¼ŒæŸ¥çœ‹é”™è¯¯ç 
 			DWORD dwErrCode = GetLastError();
 			printf_s("ErrCode : %d\n", dwErrCode);
 		}
@@ -302,7 +298,7 @@ void* Tools::getImguiTextureID(const std::string& key, bool isPlist)
 	}
 	else
 	{
-		texture = TextureCache::getInstance()->addImage(key);
+        texture = Director::getInstance()->getTextureCache()->addImage(key);
 	}
 	if (texture == NULL)
 	{
@@ -310,7 +306,7 @@ void* Tools::getImguiTextureID(const std::string& key, bool isPlist)
 		return 0;
 	}
 
-	void* ptr = (void*)texture->getName();
+	void* ptr = (void*)texture->getBackendTexture();
 	if (cacheTextureId.find(ptr) == cacheTextureId.end())
 	{
 		if (permanentTextures.count(texture) == 0)
@@ -335,7 +331,7 @@ void Tools::retainImageuiTexture(void* textureId)
 
 	for (auto& it : permanentTextures)
 	{
-		void* ptr = (void*)it->getName();
+		void* ptr = (void*)it->getBackendTexture();
 		if (ptr == textureId)
 		{
 			CacheTextureInfo info;
@@ -367,7 +363,7 @@ void* Tools::getImguiTextureIDByTexture(Texture2D* texture)
 {
 	if (texture)
 	{
-		return (void*)texture->getName();
+		return (void*)texture->getBackendTexture();
 	}
 	return NULL;
 }
@@ -385,7 +381,7 @@ int Tools::getImguiTextureWidth(const std::string& key, bool isPlist)
 	}
 	else
 	{
-		texture = TextureCache::getInstance()->addImage(key);
+		texture = Director::getInstance()->getTextureCache()->addImage(key);
 	}
 	if (texture == NULL)
 	{
@@ -408,7 +404,7 @@ int Tools::getImguiTextureHeight(const std::string& key, bool isPlist)
 	}
 	else
 	{
-		texture = TextureCache::getInstance()->addImage(key);
+		texture = Director::getInstance()->getTextureCache()->addImage(key);
 	}
 	if (texture == NULL)
 	{
@@ -470,7 +466,7 @@ std::string Tools::UTS(const std::string& str)
 #if _WIN32
 	int nwLen = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, NULL, 0);
 
-	wchar_t * pwBuf = new wchar_t[nwLen + 1];//Ò»¶¨Òª¼Ó1£¬²»È»»á³öÏÖÎ²°Í 
+	wchar_t * pwBuf = new wchar_t[nwLen + 1];//ä¸€å®šè¦åŠ 1ï¼Œä¸ç„¶ä¼šå‡ºçŽ°å°¾å·´ 
 	memset(pwBuf, 0, nwLen * 2 + 2);
 
 	MultiByteToWideChar(CP_UTF8, 0, str.c_str(), str.length(), pwBuf, nwLen);
@@ -501,7 +497,7 @@ std::string Tools::STU(const std::string& str)
 #if _WIN32
 	int nwLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
 
-	wchar_t * pwBuf = new wchar_t[nwLen + 1];//Ò»¶¨Òª¼Ó1£¬²»È»»á³öÏÖÎ²°Í  
+	wchar_t * pwBuf = new wchar_t[nwLen + 1];//ä¸€å®šè¦åŠ 1ï¼Œä¸ç„¶ä¼šå‡ºçŽ°å°¾å·´  
 	ZeroMemory(pwBuf, nwLen * 2 + 2);
 
 	::MultiByteToWideChar(CP_ACP, 0, str.c_str(), str.length(), pwBuf, nwLen);
@@ -539,7 +535,7 @@ int32_t Tools::bor_int32(int32_t a, int32_t b)
 
 Size Tools::getWindowSize()
 {
-	return Director::getInstance()->getOpenGLView()->getVisibleSize();
+        return Director::getInstance()->getVisibleSize();
 }
 
 bool          Tools::BeginTabItem_NoClose(const char* label, ImGuiTabItemFlags flags)
@@ -581,15 +577,15 @@ const ImVec4& Tools::getStyleColor(int type)
 bool Tools::copyFile(const std::string& srcFile, const std::string& dstFile)
 {
 	auto FileUtilsPtr = FileUtils::getInstance();
-	auto& data = FileUtilsPtr->getDataFromFile(srcFile);
+	auto data = FileUtilsPtr->getDataFromFile(srcFile);
 	return FileUtilsPtr->writeDataToFile(data, dstFile);
 }
 
-void Tools::enumerateChildren(cocos2d::Node* node, const std::string& name, LuaFunction& handle)
+void Tools::enumerateChildren(axmol::Node* node, const std::string& name, LuaFunction& handle)
 {
 	if (node != NULL && handle.isvalid())
 	{
-		node->enumerateChildren(name, [&](cocos2d::Node* cur)->bool
+		node->enumerateChildren(name, [&](axmol::Node* cur)->bool
 		{
 			handle.ppush();
 			handle.pushusertype<Node>(cur, "cc.Node");
@@ -601,15 +597,16 @@ void Tools::enumerateChildren(cocos2d::Node* node, const std::string& name, LuaF
 
 std::string Tools::prettyJson(const char* json)
 {
-	rapidjson::Document docu;
-	docu.Parse(json);
+	//rapidjson::Document docu;
+	//docu.Parse(json);
 
-	rapidjson::StringBuffer buffer;
-	rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(buffer);
+	//rapidjson::StringBuffer buffer;
+	//rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(buffer);
 
-	docu.Accept(writer);
+	//docu.Accept(writer);
 
-	return buffer.GetString();
+	//return buffer.GetString();
+        return "";
 }
 
 int Tools::imguiComboUserdata(const char* label, int current_item)
@@ -664,7 +661,7 @@ std::vector<std::string> Tools::splitPlist(const std::string& plist)
 	std::string fullPath = FileUtils::getInstance()->fullPathForFilename(plist);
 	ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(fullPath);
 
-	if (dict["frames"].getType() != cocos2d::Value::Type::MAP)
+	if (dict["frames"].getType() != axmol::Value::Type::MAP)
 	{
 		cache_plistSubs[plist] = frameNames;
 		return frameNames;
@@ -796,7 +793,7 @@ float Tools::getDPI()
 	}
 
 
-	// 1ºÁÃ×=0.039370078740157Ó¢´ç 
+	// 1æ¯«ç±³=0.039370078740157è‹±å¯¸ 
 	const float INCH = 0.03937f;
 
 	float iTemp = iPhsX * iPhsX + iPhsY * iPhsY;
@@ -810,85 +807,85 @@ float Tools::getDPI()
 
 void Tools::relaunch()
 {
-	SimulatorWin::getInstance()->relaunch_new();
 }
 
 bool Tools::onGUIFontList()
 {
-	bool change = false;
-	ImGuiStyle& style = ImGui::GetStyle();
-	ImGuiIO& io = ImGui::GetIO();
-	ImFontAtlas* atlas = io.Fonts;
-	for (int i = 0; i < atlas->Fonts.Size; i++)
-	{
-		ImFont* font = atlas->Fonts[i];
-		ImGui::PushID(font);
-		bool font_details_opened = ImGui::TreeNode(font, "Font %d: \"%s\"\n%.2f px, %d glyphs, %d file(s)", i, font->ConfigData ? font->ConfigData[0].Name : "", font->FontSize, font->Glyphs.Size, font->ConfigDataCount);
-		ImGui::SameLine(); 
-		if (ImGui::SmallButton("Set as default")) 
-		{ 
-			io.FontDefault = font;
-			change = true;
-		}
-		if (font_details_opened)
-		{
-			ImGui::PushFont(font);
-			ImGui::Text("The quick brown fox jumps over the lazy dog");
-			ImGui::PopFont();
-			ImGui::DragFloat("Font scale", &font->Scale, 0.005f, 0.3f, 2.0f, "%.1f");   // Scale only this font
-			ImGui::InputFloat("Font offset", &font->DisplayOffset.y, 1, 1, "%.0f");
-			ImGui::Text("Ascent: %f, Descent: %f, Height: %f", font->Ascent, font->Descent, font->Ascent - font->Descent);
-			ImGui::Text("Fallback character: '%c' (%d)", font->FallbackChar, font->FallbackChar);
-			const float surface_sqrt = sqrtf((float)font->MetricsTotalSurface);
-			ImGui::Text("Texture surface: %d pixels (approx) ~ %dx%d", font->MetricsTotalSurface, (int)surface_sqrt, (int)surface_sqrt);
-			for (int config_i = 0; config_i < font->ConfigDataCount; config_i++)
-				if (const ImFontConfig* cfg = &font->ConfigData[config_i])
-					ImGui::BulletText("Input %d: \'%s\', Oversample: (%d,%d), PixelSnapH: %d", config_i, cfg->Name, cfg->OversampleH, cfg->OversampleV, cfg->PixelSnapH);
-			if (ImGui::TreeNode("Glyphs", "Glyphs (%d)", font->Glyphs.Size))
-			{
-				// Display all glyphs of the fonts in separate pages of 256 characters
-				for (int base = 0; base < 0x10000; base += 256)
-				{
-					int count = 0;
-					for (int n = 0; n < 256; n++)
-						count += font->FindGlyphNoFallback((ImWchar)(base + n)) ? 1 : 0;
-					if (count > 0 && ImGui::TreeNode((void*)(intptr_t)base, "U+%04X..U+%04X (%d %s)", base, base + 255, count, count > 1 ? "glyphs" : "glyph"))
-					{
-						float cell_size = font->FontSize * 1;
-						float cell_spacing = style.ItemSpacing.y;
-						ImVec2 base_pos = ImGui::GetCursorScreenPos();
-						ImDrawList* draw_list = ImGui::GetWindowDrawList();
-						for (int n = 0; n < 256; n++)
-						{
-							ImVec2 cell_p1(base_pos.x + (n % 16) * (cell_size + cell_spacing), base_pos.y + (n / 16) * (cell_size + cell_spacing));
-							ImVec2 cell_p2(cell_p1.x + cell_size, cell_p1.y + cell_size);
-							const ImFontGlyph* glyph = font->FindGlyphNoFallback((ImWchar)(base + n));
-							draw_list->AddRect(cell_p1, cell_p2, glyph ? IM_COL32(255, 255, 255, 100) : IM_COL32(255, 255, 255, 50));
-							if (glyph)
-								font->RenderChar(draw_list, cell_size, cell_p1, ImGui::GetColorU32(ImGuiCol_Text), (ImWchar)(base + n)); // We use ImFont::RenderChar as a shortcut because we don't have UTF-8 conversion functions available to generate a string.
-							if (glyph && ImGui::IsMouseHoveringRect(cell_p1, cell_p2))
-							{
-								ImGui::BeginTooltip();
-								ImGui::Text("Codepoint: U+%04X", base + n);
-								ImGui::Separator();
-								ImGui::Text("AdvanceX: %.1f", glyph->AdvanceX);
-								ImGui::Text("Pos: (%.2f,%.2f)->(%.2f,%.2f)", glyph->X0, glyph->Y0, glyph->X1, glyph->Y1);
-								ImGui::Text("UV: (%.3f,%.3f)->(%.3f,%.3f)", glyph->U0, glyph->V0, glyph->U1, glyph->V1);
-								ImGui::EndTooltip();
-							}
-						}
-						ImGui::Dummy(ImVec2((cell_size + cell_spacing) * 16, (cell_size + cell_spacing) * 16));
-						ImGui::TreePop();
-					}
-				}
-				ImGui::TreePop();
-			}
-			ImGui::TreePop();
-		}
-		ImGui::PopID();
-	}
+	//bool change = false;
+	//ImGuiStyle& style = ImGui::GetStyle();
+	//ImGuiIO& io = ImGui::GetIO();
+	//ImFontAtlas* atlas = io.Fonts;
+	//for (int i = 0; i < atlas->Fonts.Size; i++)
+	//{
+	//	ImFont* font = atlas->Fonts[i];
+	//	ImGui::PushID(font);
+	//	bool font_details_opened = ImGui::TreeNode(font, "Font %d: \"%s\"\n%.2f px, %d glyphs, %d file(s)", i, font->ConfigData ? font->ConfigData[0].Name : "", font->FontSize, font->Glyphs.Size, font->ConfigDataCount);
+	//	ImGui::SameLine(); 
+	//	if (ImGui::SmallButton("Set as default")) 
+	//	{ 
+	//		io.FontDefault = font;
+	//		change = true;
+	//	}
+	//	if (font_details_opened)
+	//	{
+	//		ImGui::PushFont(font);
+	//		ImGui::Text("The quick brown fox jumps over the lazy dog");
+	//		ImGui::PopFont();
+	//		ImGui::DragFloat("Font scale", &font->Scale, 0.005f, 0.3f, 2.0f, "%.1f");   // Scale only this font
+	//		ImGui::InputFloat("Font offset", &font->DisplayOffset.y, 1, 1, "%.0f");
+	//		ImGui::Text("Ascent: %f, Descent: %f, Height: %f", font->Ascent, font->Descent, font->Ascent - font->Descent);
+	//		ImGui::Text("Fallback character: '%c' (%d)", font->FallbackChar, font->FallbackChar);
+	//		const float surface_sqrt = sqrtf((float)font->MetricsTotalSurface);
+	//		ImGui::Text("Texture surface: %d pixels (approx) ~ %dx%d", font->MetricsTotalSurface, (int)surface_sqrt, (int)surface_sqrt);
+	//		for (int config_i = 0; config_i < font->ConfigDataCount; config_i++)
+	//			if (const ImFontConfig* cfg = &font->ConfigData[config_i])
+	//				ImGui::BulletText("Input %d: \'%s\', Oversample: (%d,%d), PixelSnapH: %d", config_i, cfg->Name, cfg->OversampleH, cfg->OversampleV, cfg->PixelSnapH);
+	//		if (ImGui::TreeNode("Glyphs", "Glyphs (%d)", font->Glyphs.Size))
+	//		{
+	//			// Display all glyphs of the fonts in separate pages of 256 characters
+	//			for (int base = 0; base < 0x10000; base += 256)
+	//			{
+	//				int count = 0;
+	//				for (int n = 0; n < 256; n++)
+	//					count += font->FindGlyphNoFallback((ImWchar)(base + n)) ? 1 : 0;
+	//				if (count > 0 && ImGui::TreeNode((void*)(intptr_t)base, "U+%04X..U+%04X (%d %s)", base, base + 255, count, count > 1 ? "glyphs" : "glyph"))
+	//				{
+	//					float cell_size = font->FontSize * 1;
+	//					float cell_spacing = style.ItemSpacing.y;
+	//					ImVec2 base_pos = ImGui::GetCursorScreenPos();
+	//					ImDrawList* draw_list = ImGui::GetWindowDrawList();
+	//					for (int n = 0; n < 256; n++)
+	//					{
+	//						ImVec2 cell_p1(base_pos.x + (n % 16) * (cell_size + cell_spacing), base_pos.y + (n / 16) * (cell_size + cell_spacing));
+	//						ImVec2 cell_p2(cell_p1.x + cell_size, cell_p1.y + cell_size);
+	//						const ImFontGlyph* glyph = font->FindGlyphNoFallback((ImWchar)(base + n));
+	//						draw_list->AddRect(cell_p1, cell_p2, glyph ? IM_COL32(255, 255, 255, 100) : IM_COL32(255, 255, 255, 50));
+	//						if (glyph)
+	//							font->RenderChar(draw_list, cell_size, cell_p1, ImGui::GetColorU32(ImGuiCol_Text), (ImWchar)(base + n)); // We use ImFont::RenderChar as a shortcut because we don't have UTF-8 conversion functions available to generate a string.
+	//						if (glyph && ImGui::IsMouseHoveringRect(cell_p1, cell_p2))
+	//						{
+	//							ImGui::BeginTooltip();
+	//							ImGui::Text("Codepoint: U+%04X", base + n);
+	//							ImGui::Separator();
+	//							ImGui::Text("AdvanceX: %.1f", glyph->AdvanceX);
+	//							ImGui::Text("Pos: (%.2f,%.2f)->(%.2f,%.2f)", glyph->X0, glyph->Y0, glyph->X1, glyph->Y1);
+	//							ImGui::Text("UV: (%.3f,%.3f)->(%.3f,%.3f)", glyph->U0, glyph->V0, glyph->U1, glyph->V1);
+	//							ImGui::EndTooltip();
+	//						}
+	//					}
+	//					ImGui::Dummy(ImVec2((cell_size + cell_spacing) * 16, (cell_size + cell_spacing) * 16));
+	//					ImGui::TreePop();
+	//				}
+	//			}
+	//			ImGui::TreePop();
+	//		}
+	//		ImGui::TreePop();
+	//	}
+	//	ImGui::PopID();
+	//}
 
-	return change;
+	//return change;
+        return false;
 }
 
 bool Tools::setImguiFontName(const char* fontName)

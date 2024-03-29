@@ -199,6 +199,8 @@ _push_functions["std::vector<double>"] = "tolua_ext_vector_double_to_luaval"
 _push_functions["std::vector<Vec2>"] = "tolua_ext_vector_vec2_to_luaval"
 _push_functions["Vec2"] = "tolua_ext_vec2_value_to_luaval"
 _push_functions["Vec3"] = "tolua_ext_vec3_value_to_luaval"
+_push_functions["GFixedVec2"] = "tolua_ext_fvec2_value_to_luaval"
+_push_functions["GFixedVec3"] = "tolua_ext_fvec3_value_to_luaval"
 _push_functions["Size"] = "tolua_ext_size_value_to_luaval"
 _push_functions["Rect"] = "tolua_ext_rect_value_to_luaval"
 _push_functions["b2Vec2"] = "tolua_ext_b2vec2_to_luaval"
@@ -220,6 +222,8 @@ _to_functions["std::vector<double>"] = "tolua_ext_luaval_to_vector_double"
 _to_functions["std::vector<Vec2>"] = "tolua_ext_luaval_to_vector_vec2"
 _to_functions["Vec2"] = "tolua_ext_luaval_to_vec2_value"
 _to_functions["Vec3"] = "tolua_ext_luaval_to_vec3_value"
+_to_functions["GFixedVec2"] = "tolua_ext_luaval_to_fvec2_value"
+_to_functions["GFixedVec3"] = "tolua_ext_luaval_to_fvec3_value"
 _to_functions["Size"] = "tolua_ext_luaval_to_size_value"
 _to_functions["Rect"] = "tolua_ext_luaval_to_rect_value"
 _to_functions["b2Vec2"] = "tolua_ext_luaval_to_b2vec2"
@@ -241,6 +245,8 @@ _is_functions["std::vector<double>"] = "tolua_ext_check_is_table"
 _is_functions["std::vector<Vec2>"] = "tolua_ext_check_is_table"
 _is_functions["Vec2"] = "tolua_ext_check_is_table"
 _is_functions["Vec3"] = "tolua_ext_check_is_table"
+_is_functions["GFixedVec2"] = "tolua_ext_check_is_table"
+_is_functions["GFixedVec3"] = "tolua_ext_check_is_table"
 _is_functions["Size"] = "tolua_ext_check_is_table"
 _is_functions["Rect"] = "tolua_ext_check_is_table"
 _is_functions["b2Vec2"] = "tolua_ext_check_is_table"
@@ -419,6 +425,10 @@ function post_output_hook(package)
 
     -- replace("\"Node\"", "\"Node*\"")
     -- replace("cc_Node*", "Node*")
+
+    replace("self->interrupt(", "self->interrupt((GInterruptType)")
+
+    replace("tolua_pushcppstring(tolua_S,(const char*)", "tolua_pushcppstring(tolua_S,")
 
     result = string.gsub(result, "toluafix_totable%(tolua_S,.-\"LUA_FUNCTION\"%);", "//未实现\n   assert(0);")
 

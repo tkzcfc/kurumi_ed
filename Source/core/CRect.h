@@ -1,10 +1,10 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "axmol.h"
 #include "Math.h"
 #include "type/Vec2Value.h"
 
-using namespace cocos2d;
+using namespace ax;
 
 class CRect
 {
@@ -32,7 +32,7 @@ public:
 
 	float getRotation();
 
-	// ÇĞ±ä
+	// åˆ‡å˜
 	void setSkewX(float skewx);
 
 	void setSkewY(float skewy);

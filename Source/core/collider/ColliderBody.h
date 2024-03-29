@@ -1,8 +1,8 @@
 #pragma once
 
-#include <cocos2d.h>
+#include <axmol.h>
 
-using namespace cocos2d;
+using namespace ax;
 
 enum ColliderShapeType
 {

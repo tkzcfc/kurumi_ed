@@ -1,3 +1,7 @@
+#include "axmol.h"
+
+#if AX_TARGET_PLATFORM != AX_PLATFORM_WIN32
+
 #include "process.hpp"
 #include <cstdlib>
 #include <unistd.h>
@@ -225,3 +229,5 @@ void Process::kill(id_type id, bool force) noexcept {
 }
 
 } // TinyProsessLib
+
+#endif

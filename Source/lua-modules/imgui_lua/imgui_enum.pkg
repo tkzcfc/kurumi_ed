@@ -57,15 +57,11 @@ enum ImGuiInputTextFlags_
     ImGuiInputTextFlags_AllowTabInput       = 1 << 10,  // Pressing TAB input a '\t' character into the text field
     ImGuiInputTextFlags_CtrlEnterForNewLine = 1 << 11,  // In multi-line mode, unfocus with Enter, add new line with Ctrl+Enter (default is opposite: unfocus with Ctrl+Enter, add line with Enter).
     ImGuiInputTextFlags_NoHorizontalScroll  = 1 << 12,  // Disable following the cursor horizontally
-    ImGuiInputTextFlags_AlwaysInsertMode    = 1 << 13,  // Insert mode
     ImGuiInputTextFlags_ReadOnly            = 1 << 14,  // Read-only mode
     ImGuiInputTextFlags_Password            = 1 << 15,  // Password mode, display all characters as '*'
     ImGuiInputTextFlags_NoUndoRedo          = 1 << 16,  // Disable undo/redo. Note that input text owns the text data while active, if you want to provide your own undo/redo stack you need e.g. to call ClearActiveID().
     ImGuiInputTextFlags_CharsScientific     = 1 << 17,  // Allow 0123456789.+-*/eE (Scientific notation input)
     ImGuiInputTextFlags_CallbackResize      = 1 << 18,  // Callback on buffer capacity changes request (beyond 'buf_size' parameter value), allowing the string to grow. Notify when the string wants to be resized (for string types which hold a cache of their Size). You will be provided a new BufSize in the callback and NEED to honor it. (see misc/cpp/imgui_stdlib.h for an example of using this)
-    // [Internal]
-    ImGuiInputTextFlags_Multiline           = 1 << 20,  // For internal use by InputTextMultiline()
-    ImGuiInputTextFlags_NoMarkEdited        = 1 << 21   // For internal use by functions using InputText() before reformatting data
 };
 
 // Flags for ImGui::TreeNodeEx(), ImGui::CollapsingHeader*()
@@ -309,17 +305,6 @@ enum ImGuiNavInput_
     ImGuiNavInput_FocusNext,     // prev window (w/ PadMenu)                     // e.g. R1 or R2 (PS4), RB or RT (Xbox), R or ZL (Switch)
     ImGuiNavInput_TweakSlow,     // slower tweaks                                // e.g. L1 or L2 (PS4), LB or LT (Xbox), L or ZL (Switch)
     ImGuiNavInput_TweakFast,     // faster tweaks                                // e.g. R1 or R2 (PS4), RB or RT (Xbox), R or ZL (Switch)
-
-    // [Internal] Don't use directly! This is used internally to differentiate keyboard from gamepad inputs for behaviors that require to differentiate them.
-    // Keyboard behavior that have no corresponding gamepad mapping (e.g. CTRL+TAB) will be directly reading from io.KeysDown[] instead of io.NavInputs[].
-    ImGuiNavInput_KeyMenu_,      // toggle menu                                  // = io.KeyAlt
-    ImGuiNavInput_KeyTab_,       // tab                                          // = Tab key
-    ImGuiNavInput_KeyLeft_,      // move left                                    // = Arrow keys
-    ImGuiNavInput_KeyRight_,     // move right
-    ImGuiNavInput_KeyUp_,        // move up
-    ImGuiNavInput_KeyDown_,      // move down
-    ImGuiNavInput_COUNT,
-    ImGuiNavInput_InternalStart_ = ImGuiNavInput_KeyMenu_
 };
 
 // Configuration flags stored in io.ConfigFlags. Set by user/application.
@@ -431,7 +416,6 @@ enum ImGuiStyleVar_
     ImGuiStyleVar_TabRounding,         // float     TabRounding
     ImGuiStyleVar_ButtonTextAlign,     // ImVec2    ButtonTextAlign
     ImGuiStyleVar_SelectableTextAlign, // ImVec2    SelectableTextAlign
-    ImGuiStyleVar_LayoutAlign,         // float     LayoutAlign
     ImGuiStyleVar_COUNT
 
 };
@@ -464,17 +448,6 @@ enum ImGuiColorEditFlags_
     ImGuiColorEditFlags_PickerHueWheel  = 1 << 26,  // [Picker]     // ColorPicker: wheel for Hue, triangle for Sat/Value.
     ImGuiColorEditFlags_InputRGB        = 1 << 27,  // [Input]      // ColorEdit, ColorPicker: input and output data in RGB format.
     ImGuiColorEditFlags_InputHSV        = 1 << 28,  // [Input]      // ColorEdit, ColorPicker: input and output data in HSV format.
-
-    // Defaults Options. You can set application defaults using SetColorEditOptions(). The intent is that you probably don't want to
-    // override them in most of your calls. Let the user choose via the option menu and/or call SetColorEditOptions() once during startup.
-    ImGuiColorEditFlags__OptionsDefault = ImGuiColorEditFlags_Uint8|ImGuiColorEditFlags_DisplayRGB|ImGuiColorEditFlags_InputRGB|ImGuiColorEditFlags_PickerHueBar,
-
-    // [Internal] Masks
-    ImGuiColorEditFlags__DisplayMask    = ImGuiColorEditFlags_DisplayRGB|ImGuiColorEditFlags_DisplayHSV|ImGuiColorEditFlags_DisplayHex,
-    ImGuiColorEditFlags__DataTypeMask   = ImGuiColorEditFlags_Uint8|ImGuiColorEditFlags_Float,
-    ImGuiColorEditFlags__PickerMask     = ImGuiColorEditFlags_PickerHueWheel|ImGuiColorEditFlags_PickerHueBar,
-    ImGuiColorEditFlags__InputMask      = ImGuiColorEditFlags_InputRGB|ImGuiColorEditFlags_InputHSV
-
 };
 
 // Enumeration for GetMouseCursor()

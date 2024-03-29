@@ -1,5 +1,5 @@
 
-
+enum ImGuiKey {};
 
 struct ImGuiIO
 {
@@ -95,7 +95,7 @@ struct ImGuiIO
     int         MetricsRenderIndices;           // Indices output during last call to Render() = number of triangles * 3
     int         MetricsRenderWindows;           // Number of visible windows
     int         MetricsActiveWindows;           // Number of active windows
-    int         MetricsActiveAllocations;       // Number of active allocations, updated by MemAlloc/MemFree based on current context. May be off if you have multiple imgui contexts.
+    //int         MetricsActiveAllocations;       // Number of active allocations, updated by MemAlloc/MemFree based on current context. May be off if you have multiple imgui contexts.
     ImVec2      MouseDelta;                     // Mouse delta. Note that this is zero if either current or previous position are invalid (-FLT_MAX,-FLT_MAX), so a disappearing/reappearing mouse won't have a huge delta.
 
     //------------------------------------------------------------------
@@ -104,18 +104,17 @@ struct ImGuiIO
 
     ImVec2      MousePosPrev;                   // Previous mouse position (note that MouseDelta is not necessary == MousePos-MousePosPrev, in case either position is invalid)
     //ImVec2      MouseClickedPos[5];             // Position at time of clicking
-    double      MouseClickedTime[5];            // Time of last click (used to figure out double-click)
-    bool        MouseClicked[5];                // Mouse button went from !Down to Down
-    bool        MouseDoubleClicked[5];          // Has mouse button been double-clicked?
-    bool        MouseReleased[5];               // Mouse button went from Down to !Down
-    bool        MouseDownOwned[5];              // Track if button was clicked inside a dear imgui window. We don't request mouse capture from the application if click started outside ImGui bounds.
-    bool        MouseDownWasDoubleClick[5];     // Track if button down was a double-click
-    float       MouseDownDuration[5];           // Duration the mouse button has been down (0.0f == just clicked)
-    float       MouseDownDurationPrev[5];       // Previous time the mouse button has been down
+   // double      MouseClickedTime[5];            // Time of last click (used to figure out double-click)
+   // bool        MouseClicked[5];                // Mouse button went from !Down to Down
+   // bool        MouseDoubleClicked[5];          // Has mouse button been double-clicked?
+   // bool        MouseReleased[5];               // Mouse button went from Down to !Down
+   // bool        MouseDownOwned[5];              // Track if button was clicked inside a dear imgui window. We don't request mouse capture from the application if click started outside ImGui bounds.
+   // bool        MouseDownWasDoubleClick[5];     // Track if button down was a double-click
+   // float       MouseDownDuration[5];           // Duration the mouse button has been down (0.0f == just clicked)
+  //  float       MouseDownDurationPrev[5];       // Previous time the mouse button has been down
     //ImVec2      MouseDragMaxDistanceAbs[5];     // Maximum distance, absolute, on each axis, of how much mouse has traveled from the clicking point
-    float       MouseDragMaxDistanceSqr[5];     // Squared maximum distance of how much mouse has traveled from the clicking point
-    float       KeysDownDuration[512];          // Duration the keyboard key has been down (0.0f == just pressed)
-    float       KeysDownDurationPrev[512];      // Previous duration the key has been down
+   // float       MouseDragMaxDistanceSqr[5];     // Squared maximum distance of how much mouse has traveled from the clicking point
+   // float       KeysDownDuration[512];          // Duration the keyboard key has been down (0.0f == just pressed)
     //float       NavInputsDownDuration[ImGuiNavInput_COUNT];
     //float       NavInputsDownDurationPrev[ImGuiNavInput_COUNT];
     //ImVector<ImWchar> InputQueueCharacters;     // Queue of _characters_ input (obtained by platform back-end). Fill using AddInputCharacter() helper.
@@ -155,7 +154,7 @@ struct ImGuiStyle
     float       ScrollbarRounding;          // Radius of grab corners for scrollbar.
     float       GrabMinSize;                // Minimum width/height of a grab box for slider/scrollbar.
     float       GrabRounding;               // Radius of grabs corners rounding. Set to 0.0f to have rectangular slider grabs.
-    float       LayoutAlign;                // Element alignment inside horizontal and vertical layouts (0.0f - left/top, 1.0f - right/bottom, 0.5f - center).
+    //float       LayoutAlign;                // Element alignment inside horizontal and vertical layouts (0.0f - left/top, 1.0f - right/bottom, 0.5f - center).
     float       TabRounding;                // Radius of upper corners of a tab. Set to 0.0f to have rectangular tabs.
     float       TabBorderSize;              // Thickness of border around tabs.
     ImVec2      ButtonTextAlign;            // Alignment of button text when button is larger than text. Defaults to (0.5f, 0.5f) (centered).
@@ -245,7 +244,6 @@ struct ImDrawList
     // [Internal, used while building lists]
     //const ImDrawListSharedData* _Data;          // Pointer to shared draw data (you can use ImGui::GetDrawListSharedData() to get the one from current ImGui context)
     //const char*             _OwnerName;         // Pointer to owner window's name for debugging
-    unsigned int            _VtxCurrentOffset;  // [Internal] Always 0 unless 'Flags & ImDrawListFlags_AllowVtxOffset'.
     unsigned int            _VtxCurrentIdx;     // [Internal] Generally == VtxBuffer.Size unless we are past 64K vertices, in which case this gets reset to 0.
     //ImDrawVert*             _VtxWritePtr;       // [Internal] point within VtxBuffer.Data after each add command (to avoid using the ImVector<> operators too much)
     //ImDrawIdx*              _IdxWritePtr;       // [Internal] point within IdxBuffer.Data after each add command (to avoid using the ImVector<> operators too much)
@@ -268,8 +266,8 @@ struct ImDrawList
 
     // Primitives
      void  AddLine(ImVec2 a, ImVec2 b, unsigned int col, float thickness = 1.0f);
-     void  AddRect(ImVec2 a, ImVec2 b, unsigned int col, float rounding = 0.0f, int rounding_corners_flags = ImDrawCornerFlags_All, float thickness = 1.0f);   // a: upper-left, b: lower-right (== upper-left + size), rounding_corners_flags: 4-bits corresponding to which corner to round
-     void  AddRectFilled(ImVec2 a, ImVec2 b, unsigned int col, float rounding = 0.0f, int rounding_corners_flags = ImDrawCornerFlags_All);                     // a: upper-left, b: lower-right (== upper-left + size)
+     //void  AddRect(ImVec2 a, ImVec2 b, unsigned int col, float rounding = 0.0f, int rounding_corners_flags = ImDrawCornerFlags_All, float thickness = 1.0f);   // a: upper-left, b: lower-right (== upper-left + size), rounding_corners_flags: 4-bits corresponding to which corner to round
+     //void  AddRectFilled(ImVec2 a, ImVec2 b, unsigned int col, float rounding = 0.0f, int rounding_corners_flags = ImDrawCornerFlags_All);                     // a: upper-left, b: lower-right (== upper-left + size)
      void  AddRectFilledMultiColor(ImVec2 a, ImVec2 b, unsigned int col_upr_left, unsigned int col_upr_right, unsigned int col_bot_right, unsigned int col_bot_left);
      void  AddQuad(ImVec2 a, ImVec2 b, ImVec2 c, ImVec2 d, unsigned int col, float thickness = 1.0f);
      void  AddQuadFilled(ImVec2 a, ImVec2 b, ImVec2 c, ImVec2 d, unsigned int col);
@@ -281,10 +279,10 @@ struct ImDrawList
     // void  AddText(const ImFont* font, float font_size, ImVec2 pos, unsigned int col, const char* text_begin, const char* text_end = NULL, float wrap_width = 0.0f, const ImVec4* cpu_fine_clip_rect = NULL);
      void  AddImage(void* user_texture_id, ImVec2 a, ImVec2 b, ImVec2 uv_a = ImVec2(0,0), ImVec2 uv_b = ImVec2(1,1), unsigned int col = IM_COL32_WHITE);
      void  AddImageQuad(void* user_texture_id, ImVec2 a, ImVec2 b, ImVec2 c, ImVec2 d, ImVec2 uv_a = ImVec2(0,0), ImVec2 uv_b = ImVec2(1,0), ImVec2 uv_c = ImVec2(1,1), ImVec2 uv_d = ImVec2(0,1), unsigned int col = IM_COL32_WHITE);
-     void  AddImageRounded(void* user_texture_id, ImVec2 a, ImVec2 b, ImVec2 uv_a, ImVec2 uv_b, unsigned int col, float rounding, int rounding_corners = ImDrawCornerFlags_All);
+     //void  AddImageRounded(void* user_texture_id, ImVec2 a, ImVec2 b, ImVec2 uv_a, ImVec2 uv_b, unsigned int col, float rounding, int rounding_corners = ImDrawCornerFlags_All);
      //void  AddPolyline(const ImVec2* points, int num_points, unsigned int col, bool closed, float thickness);
      //void  AddConvexPolyFilled(const ImVec2* points, int num_points, unsigned int col); // Note: Anti-aliased filling requires points to be in clockwise order.
-     void  AddBezierCurve(ImVec2 pos0, ImVec2 cp0, ImVec2 cp1, ImVec2 pos1, unsigned int col, float thickness, int num_segments = 0);
+    // void  AddBezierCurve(ImVec2 pos0, ImVec2 cp0, ImVec2 cp1, ImVec2 pos1, unsigned int col, float thickness, int num_segments = 0);
 
     // Stateful path API, add points then finish with PathFillConvex() or PathStroke()
     inline    void  PathClear()                                                 { _Path.Size = 0; }
@@ -292,10 +290,10 @@ struct ImDrawList
     inline    void  PathLineToMergeDuplicate(ImVec2 pos)                 { if (_Path.Size == 0 || memcmp(&_Path.Data[_Path.Size-1], &pos, 8) != 0) _Path.push_back(pos); }
     inline    void  PathFillConvex(unsigned int col)                                   { AddConvexPolyFilled(_Path.Data, _Path.Size, col); _Path.Size = 0; }  // Note: Anti-aliased filling requires points to be in clockwise order.
     inline    void  PathStroke(unsigned int col, bool closed, float thickness = 1.0f)  { AddPolyline(_Path.Data, _Path.Size, col, closed, thickness); _Path.Size = 0; }
-     void  PathArcTo(ImVec2 centre, float radius, float a_min, float a_max, int num_segments = 10);
-     void  PathArcToFast(ImVec2 centre, float radius, int a_min_of_12, int a_max_of_12);                                            // Use precomputed angles for a 12 steps circle
-     void  PathBezierCurveTo(ImVec2 p1, ImVec2 p2, ImVec2 p3, int num_segments = 0);
-     void  PathRect(ImVec2 rect_min, ImVec2 rect_max, float rounding = 0.0f, int rounding_corners_flags = ImDrawCornerFlags_All);
+   //  void  PathArcTo(ImVec2 centre, float radius, float a_min, float a_max, int num_segments = 10);
+   //  void  PathArcToFast(ImVec2 centre, float radius, int a_min_of_12, int a_max_of_12);                                            // Use precomputed angles for a 12 steps circle
+    // void  PathBezierCurveTo(ImVec2 p1, ImVec2 p2, ImVec2 p3, int num_segments = 0);
+     //void  PathRect(ImVec2 rect_min, ImVec2 rect_max, float rounding = 0.0f, int rounding_corners_flags = ImDrawCornerFlags_All);
 
     // Advanced
     // void  AddCallback(ImDrawCallback callback, void* callback_data);  // Your rendering function must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles.
@@ -311,8 +309,8 @@ struct ImDrawList
 
     // Internal helpers
     // NB: all primitives needs to be reserved via PrimReserve() beforehand!
-     void  Clear();
-     void  ClearFreeMemory();
+    // void  Clear();
+    // void  ClearFreeMemory();
      void  PrimReserve(int idx_count, int vtx_count);
      void  PrimRect(ImVec2 a, ImVec2 b, unsigned int col);      // Axis aligned rectangle (composed of two triangles)
      void  PrimRectUV(ImVec2 a, ImVec2 b, ImVec2 uv_a, ImVec2 uv_b, unsigned int col);
@@ -320,8 +318,6 @@ struct ImDrawList
     inline    void  PrimWriteVtx(ImVec2 pos, ImVec2 uv, unsigned int col){ _VtxWritePtr->pos = pos; _VtxWritePtr->uv = uv; _VtxWritePtr->col = col; _VtxWritePtr++; _VtxCurrentIdx++; }
     //inline    void  PrimWriteIdx(ImDrawIdx idx)                                 { *_IdxWritePtr = idx; _IdxWritePtr++; }
     inline    void  PrimVtx(ImVec2 pos, ImVec2 uv, unsigned int col)     { PrimWriteIdx((ImDrawIdx)_VtxCurrentIdx); PrimWriteVtx(pos, uv, col); }
-     void  UpdateClipRect();
-     void  UpdateTextureID();
 };
 
 
@@ -389,11 +385,10 @@ namespace ImGui
      void          OpenPopup(const char* str_id);                                      // call to mark popup as open (don't call every frame!). popups are closed when user click outside, or if CloseCurrentPopup() is called within a BeginPopup()/EndPopup() block. By default, Selectable()/MenuItem() are calling CloseCurrentPopup(). Popup identifiers are relative to the current ID-stack (so OpenPopup and BeginPopup needs to be at the same level).
      bool          BeginPopup(const char* str_id, unsigned int flags = 0);                                             // return true if the popup is open, and you can start outputting to it. only call EndPopup() if BeginPopup() returns true!
      bool          BeginPopupContextItem(const char* str_id = NULL, int mouse_button = 1);                                 // helper to open and begin popup when clicked on last item. if you can pass a NULL str_id only if the previous item had an id. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!
-     bool          BeginPopupContextWindow(const char* str_id = NULL, int mouse_button = 1, bool also_over_items = true);  // helper to open and begin popup when clicked on current window.
+     //bool          BeginPopupContextWindow(const char* str_id = NULL, int mouse_button = 1, bool also_over_items = true);  // helper to open and begin popup when clicked on current window.
      bool          BeginPopupContextVoid(const char* str_id = NULL, int mouse_button = 1);                                 // helper to open and begin popup when clicked in void (where there are no imgui windows).
      bool          BeginPopupModal(const char* name, bool* p_open = NULL, unsigned int flags = 0);                     // modal dialog (regular window with title bar, block interactions behind the modal window, can't close the modal window by clicking outside)
      void          EndPopup();                                                                                             // only call EndPopup() if BeginPopupXXX() returns true!
-     bool          OpenPopupOnItemClick(const char* str_id = NULL, int mouse_button = 1);                                  // helper to open popup when clicked on last item (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors). return true when just opened.
      bool          IsPopupOpen(const char* str_id);                                    // return true if the popup is open at the current begin-ed level of the popup stack.
      void          CloseCurrentPopup();                                                // close the popup we have begin-ed into. clicking on a MenuItem or Selectable automatically close the current popup.
 
@@ -429,20 +424,20 @@ namespace ImGui
      //void          BeginHorizontal(const char* str_id, const ImVec2& size = ImVec2(0, 0), float align = -1.0f);
      //void          BeginHorizontal(const void* ptr_id, const ImVec2& size = ImVec2(0, 0), float align = -1.0f);
      //void          BeginHorizontal(int id, const ImVec2& size = ImVec2(0, 0), float align = -1);
-	 void          BeginHorizontal(const char* str_id, ImVec2 size, float align = -1.0f);
+	 //void          BeginHorizontal(const char* str_id, ImVec2 size, float align = -1.0f);
 	 //void          BeginHorizontal(const void* ptr_id, ImVec2 size, float align = -1.0f);
-	 void          BeginHorizontal(int id, ImVec2 size, float align = -1);
-     void          EndHorizontal();
+	 //void          BeginHorizontal(int id, ImVec2 size, float align = -1);
+     //void          EndHorizontal();
      //void          BeginVertical(const char* str_id, const ImVec2& size = ImVec2(0, 0), float align = -1.0f);
      //void          BeginVertical(const void* ptr_id, const ImVec2& size = ImVec2(0, 0), float align = -1.0f);
      //void          BeginVertical(int id, const ImVec2& size = ImVec2(0, 0), float align = -1);
-	 void          BeginVertical(const char* str_id, ImVec2 size, float align = -1.0f);
-     void          BeginVertical(const void* ptr_id, ImVec2 size, float align = -1.0f);
-     void          BeginVertical(int id, ImVec2 size, float align = -1);
-     void          EndVertical();
-     void          Spring(float weight = 1.0f, float spacing = -1.0f);
-     void          SuspendLayout();
-     void          ResumeLayout();
+	 //void          BeginVertical(const char* str_id, ImVec2 size, float align = -1.0f);
+     //void          BeginVertical(const void* ptr_id, ImVec2 size, float align = -1.0f);
+     //void          BeginVertical(int id, ImVec2 size, float align = -1);
+     //void          EndVertical();
+    // void          Spring(float weight = 1.0f, float spacing = -1.0f);
+   //  void          SuspendLayout();
+    // void          ResumeLayout();
 	 
 	 
 	 
@@ -569,11 +564,11 @@ namespace ImGui
 
 
     // Inputs Utilities
-     int           GetKeyIndex(int imgui_key);                                    // map ImGuiKey_* values into user's key index. == io.KeyMap[key]
-     bool          IsKeyDown(int user_key_index);                                      // is key being held. == io.KeysDown[user_key_index]. note that imgui doesn't know the semantic of each entry of io.KeysDown[]. Use your own indices/enums according to how your backend/engine stored them into io.KeysDown[]!
-     bool          IsKeyPressed(int user_key_index, bool repeat = true);               // was key pressed (went from !Down to Down). if repeat=true, uses io.KeyRepeatDelay / KeyRepeatRate
-     bool          IsKeyReleased(int user_key_index);                                  // was key released (went from Down to !Down)..
-     int           GetKeyPressedAmount(int key_index, float repeat_delay, float rate); // uses provided repeat rate/delay. return a count, most often 0 or 1 but might be >1 if RepeatRate is small enough that DeltaTime > RepeatRate
+     int           GetKeyIndex(ImGuiKey imgui_key);                                    // map ImGuiKey_* values into user's key index. == io.KeyMap[key]
+     bool          IsKeyDown(ImGuiKey user_key_index);                                      // is key being held. == io.KeysDown[user_key_index]. note that imgui doesn't know the semantic of each entry of io.KeysDown[]. Use your own indices/enums according to how your backend/engine stored them into io.KeysDown[]!
+     bool          IsKeyPressed(ImGuiKey user_key_index, bool repeat = true);               // was key pressed (went from !Down to Down). if repeat=true, uses io.KeyRepeatDelay / KeyRepeatRate
+     bool          IsKeyReleased(ImGuiKey user_key_index);                                  // was key released (went from Down to !Down)..
+     int           GetKeyPressedAmount(ImGuiKey key_index, float repeat_delay, float rate); // uses provided repeat rate/delay. return a count, most often 0 or 1 but might be >1 if RepeatRate is small enough that DeltaTime > RepeatRate
      bool          IsMouseDown(int button);                                            // is mouse button held (0=left, 1=right, 2=middle)
      bool          IsAnyMouseDown();                                                   // is any mouse button held
      bool          IsMouseClicked(int button, bool repeat = false);                    // did mouse button clicked (went from !Down to Down) (0=left, 1=right, 2=middle)
@@ -599,7 +594,7 @@ namespace ImGui
     // OBSOLETED in 1.71 (from June 2019)
   //  static inline void SetNextTreeNodeOpen(bool open, ImGuiCond cond = 0)   { SetNextItemOpen(open, cond); }
     // OBSOLETED in 1.70 (from May 2019)
-    static inline float GetContentRegionAvailWidth()          { return GetContentRegionAvail().x; }
+    //static inline float GetContentRegionAvailWidth()          { return GetContentRegionAvail().x; }
     // OBSOLETED in 1.69 (from Mar 2019)
     //static inline ImDrawList* GetOverlayDrawList()            { return GetForegroundDrawList(); }
     // OBSOLETED in 1.66 (from Sep 2018)
@@ -612,19 +607,18 @@ namespace ImGui
     // bool      InputFloat3(const char* label, float v[3], int decimal_precision, ImGuiInputTextFlags flags = 0);
    //  bool      InputFloat4(const char* label, float v[4], int decimal_precision, ImGuiInputTextFlags flags = 0);
     // OBSOLETED in 1.60 (between Dec 2017 and Apr 2018)
-    static inline bool  IsAnyWindowFocused()                  { return IsWindowFocused(ImGuiFocusedFlags_AnyWindow); }
-    static inline bool  IsAnyWindowHovered()                  { return IsWindowHovered(ImGuiHoveredFlags_AnyWindow); }
+   // static inline bool  IsAnyWindowFocused()                  { return IsWindowFocused(ImGuiFocusedFlags_AnyWindow); }
+   // static inline bool  IsAnyWindowHovered()                  { return IsWindowHovered(ImGuiHoveredFlags_AnyWindow); }
   //  static inline ImVec2 CalcItemRectClosestPoint(const ImVec2& pos, bool on_edge = false, float outward = 0.f) { IM_UNUSED(on_edge); IM_UNUSED(outward); IM_ASSERT(0); return pos; }
     // OBSOLETED in 1.53 (between Oct 2017 and Dec 2017)
    // static inline void  ShowTestWindow()                      { return ShowDemoWindow(); }
-    static inline bool  IsRootWindowFocused()                 { return IsWindowFocused(ImGuiFocusedFlags_RootWindow); }
-    static inline bool  IsRootWindowOrAnyChildFocused()       { return IsWindowFocused(ImGuiFocusedFlags_RootAndChildWindows); }
+   // static inline bool  IsRootWindowFocused()                 { return IsWindowFocused(ImGuiFocusedFlags_RootWindow); }
   //  static inline void  SetNextWindowContentWidth(float w)    { SetNextWindowContentSize(ImVec2(w, 0.0f)); }
   //  static inline float GetItemsLineHeightWithSpacing()       { return GetFrameHeightWithSpacing(); }
     // OBSOLETED in 1.52 (between Aug 2017 and Oct 2017)
    //  bool      Begin(const char* name, bool* p_open, const ImVec2& size_on_first_use, float bg_alpha_override = -1.0f, ImGuiWindowFlags flags = 0); // Use SetNextWindowSize(size, ImGuiCond_FirstUseEver) + SetNextWindowBgAlpha() instead.
-    static inline bool  IsRootWindowOrAnyChildHovered()       { return IsWindowHovered(ImGuiHoveredFlags_RootAndChildWindows); }
-    static inline void  AlignFirstTextHeightToWidgets()       { AlignTextToFramePadding(); }
+   // static inline bool  IsRootWindowOrAnyChildHovered()       { return IsWindowHovered(ImGuiHoveredFlags_RootAndChildWindows); }
+   // static inline void  AlignFirstTextHeightToWidgets()       { AlignTextToFramePadding(); }
   //  static inline void  SetNextWindowPosCenter(ImGuiCond c=0) { ImGuiIO& io = GetIO(); SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f), c, ImVec2(0.5f, 0.5f)); }
 
 	 
@@ -678,7 +672,6 @@ namespace ImGui
      void          TreePush(const char* str_id);                                       // ~ Indent()+PushId(). Already called by TreeNode() when returning true, but you can call TreePush/TreePop yourself if desired.
      void          TreePush(const void* ptr_id = NULL);                                // "
      void          TreePop();                                                          // ~ Unindent()+PopId()
-     void          TreeAdvanceToLabelPos();                                            // advance cursor x position by GetTreeNodeToLabelSpacing()
      float         GetTreeNodeToLabelSpacing();                                        // horizontal distance preceding label when using TreeNode*() or Bullet() == (g.FontSize + style.FramePadding.x*2) for a regular unframed TreeNode
      bool          CollapsingHeader(const char* label, unsigned int flags = 0);  // if returning 'true' the header is open. doesn't indent nor push on ID stack. user doesn't have to call TreePop().
      bool          CollapsingHeader(const char* label, bool* p_open, unsigned int flags = 0); // when 'p_open' isn't NULL, display an additional small close button on upper right of the header
@@ -816,7 +809,7 @@ namespace ImGui
      ImVec2        GetContentRegionAvail();                                        // == GetContentRegionMax() - GetCursorPos()
      ImVec2        GetWindowContentRegionMin();                                    // content boundaries min (roughly (0,0)-Scroll), in window coordinates
      ImVec2        GetWindowContentRegionMax();                                    // content boundaries max (roughly (0,0)+Size-Scroll) where Size can be override with SetNextWindowContentSize(), in window coordinates
-     float         GetWindowContentRegionWidth();                                  //
+     //float         GetWindowContentRegionWidth();                                  //
 
 
 

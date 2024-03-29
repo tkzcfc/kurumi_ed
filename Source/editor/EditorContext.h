@@ -1,10 +1,10 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "axmol.h"
 #include "ilayer/ILayer.h"
 #include "lua_function/LuaFunctionBond.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 class EditorContext : public Node, public LuaFunctionBond
 {
@@ -17,8 +17,6 @@ public:
 	virtual bool init()override;
 
 	CREATE_FUNC(EditorContext);
-
-	ILayer* getIlayer();
 
 	Node* getBackgroundNode();
 
@@ -46,7 +44,6 @@ private:
 	static bool splitter(const char* sp_name, bool split_vertically, float thickness, float* size1, float* size2, float min_size1, float min_size2, float splitter_long_axis_size = -1.0f);
 
 private:
-	ILayer* m_iLayer;
 
 	Node* m_backgroundNode;
 

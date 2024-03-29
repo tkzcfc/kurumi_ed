@@ -1,5 +1,4 @@
 #include "gzip.h"
-#include "ftgzip.h"
 #include <zlib.h>
 
 // gzCompress: do the compressing

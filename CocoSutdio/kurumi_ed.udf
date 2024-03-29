@@ -28,5 +28,15 @@
         <LastRunType Value="Windows" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="TestScene.csd" />
+          <FilePathData Path="DefaultStudioFile.csd" />
+          <FilePathData Path="LaunchScene.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="LaunchScene.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

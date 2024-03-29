@@ -1,11 +1,15 @@
 #include "EditorContext.h"
 #include "imgui/imgui_internal.h"
+#include "ImGui/ImGuiPresenter.h"
 #include "core/Tools.h"
 #include "ui/CocosGUI.h"
 #include "sequentity/Sequentity.h"
 #include "core/Tools.h"
 
-// Á½²àÃæ°å·¶Î§
+USING_NS_AX;
+USING_NS_AX_EXT;
+
+// ä¸¤ä¾§é¢æ¿èŒƒå›´
 static float bothSidesPanelMinWidth = 50.0f;
 static float bothSidesPanelMaxWidth = 350.0f;
 
@@ -15,8 +19,14 @@ static float topPanelMaxHeight = 200.0f;
 static float bottomPanelMinHeight = 50.0f;
 static float bottomPanelMaxHeight = 400.0f;
 
-static constexpr char* backgroundImageResource = "bg.jpg";
+static const char* backgroundImageResource = "bg.jpg";
 
+
+
+inline ImVec2 operator+(const ImVec2& vec, const ImVec2 value)
+{
+    return ImVec2{vec.x + value.x, vec.y + value.y};
+}
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -83,31 +93,30 @@ void EditorContext::testSequentity()
 		event.color = ImColor::HSV(0.0f, 0.75f, 0.75f);
 	}
 
+    ImGuiPresenter::getInstance()->addRenderLoop("drawSequentity", [&]()
+    {
+        Sequentity::ThemeEditor(NULL);
 
-	m_iLayer->addImGUI([&]() {
-		Sequentity::ThemeEditor(NULL);
+        if (ImGui::Begin("test"))
+        {
+            Sequentity::DrawContext(context);
 
-		if (ImGui::Begin("test"))
-		{
-			Sequentity::DrawContext(context);
-
-			Sequentity::Intersect(track, context.state.current_time, [&](auto& event) {
-				if (event.type == event_1) {
-					auto& data = *static_cast<EventData*>(event.data);
-					//CCLOG("in event %d", data.number);
-				}
-			});
-		}
-		ImGui::End();
-
-	}, "drawSequentity");
+            Sequentity::Intersect(track, context.state.current_time, [&](auto& event) {
+                if (event.type == event_1)
+                {
+                    auto& data = *static_cast<EventData*>(event.data);
+                    // CCLOG("in event %d", data.number);
+                }
+            });
+        }
+        ImGui::End();
+    }, NULL);
 }
 
 //////////////////////////////////////////////////////////////////////////
 
 EditorContext::EditorContext()
-	: m_iLayer(NULL)
-	, m_backgroundNode(NULL)
+	: m_backgroundNode(NULL)
 	, m_initGUITag(false)
 	, m_leftPaneWidth(0.0f)
 	, m_centerPaneWidth(0.0f)
@@ -121,7 +130,7 @@ EditorContext::EditorContext()
 
 EditorContext::~EditorContext()
 {
-	TextureCache::getInstance()->unbindImageAsync(backgroundImageResource);
+    Director::getInstance()->getTextureCache()->unbindImageAsync(backgroundImageResource);
 }
 
 
@@ -132,7 +141,7 @@ bool EditorContext::init()
 		return false;
 	}
 
-	TextureCache::getInstance()->addImageAsync(backgroundImageResource, [=](Texture2D* texture)
+	Director::getInstance()->getTextureCache()->addImageAsync(backgroundImageResource, [=](Texture2D* texture)
 	{
 		if (texture == NULL)
 		{
@@ -149,35 +158,12 @@ bool EditorContext::init()
 
 	m_backgroundNode = Node::create();
 	this->addChild(m_backgroundNode, -2);
-	
-	m_iLayer = ILayer::create();
-	m_iLayer->setDrawDefaultWindow(false);
-	m_iLayer->setGUIBeginCall([=]() 
-	{
-		ImGuiIO& io = ImGui::GetIO();
 
-		ImGuiWindowFlags flags = ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_MenuBar;
-
-		ImGui::SetNextWindowPos(ImVec2(0, 0));
-		ImGui::SetNextWindowSize(io.DisplaySize);
-		ImGui::Begin("Content", nullptr, ImVec2(0, 0), 0.0f, flags);
-	});
-	m_iLayer->setGUIEndCall([]() 
-	{
-		ImGui::End();
-	});
-	this->addChild(m_iLayer, 1);
-
-	m_iLayer->addImGUI(std::bind(&EditorContext::onGUI, this), "contextGUI");
+    ImGuiPresenter::getInstance()->addRenderLoop("EditorContextLoop", std::bind(&EditorContext::onGUI, this), nullptr);
 
 	//testSequentity();
 
 	return true;
-}
-
-ILayer* EditorContext::getIlayer()
-{
-	return m_iLayer;
 }
 
 Node* EditorContext::getBackgroundNode()
@@ -196,7 +182,7 @@ void EditorContext::initGUI()
 	auto& io = ImGui::GetIO();
 
 	/// <summary>
-	/// ·¶Î§ÉèÖÃ
+	/// èŒƒå›´è®¾ç½®
 	/// </summary>
 	auto winSize = Director::getInstance()->getWinSize();
 	bothSidesPanelMaxWidth = winSize.width * 0.3f;
@@ -223,6 +209,16 @@ void EditorContext::onGUI()
 	
 	initGUI();
 
+    ImGuiIO& io = ImGui::GetIO();
+
+    ImGuiWindowFlags flags = ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoCollapse |
+                                 ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar |
+                                 ImGuiWindowFlags_MenuBar;
+
+    ImGui::SetNextWindowPos(ImVec2(0, 0));
+    ImGui::SetNextWindowSize(io.DisplaySize);
+    ImGui::Begin("Content", nullptr, flags);
+
 	// bar
 	if (ImGui::BeginMenuBar())
 	{
@@ -243,8 +239,8 @@ void EditorContext::onGUI()
 
 	if (ImGui::BeginChild("context_right_all", ImVec2(0, 0)))
 	{
-		m_centerPaneWidth = ImGui::GetContentRegionAvailWidth() - m_rightPaneWidth;
-		splitter("##Splitter_C_R", true, getSplitterThickness(), &m_centerPaneWidth, &m_rightPaneWidth, ImGui::GetContentRegionAvailWidth() - bothSidesPanelMaxWidth, bothSidesPanelMinWidth);
+		m_centerPaneWidth = ImGui::GetContentRegionAvail().x - m_rightPaneWidth;
+		splitter("##Splitter_C_R", true, getSplitterThickness(), &m_centerPaneWidth, &m_rightPaneWidth, ImGui::GetContentRegionAvail().x - bothSidesPanelMaxWidth, bothSidesPanelMinWidth);
 
 		if (ImGui::BeginChild("context_center_all", ImVec2(m_centerPaneWidth, 0)))
 		{
@@ -327,6 +323,8 @@ void EditorContext::onGUI()
 		}
 		ImGui::End();
 	}
+
+    ImGui::End();
 }
 
 void EditorContext::callLuaGUI(const char* name)

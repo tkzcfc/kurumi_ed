@@ -1,10 +1,10 @@
 #pragma once
 
-#include "cocos2d.h"
+#include "axmol.h"
 #include "type/Vec2Value.h"
 #include "type/LineValue.h"
 
-using namespace cocos2d;
+using namespace ax;
 
 class CLine
 {

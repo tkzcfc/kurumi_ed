@@ -1,6 +1,6 @@
 /*
 ** Lua binding: main
-** Generated automatically by tolua++-1.0.92 on Wed Dec 22 21:36:06 2021.
+** Generated automatically by tolua++-1.0.92 on Fri Mar 29 17:35:42 2024.
 */
 
 #ifndef __cplusplus
@@ -1497,36 +1497,6 @@ static int tolua_set_ImGuiIO_MetricsActiveWindows(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* get function: MetricsActiveAllocations of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_ImGuiIO_MetricsActiveAllocations
-static int tolua_get_ImGuiIO_MetricsActiveAllocations(lua_State* tolua_S)
-{
-  ImGuiIO* self = (ImGuiIO*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'MetricsActiveAllocations'",NULL);
-#endif
-  tolua_pushnumber(tolua_S,(lua_Number)self->MetricsActiveAllocations);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MetricsActiveAllocations of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_ImGuiIO_MetricsActiveAllocations
-static int tolua_set_ImGuiIO_MetricsActiveAllocations(lua_State* tolua_S)
-{
-  ImGuiIO* self = (ImGuiIO*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  tolua_Error tolua_err;
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'MetricsActiveAllocations'",NULL);
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
-#endif
-  self->MetricsActiveAllocations = ((int)  tolua_tonumber(tolua_S,2,0))
-;
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* get function: MouseDelta of class  ImGuiIO */
 #ifndef TOLUA_DISABLE_tolua_get_ImGuiIO_MouseDelta
 static int tolua_get_ImGuiIO_MouseDelta(lua_State* tolua_S)
@@ -1583,578 +1553,6 @@ static int tolua_set_ImGuiIO_MousePosPrev(lua_State* tolua_S)
 #endif
   self->MousePosPrev = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0))
 ;
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: MouseClickedTime of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_MouseClickedTime
-static int tolua_get_main_ImGuiIO_MouseClickedTime(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushnumber(tolua_S,(lua_Number)self->MouseClickedTime[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MouseClickedTime of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_MouseClickedTime
-static int tolua_set_main_ImGuiIO_MouseClickedTime(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->MouseClickedTime[tolua_index] = ((double)  tolua_tonumber(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: MouseClicked of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_MouseClicked
-static int tolua_get_main_ImGuiIO_MouseClicked(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushboolean(tolua_S,(bool)self->MouseClicked[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MouseClicked of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_MouseClicked
-static int tolua_set_main_ImGuiIO_MouseClicked(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->MouseClicked[tolua_index] = ((bool)  tolua_toboolean(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: MouseDoubleClicked of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_MouseDoubleClicked
-static int tolua_get_main_ImGuiIO_MouseDoubleClicked(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushboolean(tolua_S,(bool)self->MouseDoubleClicked[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MouseDoubleClicked of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_MouseDoubleClicked
-static int tolua_set_main_ImGuiIO_MouseDoubleClicked(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->MouseDoubleClicked[tolua_index] = ((bool)  tolua_toboolean(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: MouseReleased of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_MouseReleased
-static int tolua_get_main_ImGuiIO_MouseReleased(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushboolean(tolua_S,(bool)self->MouseReleased[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MouseReleased of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_MouseReleased
-static int tolua_set_main_ImGuiIO_MouseReleased(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->MouseReleased[tolua_index] = ((bool)  tolua_toboolean(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: MouseDownOwned of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_MouseDownOwned
-static int tolua_get_main_ImGuiIO_MouseDownOwned(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushboolean(tolua_S,(bool)self->MouseDownOwned[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MouseDownOwned of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_MouseDownOwned
-static int tolua_set_main_ImGuiIO_MouseDownOwned(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->MouseDownOwned[tolua_index] = ((bool)  tolua_toboolean(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: MouseDownWasDoubleClick of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_MouseDownWasDoubleClick
-static int tolua_get_main_ImGuiIO_MouseDownWasDoubleClick(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushboolean(tolua_S,(bool)self->MouseDownWasDoubleClick[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MouseDownWasDoubleClick of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_MouseDownWasDoubleClick
-static int tolua_set_main_ImGuiIO_MouseDownWasDoubleClick(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->MouseDownWasDoubleClick[tolua_index] = ((bool)  tolua_toboolean(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: MouseDownDuration of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_MouseDownDuration
-static int tolua_get_main_ImGuiIO_MouseDownDuration(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushnumber(tolua_S,(lua_Number)self->MouseDownDuration[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MouseDownDuration of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_MouseDownDuration
-static int tolua_set_main_ImGuiIO_MouseDownDuration(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->MouseDownDuration[tolua_index] = ((float)  tolua_tonumber(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: MouseDownDurationPrev of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_MouseDownDurationPrev
-static int tolua_get_main_ImGuiIO_MouseDownDurationPrev(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushnumber(tolua_S,(lua_Number)self->MouseDownDurationPrev[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MouseDownDurationPrev of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_MouseDownDurationPrev
-static int tolua_set_main_ImGuiIO_MouseDownDurationPrev(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->MouseDownDurationPrev[tolua_index] = ((float)  tolua_tonumber(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: MouseDragMaxDistanceSqr of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_MouseDragMaxDistanceSqr
-static int tolua_get_main_ImGuiIO_MouseDragMaxDistanceSqr(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushnumber(tolua_S,(lua_Number)self->MouseDragMaxDistanceSqr[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: MouseDragMaxDistanceSqr of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_MouseDragMaxDistanceSqr
-static int tolua_set_main_ImGuiIO_MouseDragMaxDistanceSqr(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=5)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->MouseDragMaxDistanceSqr[tolua_index] = ((float)  tolua_tonumber(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: KeysDownDuration of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_KeysDownDuration
-static int tolua_get_main_ImGuiIO_KeysDownDuration(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=512)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushnumber(tolua_S,(lua_Number)self->KeysDownDuration[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: KeysDownDuration of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_KeysDownDuration
-static int tolua_set_main_ImGuiIO_KeysDownDuration(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=512)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->KeysDownDuration[tolua_index] = ((float)  tolua_tonumber(tolua_S,3,0));
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* get function: KeysDownDurationPrev of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_get_main_ImGuiIO_KeysDownDurationPrev
-static int tolua_get_main_ImGuiIO_KeysDownDurationPrev(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=512)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
- tolua_pushnumber(tolua_S,(lua_Number)self->KeysDownDurationPrev[tolua_index]);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: KeysDownDurationPrev of class  ImGuiIO */
-#ifndef TOLUA_DISABLE_tolua_set_main_ImGuiIO_KeysDownDurationPrev
-static int tolua_set_main_ImGuiIO_KeysDownDurationPrev(lua_State* tolua_S)
-{
- int tolua_index;
-  ImGuiIO* self;
- lua_pushstring(tolua_S,".self");
- lua_rawget(tolua_S,1);
- self = (ImGuiIO*)  lua_touserdata(tolua_S,-1);
-#if COCOS2D_DEBUG >= 1
- {
-  tolua_Error tolua_err;
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);
- }
-#endif
- tolua_index = (int)tolua_tonumber(tolua_S,2,0);
-#if COCOS2D_DEBUG >= 1
- if (tolua_index<0 || tolua_index>=512)
-  tolua_error(tolua_S,"array indexing out of range.",NULL);
-#endif
-  self->KeysDownDurationPrev[tolua_index] = ((float)  tolua_tonumber(tolua_S,3,0));
  return 0;
 }
 #endif //#ifndef TOLUA_DISABLE
@@ -2849,36 +2247,6 @@ static int tolua_set_ImGuiStyle_GrabRounding(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* get function: LayoutAlign of class  ImGuiStyle */
-#ifndef TOLUA_DISABLE_tolua_get_ImGuiStyle_LayoutAlign
-static int tolua_get_ImGuiStyle_LayoutAlign(lua_State* tolua_S)
-{
-  ImGuiStyle* self = (ImGuiStyle*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'LayoutAlign'",NULL);
-#endif
-  tolua_pushnumber(tolua_S,(lua_Number)self->LayoutAlign);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: LayoutAlign of class  ImGuiStyle */
-#ifndef TOLUA_DISABLE_tolua_set_ImGuiStyle_LayoutAlign
-static int tolua_set_ImGuiStyle_LayoutAlign(lua_State* tolua_S)
-{
-  ImGuiStyle* self = (ImGuiStyle*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  tolua_Error tolua_err;
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'LayoutAlign'",NULL);
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
-#endif
-  self->LayoutAlign = ((float)  tolua_tonumber(tolua_S,2,0))
-;
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* get function: TabRounding of class  ImGuiStyle */
 #ifndef TOLUA_DISABLE_tolua_get_ImGuiStyle_TabRounding
 static int tolua_get_ImGuiStyle_TabRounding(lua_State* tolua_S)
@@ -3452,36 +2820,6 @@ static int tolua_set_ImFont_DirtyLookupTables(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* get function: _VtxCurrentOffset of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_get_ImDrawList_unsigned__VtxCurrentOffset
-static int tolua_get_ImDrawList_unsigned__VtxCurrentOffset(lua_State* tolua_S)
-{
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable '_VtxCurrentOffset'",NULL);
-#endif
-  tolua_pushnumber(tolua_S,(lua_Number)self->_VtxCurrentOffset);
- return 1;
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* set function: _VtxCurrentOffset of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_set_ImDrawList_unsigned__VtxCurrentOffset
-static int tolua_set_ImDrawList_unsigned__VtxCurrentOffset(lua_State* tolua_S)
-{
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  tolua_Error tolua_err;
-  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable '_VtxCurrentOffset'",NULL);
-  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
-   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
-#endif
-  self->_VtxCurrentOffset = ((unsigned int)  tolua_tonumber(tolua_S,2,0))
-;
- return 0;
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* get function: _VtxCurrentIdx of class  ImDrawList */
 #ifndef TOLUA_DISABLE_tolua_get_ImDrawList_unsigned__VtxCurrentIdx
 static int tolua_get_ImDrawList_unsigned__VtxCurrentIdx(lua_State* tolua_S)
@@ -3774,90 +3112,6 @@ static int tolua_main_ImDrawList_AddLine00(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'AddLine'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: AddRect of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_AddRect00
-static int tolua_main_ImDrawList_AddRect00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,6,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,7,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,8,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-  ImVec2 a = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  ImVec2 b = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
-  unsigned int col = ((unsigned int)  tolua_tonumber(tolua_S,4,0));
-  float rounding = ((float)  tolua_tonumber(tolua_S,5,0.0f));
-  int rounding_corners_flags = ((int)  tolua_tonumber(tolua_S,6,ImDrawCornerFlags_All));
-  float thickness = ((float)  tolua_tonumber(tolua_S,7,1.0f));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddRect'", NULL);
-#endif
-  {
-   self->AddRect(a,b,col,rounding,rounding_corners_flags,thickness);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'AddRect'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: AddRectFilled of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_AddRectFilled00
-static int tolua_main_ImDrawList_AddRectFilled00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,6,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,7,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-  ImVec2 a = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  ImVec2 b = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
-  unsigned int col = ((unsigned int)  tolua_tonumber(tolua_S,4,0));
-  float rounding = ((float)  tolua_tonumber(tolua_S,5,0.0f));
-  int rounding_corners_flags = ((int)  tolua_tonumber(tolua_S,6,ImDrawCornerFlags_All));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddRectFilled'", NULL);
-#endif
-  {
-   self->AddRectFilled(a,b,col,rounding,rounding_corners_flags);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'AddRectFilled'.",&tolua_err);
  return 0;
 #endif
 }
@@ -4505,98 +3759,6 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: AddImageRounded of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_AddImageRounded00
-static int tolua_main_ImDrawList_AddImageRounded00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     !tolua_isuserdata(tolua_S,2,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,6,&tolua_err) || !tolua_ext_check_is_table(tolua_S,6,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,7,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,8,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,9,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,10,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-  void* user_texture_id = ((void*)  tolua_touserdata(tolua_S,2,0));
-  ImVec2 a = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
-  ImVec2 b = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
-  ImVec2 uv_a = (  tolua_ext_luaval_to_imvec2_value(tolua_S,5,0));
-  ImVec2 uv_b = (  tolua_ext_luaval_to_imvec2_value(tolua_S,6,0));
-  unsigned int col = ((unsigned int)  tolua_tonumber(tolua_S,7,0));
-  float rounding = ((float)  tolua_tonumber(tolua_S,8,0));
-  int rounding_corners = ((int)  tolua_tonumber(tolua_S,9,ImDrawCornerFlags_All));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddImageRounded'", NULL);
-#endif
-  {
-   self->AddImageRounded(user_texture_id,a,b,uv_a,uv_b,col,rounding,rounding_corners);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'AddImageRounded'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: AddBezierCurve of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_AddBezierCurve00
-static int tolua_main_ImDrawList_AddBezierCurve00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,6,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,7,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,8,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,9,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-  ImVec2 pos0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  ImVec2 cp0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
-  ImVec2 cp1 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
-  ImVec2 pos1 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,5,0));
-  unsigned int col = ((unsigned int)  tolua_tonumber(tolua_S,6,0));
-  float thickness = ((float)  tolua_tonumber(tolua_S,7,0));
-  int num_segments = ((int)  tolua_tonumber(tolua_S,8,0));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddBezierCurve'", NULL);
-#endif
-  {
-   self->AddBezierCurve(pos0,cp0,cp1,pos1,col,thickness,num_segments);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'AddBezierCurve'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: PathClear of class  ImDrawList */
 #ifndef TOLUA_DISABLE_tolua_main_ImDrawList_PathClear00
 static int tolua_main_ImDrawList_PathClear00(lua_State* tolua_S)
@@ -4764,164 +3926,6 @@ static int tolua_main_ImDrawList_PathStroke00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: PathArcTo of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_PathArcTo00
-static int tolua_main_ImDrawList_PathArcTo00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,6,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,7,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-  ImVec2 centre = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  float radius = ((float)  tolua_tonumber(tolua_S,3,0));
-  float a_min = ((float)  tolua_tonumber(tolua_S,4,0));
-  float a_max = ((float)  tolua_tonumber(tolua_S,5,0));
-  int num_segments = ((int)  tolua_tonumber(tolua_S,6,10));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'PathArcTo'", NULL);
-#endif
-  {
-   self->PathArcTo(centre,radius,a_min,a_max,num_segments);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'PathArcTo'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: PathArcToFast of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_PathArcToFast00
-static int tolua_main_ImDrawList_PathArcToFast00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-  ImVec2 centre = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  float radius = ((float)  tolua_tonumber(tolua_S,3,0));
-  int a_min_of_12 = ((int)  tolua_tonumber(tolua_S,4,0));
-  int a_max_of_12 = ((int)  tolua_tonumber(tolua_S,5,0));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'PathArcToFast'", NULL);
-#endif
-  {
-   self->PathArcToFast(centre,radius,a_min_of_12,a_max_of_12);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'PathArcToFast'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: PathBezierCurveTo of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_PathBezierCurveTo00
-static int tolua_main_ImDrawList_PathBezierCurveTo00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,5,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-  ImVec2 p1 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  ImVec2 p2 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
-  ImVec2 p3 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
-  int num_segments = ((int)  tolua_tonumber(tolua_S,5,0));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'PathBezierCurveTo'", NULL);
-#endif
-  {
-   self->PathBezierCurveTo(p1,p2,p3,num_segments);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'PathBezierCurveTo'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: PathRect of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_PathRect00
-static int tolua_main_ImDrawList_PathRect00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,4,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-  ImVec2 rect_min = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  ImVec2 rect_max = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
-  float rounding = ((float)  tolua_tonumber(tolua_S,4,0.0f));
-  int rounding_corners_flags = ((int)  tolua_tonumber(tolua_S,5,ImDrawCornerFlags_All));
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'PathRect'", NULL);
-#endif
-  {
-   self->PathRect(rect_min,rect_max,rounding,rounding_corners_flags);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'PathRect'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: ChannelsSplit of class  ImDrawList */
 #ifndef TOLUA_DISABLE_tolua_main_ImDrawList_ChannelsSplit00
 static int tolua_main_ImDrawList_ChannelsSplit00(lua_State* tolua_S)
@@ -5014,68 +4018,6 @@ static int tolua_main_ImDrawList_ChannelsSetCurrent00(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'ChannelsSetCurrent'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: Clear of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_Clear00
-static int tolua_main_ImDrawList_Clear00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Clear'", NULL);
-#endif
-  {
-   self->Clear();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'Clear'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: ClearFreeMemory of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_ClearFreeMemory00
-static int tolua_main_ImDrawList_ClearFreeMemory00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ClearFreeMemory'", NULL);
-#endif
-  {
-   self->ClearFreeMemory();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'ClearFreeMemory'.",&tolua_err);
  return 0;
 #endif
 }
@@ -5312,68 +4254,6 @@ static int tolua_main_ImDrawList_PrimVtx00(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'PrimVtx'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: UpdateClipRect of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_UpdateClipRect00
-static int tolua_main_ImDrawList_UpdateClipRect00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'UpdateClipRect'", NULL);
-#endif
-  {
-   self->UpdateClipRect();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'UpdateClipRect'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: UpdateTextureID of class  ImDrawList */
-#ifndef TOLUA_DISABLE_tolua_main_ImDrawList_UpdateTextureID00
-static int tolua_main_ImDrawList_UpdateTextureID00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ImDrawList",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ImDrawList* self = (ImDrawList*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'UpdateTextureID'", NULL);
-#endif
-  {
-   self->UpdateTextureID();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'UpdateTextureID'.",&tolua_err);
  return 0;
 #endif
 }
@@ -5975,39 +4855,6 @@ static int tolua_main_ImGui_BeginPopupContextItem00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* function: ImGui::BeginPopupContextWindow */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_BeginPopupContextWindow00
-static int tolua_main_ImGui_BeginPopupContextWindow00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isstring(tolua_S,1,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
-     !tolua_isboolean(tolua_S,3,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* str_id = ((const char*)  tolua_tostring(tolua_S,1,NULL));
-  int mouse_button = ((int)  tolua_tonumber(tolua_S,2,1));
-  bool also_over_items = ((bool)  tolua_toboolean(tolua_S,3,true));
-  {
-   bool tolua_ret = (bool)  ImGui::BeginPopupContextWindow(str_id,mouse_button,also_over_items);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'BeginPopupContextWindow'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* function: ImGui::BeginPopupContextVoid */
 #ifndef TOLUA_DISABLE_tolua_main_ImGui_BeginPopupContextVoid00
 static int tolua_main_ImGui_BeginPopupContextVoid00(lua_State* tolua_S)
@@ -6094,37 +4941,6 @@ static int tolua_main_ImGui_EndPopup00(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'EndPopup'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::OpenPopupOnItemClick */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_OpenPopupOnItemClick00
-static int tolua_main_ImGui_OpenPopupOnItemClick00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isstring(tolua_S,1,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* str_id = ((const char*)  tolua_tostring(tolua_S,1,NULL));
-  int mouse_button = ((int)  tolua_tonumber(tolua_S,2,1));
-  {
-   bool tolua_ret = (bool)  ImGui::OpenPopupOnItemClick(str_id,mouse_button);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'OpenPopupOnItemClick'.",&tolua_err);
  return 0;
 #endif
 }
@@ -6811,285 +5627,6 @@ static int tolua_main_ImGui_GetFrameHeightWithSpacing00(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'GetFrameHeightWithSpacing'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::BeginHorizontal */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_BeginHorizontal00
-static int tolua_main_ImGui_BeginHorizontal00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isstring(tolua_S,1,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* str_id = ((const char*)  tolua_tostring(tolua_S,1,0));
-  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  float align = ((float)  tolua_tonumber(tolua_S,3,-1.0f));
-  {
-   ImGui::BeginHorizontal(str_id,size,align);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'BeginHorizontal'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::BeginHorizontal */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_BeginHorizontal01
-static int tolua_main_ImGui_BeginHorizontal01(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
-     !tolua_isnumber(tolua_S,1,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
- {
-  int id = ((int)  tolua_tonumber(tolua_S,1,0));
-  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  float align = ((float)  tolua_tonumber(tolua_S,3,-1));
-  {
-   ImGui::BeginHorizontal(id,size,align);
-  }
- }
- return 0;
-tolua_lerror:
- return tolua_main_ImGui_BeginHorizontal00(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::EndHorizontal */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_EndHorizontal00
-static int tolua_main_ImGui_EndHorizontal00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ImGui::EndHorizontal();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'EndHorizontal'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::BeginVertical */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_BeginVertical00
-static int tolua_main_ImGui_BeginVertical00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isstring(tolua_S,1,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* str_id = ((const char*)  tolua_tostring(tolua_S,1,0));
-  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  float align = ((float)  tolua_tonumber(tolua_S,3,-1.0f));
-  {
-   ImGui::BeginVertical(str_id,size,align);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'BeginVertical'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::BeginVertical */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_BeginVertical01
-static int tolua_main_ImGui_BeginVertical01(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
-     !tolua_isuserdata(tolua_S,1,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
- {
-  const void* ptr_id = ((const void*)  tolua_touserdata(tolua_S,1,0));
-  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  float align = ((float)  tolua_tonumber(tolua_S,3,-1.0f));
-  {
-   ImGui::BeginVertical(ptr_id,size,align);
-  }
- }
- return 0;
-tolua_lerror:
- return tolua_main_ImGui_BeginVertical00(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::BeginVertical */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_BeginVertical02
-static int tolua_main_ImGui_BeginVertical02(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
-     !tolua_isnumber(tolua_S,1,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_ext_check_is_table(tolua_S,2,"ImVec2",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
- {
-  int id = ((int)  tolua_tonumber(tolua_S,1,0));
-  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,2,0));
-  float align = ((float)  tolua_tonumber(tolua_S,3,-1));
-  {
-   ImGui::BeginVertical(id,size,align);
-  }
- }
- return 0;
-tolua_lerror:
- return tolua_main_ImGui_BeginVertical01(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::EndVertical */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_EndVertical00
-static int tolua_main_ImGui_EndVertical00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ImGui::EndVertical();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'EndVertical'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::Spring */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_Spring00
-static int tolua_main_ImGui_Spring00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnumber(tolua_S,1,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  float weight = ((float)  tolua_tonumber(tolua_S,1,1.0f));
-  float spacing = ((float)  tolua_tonumber(tolua_S,2,-1.0f));
-  {
-   ImGui::Spring(weight,spacing);
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'Spring'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::SuspendLayout */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_SuspendLayout00
-static int tolua_main_ImGui_SuspendLayout00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ImGui::SuspendLayout();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'SuspendLayout'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::ResumeLayout */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_ResumeLayout00
-static int tolua_main_ImGui_ResumeLayout00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ImGui::ResumeLayout();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'ResumeLayout'.",&tolua_err);
  return 0;
 #endif
 }
@@ -9349,7 +7886,7 @@ static int tolua_main_ImGui_GetKeyIndex00(lua_State* tolua_S)
  else
 #endif
  {
-  int imgui_key = ((int)  tolua_tonumber(tolua_S,1,0));
+  ImGuiKey imgui_key = ((ImGuiKey) (int)  tolua_tonumber(tolua_S,1,0));
   {
    int tolua_ret = (int)  ImGui::GetKeyIndex(imgui_key);
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -9378,7 +7915,7 @@ static int tolua_main_ImGui_IsKeyDown00(lua_State* tolua_S)
  else
 #endif
  {
-  int user_key_index = ((int)  tolua_tonumber(tolua_S,1,0));
+  ImGuiKey user_key_index = ((ImGuiKey) (int)  tolua_tonumber(tolua_S,1,0));
   {
    bool tolua_ret = (bool)  ImGui::IsKeyDown(user_key_index);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
@@ -9408,7 +7945,7 @@ static int tolua_main_ImGui_IsKeyPressed00(lua_State* tolua_S)
  else
 #endif
  {
-  int user_key_index = ((int)  tolua_tonumber(tolua_S,1,0));
+  ImGuiKey user_key_index = ((ImGuiKey) (int)  tolua_tonumber(tolua_S,1,0));
   bool repeat = ((bool)  tolua_toboolean(tolua_S,2,true));
   {
    bool tolua_ret = (bool)  ImGui::IsKeyPressed(user_key_index,repeat);
@@ -9438,7 +7975,7 @@ static int tolua_main_ImGui_IsKeyReleased00(lua_State* tolua_S)
  else
 #endif
  {
-  int user_key_index = ((int)  tolua_tonumber(tolua_S,1,0));
+  ImGuiKey user_key_index = ((ImGuiKey) (int)  tolua_tonumber(tolua_S,1,0));
   {
    bool tolua_ret = (bool)  ImGui::IsKeyReleased(user_key_index);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
@@ -9469,7 +8006,7 @@ static int tolua_main_ImGui_GetKeyPressedAmount00(lua_State* tolua_S)
  else
 #endif
  {
-  int key_index = ((int)  tolua_tonumber(tolua_S,1,0));
+  ImGuiKey key_index = ((ImGuiKey) (int)  tolua_tonumber(tolua_S,1,0));
   float repeat_delay = ((float)  tolua_tonumber(tolua_S,2,0));
   float rate = ((float)  tolua_tonumber(tolua_S,3,0));
   {
@@ -9947,194 +8484,6 @@ static int tolua_main_ImGui_CaptureMouseFromApp00(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'CaptureMouseFromApp'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::GetContentRegionAvailWidth */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_GetContentRegionAvailWidth00
-static int tolua_main_ImGui_GetContentRegionAvailWidth00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   float tolua_ret = (float)  ImGui::GetContentRegionAvailWidth();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'GetContentRegionAvailWidth'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::IsAnyWindowFocused */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_IsAnyWindowFocused00
-static int tolua_main_ImGui_IsAnyWindowFocused00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   bool tolua_ret = (bool)  ImGui::IsAnyWindowFocused();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'IsAnyWindowFocused'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::IsAnyWindowHovered */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_IsAnyWindowHovered00
-static int tolua_main_ImGui_IsAnyWindowHovered00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   bool tolua_ret = (bool)  ImGui::IsAnyWindowHovered();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'IsAnyWindowHovered'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::IsRootWindowFocused */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_IsRootWindowFocused00
-static int tolua_main_ImGui_IsRootWindowFocused00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   bool tolua_ret = (bool)  ImGui::IsRootWindowFocused();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'IsRootWindowFocused'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::IsRootWindowOrAnyChildFocused */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_IsRootWindowOrAnyChildFocused00
-static int tolua_main_ImGui_IsRootWindowOrAnyChildFocused00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   bool tolua_ret = (bool)  ImGui::IsRootWindowOrAnyChildFocused();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'IsRootWindowOrAnyChildFocused'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::IsRootWindowOrAnyChildHovered */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_IsRootWindowOrAnyChildHovered00
-static int tolua_main_ImGui_IsRootWindowOrAnyChildHovered00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   bool tolua_ret = (bool)  ImGui::IsRootWindowOrAnyChildHovered();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'IsRootWindowOrAnyChildHovered'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::AlignFirstTextHeightToWidgets */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_AlignFirstTextHeightToWidgets00
-static int tolua_main_ImGui_AlignFirstTextHeightToWidgets00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ImGui::AlignFirstTextHeightToWidgets();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'AlignFirstTextHeightToWidgets'.",&tolua_err);
  return 0;
 #endif
 }
@@ -10833,32 +9182,6 @@ static int tolua_main_ImGui_TreePop00(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'TreePop'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: ImGui::TreeAdvanceToLabelPos */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_TreeAdvanceToLabelPos00
-static int tolua_main_ImGui_TreeAdvanceToLabelPos00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ImGui::TreeAdvanceToLabelPos();
-  }
- }
- return 0;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'TreeAdvanceToLabelPos'.",&tolua_err);
  return 0;
 #endif
 }
@@ -13219,33 +11542,6 @@ static int tolua_main_ImGui_GetWindowContentRegionMax00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* function: ImGui::GetWindowContentRegionWidth */
-#ifndef TOLUA_DISABLE_tolua_main_ImGui_GetWindowContentRegionWidth00
-static int tolua_main_ImGui_GetWindowContentRegionWidth00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   float tolua_ret = (float)  ImGui::GetWindowContentRegionWidth();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'GetWindowContentRegionWidth'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* function: IM_COL32 */
 #ifndef TOLUA_DISABLE_tolua_main_IM_COL3200
 static int tolua_main_IM_COL3200(lua_State* tolua_S)
@@ -13337,20 +11633,8 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"MetricsRenderIndices",tolua_get_ImGuiIO_MetricsRenderIndices,tolua_set_ImGuiIO_MetricsRenderIndices);
    tolua_variable(tolua_S,"MetricsRenderWindows",tolua_get_ImGuiIO_MetricsRenderWindows,tolua_set_ImGuiIO_MetricsRenderWindows);
    tolua_variable(tolua_S,"MetricsActiveWindows",tolua_get_ImGuiIO_MetricsActiveWindows,tolua_set_ImGuiIO_MetricsActiveWindows);
-   tolua_variable(tolua_S,"MetricsActiveAllocations",tolua_get_ImGuiIO_MetricsActiveAllocations,tolua_set_ImGuiIO_MetricsActiveAllocations);
    tolua_variable(tolua_S,"MouseDelta",tolua_get_ImGuiIO_MouseDelta,tolua_set_ImGuiIO_MouseDelta);
    tolua_variable(tolua_S,"MousePosPrev",tolua_get_ImGuiIO_MousePosPrev,tolua_set_ImGuiIO_MousePosPrev);
-   tolua_array(tolua_S,"MouseClickedTime",tolua_get_main_ImGuiIO_MouseClickedTime,tolua_set_main_ImGuiIO_MouseClickedTime);
-   tolua_array(tolua_S,"MouseClicked",tolua_get_main_ImGuiIO_MouseClicked,tolua_set_main_ImGuiIO_MouseClicked);
-   tolua_array(tolua_S,"MouseDoubleClicked",tolua_get_main_ImGuiIO_MouseDoubleClicked,tolua_set_main_ImGuiIO_MouseDoubleClicked);
-   tolua_array(tolua_S,"MouseReleased",tolua_get_main_ImGuiIO_MouseReleased,tolua_set_main_ImGuiIO_MouseReleased);
-   tolua_array(tolua_S,"MouseDownOwned",tolua_get_main_ImGuiIO_MouseDownOwned,tolua_set_main_ImGuiIO_MouseDownOwned);
-   tolua_array(tolua_S,"MouseDownWasDoubleClick",tolua_get_main_ImGuiIO_MouseDownWasDoubleClick,tolua_set_main_ImGuiIO_MouseDownWasDoubleClick);
-   tolua_array(tolua_S,"MouseDownDuration",tolua_get_main_ImGuiIO_MouseDownDuration,tolua_set_main_ImGuiIO_MouseDownDuration);
-   tolua_array(tolua_S,"MouseDownDurationPrev",tolua_get_main_ImGuiIO_MouseDownDurationPrev,tolua_set_main_ImGuiIO_MouseDownDurationPrev);
-   tolua_array(tolua_S,"MouseDragMaxDistanceSqr",tolua_get_main_ImGuiIO_MouseDragMaxDistanceSqr,tolua_set_main_ImGuiIO_MouseDragMaxDistanceSqr);
-   tolua_array(tolua_S,"KeysDownDuration",tolua_get_main_ImGuiIO_KeysDownDuration,tolua_set_main_ImGuiIO_KeysDownDuration);
-   tolua_array(tolua_S,"KeysDownDurationPrev",tolua_get_main_ImGuiIO_KeysDownDurationPrev,tolua_set_main_ImGuiIO_KeysDownDurationPrev);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"ImGuiStyle","ImGuiStyle","",NULL);
   tolua_beginmodule(tolua_S,"ImGuiStyle");
@@ -13377,7 +11661,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"ScrollbarRounding",tolua_get_ImGuiStyle_ScrollbarRounding,tolua_set_ImGuiStyle_ScrollbarRounding);
    tolua_variable(tolua_S,"GrabMinSize",tolua_get_ImGuiStyle_GrabMinSize,tolua_set_ImGuiStyle_GrabMinSize);
    tolua_variable(tolua_S,"GrabRounding",tolua_get_ImGuiStyle_GrabRounding,tolua_set_ImGuiStyle_GrabRounding);
-   tolua_variable(tolua_S,"LayoutAlign",tolua_get_ImGuiStyle_LayoutAlign,tolua_set_ImGuiStyle_LayoutAlign);
    tolua_variable(tolua_S,"TabRounding",tolua_get_ImGuiStyle_TabRounding,tolua_set_ImGuiStyle_TabRounding);
    tolua_variable(tolua_S,"TabBorderSize",tolua_get_ImGuiStyle_TabBorderSize,tolua_set_ImGuiStyle_TabBorderSize);
    tolua_variable(tolua_S,"ButtonTextAlign",tolua_get_ImGuiStyle_ButtonTextAlign,tolua_set_ImGuiStyle_ButtonTextAlign);
@@ -13403,7 +11686,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"ImDrawList","ImDrawList","",NULL);
   tolua_beginmodule(tolua_S,"ImDrawList");
-   tolua_variable(tolua_S,"_VtxCurrentOffset",tolua_get_ImDrawList_unsigned__VtxCurrentOffset,tolua_set_ImDrawList_unsigned__VtxCurrentOffset);
    tolua_variable(tolua_S,"_VtxCurrentIdx",tolua_get_ImDrawList_unsigned__VtxCurrentIdx,tolua_set_ImDrawList_unsigned__VtxCurrentIdx);
    tolua_variable(tolua_S,"_FringeScale",tolua_get_ImDrawList__FringeScale,tolua_set_ImDrawList__FringeScale);
    tolua_function(tolua_S,"PushClipRect",tolua_main_ImDrawList_PushClipRect00);
@@ -13413,8 +11695,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetClipRectMin",tolua_main_ImDrawList_GetClipRectMin00);
    tolua_function(tolua_S,"GetClipRectMax",tolua_main_ImDrawList_GetClipRectMax00);
    tolua_function(tolua_S,"AddLine",tolua_main_ImDrawList_AddLine00);
-   tolua_function(tolua_S,"AddRect",tolua_main_ImDrawList_AddRect00);
-   tolua_function(tolua_S,"AddRectFilled",tolua_main_ImDrawList_AddRectFilled00);
    tolua_function(tolua_S,"AddRectFilledMultiColor",tolua_main_ImDrawList_AddRectFilledMultiColor00);
    tolua_function(tolua_S,"AddQuad",tolua_main_ImDrawList_AddQuad00);
    tolua_function(tolua_S,"AddQuadFilled",tolua_main_ImDrawList_AddQuadFilled00);
@@ -13431,30 +11711,20 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_function(tolua_S,"AddImageQuad",tolua_main_ImDrawList_AddImageQuad02);
    tolua_function(tolua_S,"AddImageQuad",tolua_main_ImDrawList_AddImageQuad03);
    tolua_function(tolua_S,"AddImageQuad",tolua_main_ImDrawList_AddImageQuad04);
-   tolua_function(tolua_S,"AddImageRounded",tolua_main_ImDrawList_AddImageRounded00);
-   tolua_function(tolua_S,"AddBezierCurve",tolua_main_ImDrawList_AddBezierCurve00);
    tolua_function(tolua_S,"PathClear",tolua_main_ImDrawList_PathClear00);
    tolua_function(tolua_S,"PathLineTo",tolua_main_ImDrawList_PathLineTo00);
    tolua_function(tolua_S,"PathLineToMergeDuplicate",tolua_main_ImDrawList_PathLineToMergeDuplicate00);
    tolua_function(tolua_S,"PathFillConvex",tolua_main_ImDrawList_PathFillConvex00);
    tolua_function(tolua_S,"PathStroke",tolua_main_ImDrawList_PathStroke00);
-   tolua_function(tolua_S,"PathArcTo",tolua_main_ImDrawList_PathArcTo00);
-   tolua_function(tolua_S,"PathArcToFast",tolua_main_ImDrawList_PathArcToFast00);
-   tolua_function(tolua_S,"PathBezierCurveTo",tolua_main_ImDrawList_PathBezierCurveTo00);
-   tolua_function(tolua_S,"PathRect",tolua_main_ImDrawList_PathRect00);
    tolua_function(tolua_S,"ChannelsSplit",tolua_main_ImDrawList_ChannelsSplit00);
    tolua_function(tolua_S,"ChannelsMerge",tolua_main_ImDrawList_ChannelsMerge00);
    tolua_function(tolua_S,"ChannelsSetCurrent",tolua_main_ImDrawList_ChannelsSetCurrent00);
-   tolua_function(tolua_S,"Clear",tolua_main_ImDrawList_Clear00);
-   tolua_function(tolua_S,"ClearFreeMemory",tolua_main_ImDrawList_ClearFreeMemory00);
    tolua_function(tolua_S,"PrimReserve",tolua_main_ImDrawList_PrimReserve00);
    tolua_function(tolua_S,"PrimRect",tolua_main_ImDrawList_PrimRect00);
    tolua_function(tolua_S,"PrimRectUV",tolua_main_ImDrawList_PrimRectUV00);
    tolua_function(tolua_S,"PrimQuadUV",tolua_main_ImDrawList_PrimQuadUV00);
    tolua_function(tolua_S,"PrimWriteVtx",tolua_main_ImDrawList_PrimWriteVtx00);
    tolua_function(tolua_S,"PrimVtx",tolua_main_ImDrawList_PrimVtx00);
-   tolua_function(tolua_S,"UpdateClipRect",tolua_main_ImDrawList_UpdateClipRect00);
-   tolua_function(tolua_S,"UpdateTextureID",tolua_main_ImDrawList_UpdateTextureID00);
   tolua_endmodule(tolua_S);
   tolua_module(tolua_S,"ImGui",0);
   tolua_beginmodule(tolua_S,"ImGui");
@@ -13479,11 +11749,9 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OpenPopup",tolua_main_ImGui_OpenPopup00);
    tolua_function(tolua_S,"BeginPopup",tolua_main_ImGui_BeginPopup00);
    tolua_function(tolua_S,"BeginPopupContextItem",tolua_main_ImGui_BeginPopupContextItem00);
-   tolua_function(tolua_S,"BeginPopupContextWindow",tolua_main_ImGui_BeginPopupContextWindow00);
    tolua_function(tolua_S,"BeginPopupContextVoid",tolua_main_ImGui_BeginPopupContextVoid00);
    tolua_function(tolua_S,"BeginPopupModal",tolua_main_ImGui_BeginPopupModal00);
    tolua_function(tolua_S,"EndPopup",tolua_main_ImGui_EndPopup00);
-   tolua_function(tolua_S,"OpenPopupOnItemClick",tolua_main_ImGui_OpenPopupOnItemClick00);
    tolua_function(tolua_S,"IsPopupOpen",tolua_main_ImGui_IsPopupOpen00);
    tolua_function(tolua_S,"CloseCurrentPopup",tolua_main_ImGui_CloseCurrentPopup00);
    tolua_function(tolua_S,"Separator",tolua_main_ImGui_Separator00);
@@ -13509,16 +11777,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetTextLineHeightWithSpacing",tolua_main_ImGui_GetTextLineHeightWithSpacing00);
    tolua_function(tolua_S,"GetFrameHeight",tolua_main_ImGui_GetFrameHeight00);
    tolua_function(tolua_S,"GetFrameHeightWithSpacing",tolua_main_ImGui_GetFrameHeightWithSpacing00);
-   tolua_function(tolua_S,"BeginHorizontal",tolua_main_ImGui_BeginHorizontal00);
-   tolua_function(tolua_S,"BeginHorizontal",tolua_main_ImGui_BeginHorizontal01);
-   tolua_function(tolua_S,"EndHorizontal",tolua_main_ImGui_EndHorizontal00);
-   tolua_function(tolua_S,"BeginVertical",tolua_main_ImGui_BeginVertical00);
-   tolua_function(tolua_S,"BeginVertical",tolua_main_ImGui_BeginVertical01);
-   tolua_function(tolua_S,"BeginVertical",tolua_main_ImGui_BeginVertical02);
-   tolua_function(tolua_S,"EndVertical",tolua_main_ImGui_EndVertical00);
-   tolua_function(tolua_S,"Spring",tolua_main_ImGui_Spring00);
-   tolua_function(tolua_S,"SuspendLayout",tolua_main_ImGui_SuspendLayout00);
-   tolua_function(tolua_S,"ResumeLayout",tolua_main_ImGui_ResumeLayout00);
    tolua_function(tolua_S,"BeginTabBar",tolua_main_ImGui_BeginTabBar00);
    tolua_function(tolua_S,"EndTabBar",tolua_main_ImGui_EndTabBar00);
    tolua_function(tolua_S,"BeginTabItem",tolua_main_ImGui_BeginTabItem00);
@@ -13611,13 +11869,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_function(tolua_S,"SetMouseCursor",tolua_main_ImGui_SetMouseCursor00);
    tolua_function(tolua_S,"CaptureKeyboardFromApp",tolua_main_ImGui_CaptureKeyboardFromApp00);
    tolua_function(tolua_S,"CaptureMouseFromApp",tolua_main_ImGui_CaptureMouseFromApp00);
-   tolua_function(tolua_S,"GetContentRegionAvailWidth",tolua_main_ImGui_GetContentRegionAvailWidth00);
-   tolua_function(tolua_S,"IsAnyWindowFocused",tolua_main_ImGui_IsAnyWindowFocused00);
-   tolua_function(tolua_S,"IsAnyWindowHovered",tolua_main_ImGui_IsAnyWindowHovered00);
-   tolua_function(tolua_S,"IsRootWindowFocused",tolua_main_ImGui_IsRootWindowFocused00);
-   tolua_function(tolua_S,"IsRootWindowOrAnyChildFocused",tolua_main_ImGui_IsRootWindowOrAnyChildFocused00);
-   tolua_function(tolua_S,"IsRootWindowOrAnyChildHovered",tolua_main_ImGui_IsRootWindowOrAnyChildHovered00);
-   tolua_function(tolua_S,"AlignFirstTextHeightToWidgets",tolua_main_ImGui_AlignFirstTextHeightToWidgets00);
    tolua_function(tolua_S,"SetNextWindowPos",tolua_main_ImGui_SetNextWindowPos00);
    tolua_function(tolua_S,"SetNextWindowPos",tolua_main_ImGui_SetNextWindowPos01);
    tolua_function(tolua_S,"SetNextWindowSize",tolua_main_ImGui_SetNextWindowSize00);
@@ -13643,7 +11894,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_function(tolua_S,"TreePush",tolua_main_ImGui_TreePush00);
    tolua_function(tolua_S,"TreePush",tolua_main_ImGui_TreePush01);
    tolua_function(tolua_S,"TreePop",tolua_main_ImGui_TreePop00);
-   tolua_function(tolua_S,"TreeAdvanceToLabelPos",tolua_main_ImGui_TreeAdvanceToLabelPos00);
    tolua_function(tolua_S,"GetTreeNodeToLabelSpacing",tolua_main_ImGui_GetTreeNodeToLabelSpacing00);
    tolua_function(tolua_S,"CollapsingHeader",tolua_main_ImGui_CollapsingHeader00);
    tolua_function(tolua_S,"CollapsingHeader",tolua_main_ImGui_CollapsingHeader01);
@@ -13713,7 +11963,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetContentRegionAvail",tolua_main_ImGui_GetContentRegionAvail00);
    tolua_function(tolua_S,"GetWindowContentRegionMin",tolua_main_ImGui_GetWindowContentRegionMin00);
    tolua_function(tolua_S,"GetWindowContentRegionMax",tolua_main_ImGui_GetWindowContentRegionMax00);
-   tolua_function(tolua_S,"GetWindowContentRegionWidth",tolua_main_ImGui_GetWindowContentRegionWidth00);
   tolua_endmodule(tolua_S);
   tolua_function(tolua_S,"IM_COL32",tolua_main_IM_COL3200);
   tolua_constant(tolua_S,"ImGuiWindowFlags_None",ImGuiWindowFlags_None);
@@ -13760,14 +12009,11 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"ImGuiInputTextFlags_AllowTabInput",ImGuiInputTextFlags_AllowTabInput);
   tolua_constant(tolua_S,"ImGuiInputTextFlags_CtrlEnterForNewLine",ImGuiInputTextFlags_CtrlEnterForNewLine);
   tolua_constant(tolua_S,"ImGuiInputTextFlags_NoHorizontalScroll",ImGuiInputTextFlags_NoHorizontalScroll);
-  tolua_constant(tolua_S,"ImGuiInputTextFlags_AlwaysInsertMode",ImGuiInputTextFlags_AlwaysInsertMode);
   tolua_constant(tolua_S,"ImGuiInputTextFlags_ReadOnly",ImGuiInputTextFlags_ReadOnly);
   tolua_constant(tolua_S,"ImGuiInputTextFlags_Password",ImGuiInputTextFlags_Password);
   tolua_constant(tolua_S,"ImGuiInputTextFlags_NoUndoRedo",ImGuiInputTextFlags_NoUndoRedo);
   tolua_constant(tolua_S,"ImGuiInputTextFlags_CharsScientific",ImGuiInputTextFlags_CharsScientific);
   tolua_constant(tolua_S,"ImGuiInputTextFlags_CallbackResize",ImGuiInputTextFlags_CallbackResize);
-  tolua_constant(tolua_S,"ImGuiInputTextFlags_Multiline",ImGuiInputTextFlags_Multiline);
-  tolua_constant(tolua_S,"ImGuiInputTextFlags_NoMarkEdited",ImGuiInputTextFlags_NoMarkEdited);
   tolua_constant(tolua_S,"ImGuiTreeNodeFlags_None",ImGuiTreeNodeFlags_None);
   tolua_constant(tolua_S,"ImGuiTreeNodeFlags_Selected",ImGuiTreeNodeFlags_Selected);
   tolua_constant(tolua_S,"ImGuiTreeNodeFlags_Framed",ImGuiTreeNodeFlags_Framed);
@@ -13935,14 +12181,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"ImGuiNavInput_FocusNext",ImGuiNavInput_FocusNext);
   tolua_constant(tolua_S,"ImGuiNavInput_TweakSlow",ImGuiNavInput_TweakSlow);
   tolua_constant(tolua_S,"ImGuiNavInput_TweakFast",ImGuiNavInput_TweakFast);
-  tolua_constant(tolua_S,"ImGuiNavInput_KeyMenu_",ImGuiNavInput_KeyMenu_);
-  tolua_constant(tolua_S,"ImGuiNavInput_KeyTab_",ImGuiNavInput_KeyTab_);
-  tolua_constant(tolua_S,"ImGuiNavInput_KeyLeft_",ImGuiNavInput_KeyLeft_);
-  tolua_constant(tolua_S,"ImGuiNavInput_KeyRight_",ImGuiNavInput_KeyRight_);
-  tolua_constant(tolua_S,"ImGuiNavInput_KeyUp_",ImGuiNavInput_KeyUp_);
-  tolua_constant(tolua_S,"ImGuiNavInput_KeyDown_",ImGuiNavInput_KeyDown_);
-  tolua_constant(tolua_S,"ImGuiNavInput_COUNT",ImGuiNavInput_COUNT);
-  tolua_constant(tolua_S,"ImGuiNavInput_InternalStart_",ImGuiNavInput_InternalStart_);
   tolua_constant(tolua_S,"ImGuiConfigFlags_None",ImGuiConfigFlags_None);
   tolua_constant(tolua_S,"ImGuiConfigFlags_NavEnableKeyboard",ImGuiConfigFlags_NavEnableKeyboard);
   tolua_constant(tolua_S,"ImGuiConfigFlags_NavEnableGamepad",ImGuiConfigFlags_NavEnableGamepad);
@@ -14029,7 +12267,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"ImGuiStyleVar_TabRounding",ImGuiStyleVar_TabRounding);
   tolua_constant(tolua_S,"ImGuiStyleVar_ButtonTextAlign",ImGuiStyleVar_ButtonTextAlign);
   tolua_constant(tolua_S,"ImGuiStyleVar_SelectableTextAlign",ImGuiStyleVar_SelectableTextAlign);
-  tolua_constant(tolua_S,"ImGuiStyleVar_LayoutAlign",ImGuiStyleVar_LayoutAlign);
   tolua_constant(tolua_S,"ImGuiStyleVar_COUNT",ImGuiStyleVar_COUNT);
   tolua_constant(tolua_S,"ImGuiColorEditFlags_None",ImGuiColorEditFlags_None);
   tolua_constant(tolua_S,"ImGuiColorEditFlags_NoAlpha",ImGuiColorEditFlags_NoAlpha);
@@ -14054,11 +12291,6 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"ImGuiColorEditFlags_PickerHueWheel",ImGuiColorEditFlags_PickerHueWheel);
   tolua_constant(tolua_S,"ImGuiColorEditFlags_InputRGB",ImGuiColorEditFlags_InputRGB);
   tolua_constant(tolua_S,"ImGuiColorEditFlags_InputHSV",ImGuiColorEditFlags_InputHSV);
-  tolua_constant(tolua_S,"ImGuiColorEditFlags__OptionsDefault",ImGuiColorEditFlags__OptionsDefault);
-  tolua_constant(tolua_S,"ImGuiColorEditFlags__DisplayMask",ImGuiColorEditFlags__DisplayMask);
-  tolua_constant(tolua_S,"ImGuiColorEditFlags__DataTypeMask",ImGuiColorEditFlags__DataTypeMask);
-  tolua_constant(tolua_S,"ImGuiColorEditFlags__PickerMask",ImGuiColorEditFlags__PickerMask);
-  tolua_constant(tolua_S,"ImGuiColorEditFlags__InputMask",ImGuiColorEditFlags__InputMask);
   tolua_constant(tolua_S,"ImGuiMouseCursor_None",ImGuiMouseCursor_None);
   tolua_constant(tolua_S,"ImGuiMouseCursor_Arrow",ImGuiMouseCursor_Arrow);
   tolua_constant(tolua_S,"ImGuiMouseCursor_TextInput",ImGuiMouseCursor_TextInput);
