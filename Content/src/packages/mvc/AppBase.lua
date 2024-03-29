@@ -5,7 +5,7 @@ function AppBase:ctor(configs)
     self.configs_ = {
         viewsRoot  = "app.views",
         modelsRoot = "app.models",
-        defaultSceneName = "MainScene",
+        defaultSceneName = "LaunchScene",
     }
 
     for k, v in pairs(configs or {}) do
@@ -23,7 +23,7 @@ function AppBase:ctor(configs)
         dump(self.configs_, "AppBase configs")
     end
 
-    if AX_SHOW_FPS then
+    if CC_SHOW_FPS then
         cc.Director:getInstance():setDisplayStats(true)
     end
 
