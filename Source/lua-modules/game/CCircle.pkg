@@ -1,0 +1,34 @@
+$#include "core/CCircle.h"
+
+
+
+class CCircle
+{
+public:
+
+	CCircle();
+	
+	~CCircle();
+
+	void setCenter(float x, float y);
+
+	Vec2 getCenter();
+
+	void setRadius(float value);
+
+	float getRadius();
+
+
+	void debugDraw(cc.DrawNode* pDrawNode);
+
+	void setAlpha(float alpha);
+
+	void setVisible(bool value);
+
+	bool isVisible();
+
+	void setColor(unsigned int color);
+
+	unsigned int getColor() ;
+
+};

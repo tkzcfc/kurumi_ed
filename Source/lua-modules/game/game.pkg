@@ -1,0 +1,18 @@
+
+$#include "lua_function/tolua_ext.h"
+
+$pfile "StringArray.pkg"
+$pfile "Tools.pkg"
+$pfile "Vec2Value.pkg"
+$pfile "LineValue.pkg"
+$pfile "CRect.pkg"
+$pfile "CCircle.pkg"
+$pfile "CLine.pkg"
+$pfile "CPolygon.pkg"
+$pfile "ILayer.pkg"
+$pfile "Logger.pkg"
+$pfile "EditorContext.pkg"
+$pfile "ScissorLayer.pkg"
+$pfile "CProcess.pkg"
+$pfile "CSequentity.pkg"
+$pfile "Theme.pkg"

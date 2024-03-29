@@ -1,0 +1,32 @@
+$#include "core/CPolygon.h"
+
+
+
+class CPolygon
+{
+public:
+
+	CPolygon();
+
+	virtual ~CPolygon();
+
+	void setVertexCount(int count);
+
+	int getVertexCount();
+
+	void setVertex(Vec2 point, int index);
+
+	Vec2 getVertex(int index);
+
+
+	void debugDraw(cc.DrawNode* pDrawNode);
+
+	void setAlpha(float alpha);
+
+	void setColor(unsigned int color);
+
+	unsigned int getColor();
+
+	void setVisible(bool value);
+};
+
