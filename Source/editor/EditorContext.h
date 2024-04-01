@@ -20,6 +20,8 @@ public:
 
 	void testSequentity();
 
+    void resetDock();
+
 private:
 
 	void onGUI();
@@ -28,10 +30,7 @@ private:
 
 private:
 
-	Node* m_backgroundNode;
-
 	bool m_initGUITag;
-
     bool m_openDockspace;
     bool m_redock;
 };

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: game
-** Generated automatically by tolua++-1.0.92 on 04/01/24 12:26:24.
+** Generated automatically by tolua++-1.0.92 on 04/01/24 14:12:28.
 */
 
 #ifndef __cplusplus
@@ -5146,6 +5146,37 @@ static int tolua_game_EditorContext_clearLuaHandle00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: resetDock of class  EditorContext */
+#ifndef TOLUA_DISABLE_tolua_game_EditorContext_resetDock00
+static int tolua_game_EditorContext_resetDock00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'resetDock'", NULL);
+#endif
+  {
+   self->resetDock();
+  }
+ }
+ return 0;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'resetDock'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: new of class  CProcess */
 #ifndef TOLUA_DISABLE_tolua_game_CProcess_new00
 static int tolua_game_CProcess_new00(lua_State* tolua_S)
@@ -7491,6 +7522,7 @@ TOLUA_API int tolua_game_open (lua_State* tolua_S)
    tolua_function(tolua_S,"registerLuaHandle",tolua_game_EditorContext_registerLuaHandle00);
    tolua_function(tolua_S,"unregisterLuaHandle",tolua_game_EditorContext_unregisterLuaHandle00);
    tolua_function(tolua_S,"clearLuaHandle",tolua_game_EditorContext_clearLuaHandle00);
+   tolua_function(tolua_S,"resetDock",tolua_game_EditorContext_resetDock00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"CProcess","CProcess","",tolua_collect_CProcess);

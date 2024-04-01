@@ -72,7 +72,7 @@ function WidgetContent:render()
 	local last_button_x2, next_button_x2
 	local window_visible_x2 = ImGui.GetWindowPos().x + ImGui.GetWindowContentRegionMax().x
 
-	layout_widget_size.x = ImGui.GetWindowContentRegionWidth()
+	layout_widget_size.x = ImGui.GetWindowContentRegionMax().x - ImGui.GetWindowContentRegionMin().x
 	if layout_widget_size.x < widget_max_width then
 		widget_size.x = math.max(layout_widget_size.x, widget_min_width)
 	else

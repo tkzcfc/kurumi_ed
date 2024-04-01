@@ -88,8 +88,9 @@ end
 
 function EditorIconContent:loadTexture(name)
     local path = string.format("res/Built-in/%s", name)
-    local textureId = Tools:getImguiTextureID(path)
-    return textureId
+    local texture = ax.Director:getInstance():getTextureCache():addImage(path)
+    if texture then texture:retain() end
+    return texture
 end
 
 function EditorIconContent:get(key)

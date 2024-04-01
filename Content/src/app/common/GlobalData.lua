@@ -16,13 +16,17 @@ function GlobalData:ctor()
 
 	self.ProjectExtension = "edproj"
 
-	self.RootWritePath = os.currentdir() .. "/" ..self.WorkSpaceDirName.."/"
+	self.RootWritePath = os.currentdir() .. "/../" ..self.WorkSpaceDirName.."/"
 	self.ProjectsPath = self.RootWritePath..self.ProjectsDirName.."/"
 	self.CocosResourcePath = self.RootWritePath..self.CocosResourceDirName.."/"
 
 	self.RootWritePath = G_Helper.fmtPath(self.RootWritePath)
 	self.ProjectsPath = G_Helper.fmtPath(self.ProjectsPath)
 	self.CocosResourcePath = G_Helper.fmtPath(self.CocosResourcePath)
+
+	print("RootWritePath", self.RootWritePath)
+	print("ProjectsPath", self.ProjectsPath)
+	print("CocosResourcePath", self.CocosResourcePath)
 
 	--所有工程名称
 	self.ProjectNameArr = {}

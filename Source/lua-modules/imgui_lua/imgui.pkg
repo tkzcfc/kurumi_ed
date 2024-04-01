@@ -822,7 +822,7 @@ namespace ImGui
 
 
 
-
+    void          DockBuilderDockWindow(const char* window_name, unsigned int node_id);
 
 
 

@@ -307,7 +307,7 @@ function Asset:_drawItem(noDrag)
 	local frameHeight = ImGui.GetFrameHeight()
 
 	local property = self.property
-	ImGui.Image(property.thumbnailTexture, cc.p(frameHeight, frameHeight))
+	ImGuiPresenter:getInstance():image(property.thumbnailTexture, cc.p(frameHeight, frameHeight))
 	ImGui.SameLine()
 
 	if noDrag then

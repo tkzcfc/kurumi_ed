@@ -6,13 +6,13 @@ local Window = class("Window")
 
 function Window:ctor(name, unique)
     if name == nil then
-        self.winName = "##" .. tostring(self)
+        name = self.__cname
+    end
+    
+    if unique then
+        self.winName = name
     else
-        if unique then
-            self.winName = name
-        else
-            self.winName = name .. "##" .. tostring(self)
-        end
+        self.winName = name .. "##" .. tostring(self)
     end
 
     self.bUnique = true

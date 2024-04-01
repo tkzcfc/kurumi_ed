@@ -9,24 +9,6 @@
 USING_NS_AX;
 USING_NS_AX_EXT;
 
-// 两侧面板范围
-static float bothSidesPanelMinWidth = 50.0f;
-static float bothSidesPanelMaxWidth = 350.0f;
-
-static float topPanelMinHeight = 50.0f;
-static float topPanelMaxHeight = 200.0f;
-
-static float bottomPanelMinHeight = 50.0f;
-static float bottomPanelMaxHeight = 400.0f;
-
-static const char* backgroundImageResource = "bg.jpg";
-
-
-
-inline ImVec2 operator+(const ImVec2& vec, const ImVec2 value)
-{
-    return ImVec2{vec.x + value.x, vec.y + value.y};
-}
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -116,17 +98,21 @@ void EditorContext::testSequentity()
 //////////////////////////////////////////////////////////////////////////
 
 EditorContext::EditorContext()
-	: m_backgroundNode(NULL)
-	, m_initGUITag(false)
+	: m_initGUITag(false)
     , m_openDockspace(true)
     , m_redock(false)
 {}
 
 EditorContext::~EditorContext()
 {
-    Director::getInstance()->getTextureCache()->unbindImageAsync(backgroundImageResource);
+    auto key = StringUtils::format("EditorContextLoop%p", this);
+    ImGuiPresenter::getInstance()->removeRenderLoop(key);
 }
 
+void EditorContext::resetDock()
+{
+    m_redock = true;
+}
 
 bool EditorContext::init()
 {
@@ -135,25 +121,8 @@ bool EditorContext::init()
 		return false;
 	}
 
-	Director::getInstance()->getTextureCache()->addImageAsync(backgroundImageResource, [=](Texture2D* texture)
-	{
-		if (texture == NULL)
-		{
-			return;
-		}
-		auto backgroundImage = ui::ImageView::create();
-		backgroundImage->loadTexture(backgroundImageResource, ui::Widget::TextureResType::LOCAL);
-		//backgroundImage->ignoreContentAdaptWithSize(false);
-		//backgroundImage->setOpacity(200);
-		backgroundImage->setPosition(Director::getInstance()->getWinSize() * 0.5f);
-		backgroundImage->setContentSize(Director::getInstance()->getWinSize());
-		m_backgroundNode->addChild(backgroundImage);
-	});
-
-	m_backgroundNode = Node::create();
-	this->addChild(m_backgroundNode, -2);
-
-    ImGuiPresenter::getInstance()->addRenderLoop("EditorContextLoop", std::bind(&EditorContext::onGUI, this), nullptr);
+    auto key = StringUtils::format("EditorContextLoop%p", this);
+    ImGuiPresenter::getInstance()->addRenderLoop(key, std::bind(&EditorContext::onGUI, this), nullptr);
 
 	//testSequentity();
 
@@ -168,6 +137,8 @@ void EditorContext::onGUI()
         callLuaGUI("onGUI_Init");
     }
 
+    callLuaGUI("onGUIBegin");
+    
     const ImGuiViewport* viewport = ImGui::GetMainViewport();
     ImGui::SetNextWindowPos(viewport->Pos);
     ImGui::SetNextWindowSize(viewport->Size);
@@ -315,6 +286,9 @@ void EditorContext::onGUI()
     }
 
     ImGui::End();
+
+    callLuaGUI("onGUI");
+    callLuaGUI("onGUIEnd");
 }
 
 void EditorContext::callLuaGUI(const char* name)

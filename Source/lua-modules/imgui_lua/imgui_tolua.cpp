@@ -1,6 +1,6 @@
 /*
 ** Lua binding: main
-** Generated automatically by tolua++-1.0.92 on Mon Apr  1 10:52:06 2024.
+** Generated automatically by tolua++-1.0.92 on Mon Apr  1 15:22:22 2024.
 */
 
 #ifndef __cplusplus
@@ -16,7 +16,10 @@
 TOLUA_API int  tolua_main_open (lua_State* tolua_S);
 
 #include "imgui.h"
+#include "imgui_internal.h"
+#include "ImGuiPresenter.h"
 #include "lua_function/LuaFunction.h"
+USING_NS_AX_EXT;
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -43,9 +46,13 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ImFont");
  tolua_usertype(tolua_S,"ImVec4");
  tolua_usertype(tolua_S,"ImGuiIO");
- tolua_usertype(tolua_S,"ImVec2");
  tolua_usertype(tolua_S,"ImDrawList");
  tolua_usertype(tolua_S,"ImGuiStyle");
+ tolua_usertype(tolua_S,"ax.Sprite");
+ tolua_usertype(tolua_S,"ax.Texture2D");
+ tolua_usertype(tolua_S,"ImVec2");
+ tolua_usertype(tolua_S,"ax.SpriteFrame");
+ tolua_usertype(tolua_S,"ImGuiPresenter");
 }
 
 /* get function: ConfigFlags of class  ImGuiIO */
@@ -11542,6 +11549,36 @@ static int tolua_main_ImGui_GetWindowContentRegionMax00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* function: ImGui::DockBuilderDockWindow */
+#ifndef TOLUA_DISABLE_tolua_main_ImGui_DockBuilderDockWindow00
+static int tolua_main_ImGui_DockBuilderDockWindow00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isstring(tolua_S,1,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const char* window_name = ((const char*)  tolua_tostring(tolua_S,1,0));
+  unsigned int node_id = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
+  {
+   ImGui::DockBuilderDockWindow(window_name,node_id);
+  }
+ }
+ return 0;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'DockBuilderDockWindow'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* function: IM_COL32 */
 #ifndef TOLUA_DISABLE_tolua_main_IM_COL3200
 static int tolua_main_IM_COL3200(lua_State* tolua_S)
@@ -11574,6 +11611,868 @@ static int tolua_main_IM_COL3200(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'IM_COL32'.",&tolua_err);
  return 0;
 #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getInstance of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_getInstance00
+static int tolua_main_ImGuiPresenter_getInstance00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ImGuiPresenter* tolua_ret = (ImGuiPresenter*)  ImGuiPresenter::getInstance();
+    tolua_ext_object_to_luaval<ImGuiPresenter>(tolua_S,(void*)tolua_ret,"ImGuiPresenter");
+  }
+ }
+ return 1;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getInstance'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: scaleAllByDPI of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_scaleAllByDPI00
+static int tolua_main_ImGuiPresenter_scaleAllByDPI00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  float userScale = ((float)  tolua_tonumber(tolua_S,2,1.0f));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scaleAllByDPI'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->scaleAllByDPI(userScale);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'scaleAllByDPI'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: enableDPIScale of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_enableDPIScale00
+static int tolua_main_ImGuiPresenter_enableDPIScale00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  float userScale = ((float)  tolua_tonumber(tolua_S,2,1.0f));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'enableDPIScale'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->enableDPIScale(userScale);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'enableDPIScale'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getContentZoomFactor of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_getContentZoomFactor00
+static int tolua_main_ImGuiPresenter_getContentZoomFactor00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getContentZoomFactor'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getContentZoomFactor();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getContentZoomFactor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeFont of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_removeFont00
+static int tolua_main_ImGuiPresenter_removeFont00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  std::string fontFile = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeFont'", NULL);
+#endif
+  {
+   self->removeFont(fontFile);
+  }
+ }
+ return 0;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeFont'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: clearFonts of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_clearFonts00
+static int tolua_main_ImGuiPresenter_clearFonts00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clearFonts'", NULL);
+#endif
+  {
+   self->clearFonts();
+  }
+ }
+ return 0;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'clearFonts'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image00
+static int tolua_main_ImGuiPresenter_image00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(tex,size);
+  }
+ }
+ return 0;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'image'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image01
+static int tolua_main_ImGuiPresenter_image01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  ImVec2 uv0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(tex,size,uv0);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image02
+static int tolua_main_ImGuiPresenter_image02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  ImVec2 uv0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
+  ImVec2 uv1 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,5,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(tex,size,uv0,uv1);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image03
+static int tolua_main_ImGuiPresenter_image03(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,6,&tolua_err) || !tolua_ext_check_is_table(tolua_S,6,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  ImVec2 uv0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
+  ImVec2 uv1 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,5,0));
+  ImVec4 tint_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,6,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(tex,size,uv0,uv1,tint_col);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image02(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image04
+static int tolua_main_ImGuiPresenter_image04(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,6,&tolua_err) || !tolua_ext_check_is_table(tolua_S,6,"ImVec4",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,7,&tolua_err) || !tolua_ext_check_is_table(tolua_S,7,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,8,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  ImVec2 uv0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
+  ImVec2 uv1 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,5,0));
+  ImVec4 tint_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,6,0));
+  ImVec4 border_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,7,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(tex,size,uv0,uv1,tint_col,border_col);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image03(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image05
+static int tolua_main_ImGuiPresenter_image05(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Sprite",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Sprite* sprite = ((Sprite*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  bool keepAspectRatio = ((bool)  tolua_toboolean(tolua_S,4,true));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(sprite,size,keepAspectRatio);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image04(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image06
+static int tolua_main_ImGuiPresenter_image06(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Sprite",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Sprite* sprite = ((Sprite*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  bool keepAspectRatio = ((bool)  tolua_toboolean(tolua_S,4,0));
+  ImVec4 tint_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,5,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(sprite,size,keepAspectRatio,tint_col);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image05(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image07
+static int tolua_main_ImGuiPresenter_image07(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Sprite",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec4",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,6,&tolua_err) || !tolua_ext_check_is_table(tolua_S,6,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Sprite* sprite = ((Sprite*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  bool keepAspectRatio = ((bool)  tolua_toboolean(tolua_S,4,0));
+  ImVec4 tint_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,5,0));
+  ImVec4 border_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,6,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(sprite,size,keepAspectRatio,tint_col,border_col);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image06(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image08
+static int tolua_main_ImGuiPresenter_image08(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.SpriteFrame",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  SpriteFrame* spriteFrame = ((SpriteFrame*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  bool keepAspectRatio = ((bool)  tolua_toboolean(tolua_S,4,true));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(spriteFrame,size,keepAspectRatio);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image07(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image09
+static int tolua_main_ImGuiPresenter_image09(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.SpriteFrame",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  SpriteFrame* spriteFrame = ((SpriteFrame*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  bool keepAspectRatio = ((bool)  tolua_toboolean(tolua_S,4,0));
+  ImVec4 tint_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,5,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(spriteFrame,size,keepAspectRatio,tint_col);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image08(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: image of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_image10
+static int tolua_main_ImGuiPresenter_image10(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.SpriteFrame",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec4",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,6,&tolua_err) || !tolua_ext_check_is_table(tolua_S,6,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  SpriteFrame* spriteFrame = ((SpriteFrame*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  bool keepAspectRatio = ((bool)  tolua_toboolean(tolua_S,4,0));
+  ImVec4 tint_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,5,0));
+  ImVec4 border_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,6,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'image'", NULL);
+#endif
+  {
+   self->image(spriteFrame,size,keepAspectRatio,tint_col,border_col);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_image09(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: imageButton of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_imageButton00
+static int tolua_main_ImGuiPresenter_imageButton00(lua_State* tolua_S)
+{
+#if COCOS2D_DEBUG >= 1
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'imageButton'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->imageButton(tex,size);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#if COCOS2D_DEBUG >= 1
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'imageButton'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: imageButton of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_imageButton01
+static int tolua_main_ImGuiPresenter_imageButton01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  ImVec2 uv0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'imageButton'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->imageButton(tex,size,uv0);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_imageButton00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: imageButton of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_imageButton02
+static int tolua_main_ImGuiPresenter_imageButton02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,6,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  ImVec2 uv0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
+  ImVec2 uv1 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,5,0));
+  int frame_padding = ((int)  tolua_tonumber(tolua_S,6,-1));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'imageButton'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->imageButton(tex,size,uv0,uv1,frame_padding);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_imageButton01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: imageButton of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_imageButton03
+static int tolua_main_ImGuiPresenter_imageButton03(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,6,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,7,&tolua_err) || !tolua_ext_check_is_table(tolua_S,7,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,8,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  ImVec2 uv0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
+  ImVec2 uv1 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,5,0));
+  int frame_padding = ((int)  tolua_tonumber(tolua_S,6,0));
+  ImVec4 bg_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,7,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'imageButton'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->imageButton(tex,size,uv0,uv1,frame_padding,bg_col);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_imageButton02(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: imageButton of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_imageButton04
+static int tolua_main_ImGuiPresenter_imageButton04(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_is_table(tolua_S,4,"ImVec2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,6,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,7,&tolua_err) || !tolua_ext_check_is_table(tolua_S,7,"ImVec4",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,8,&tolua_err) || !tolua_ext_check_is_table(tolua_S,8,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,9,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  ImVec2 uv0 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,4,0));
+  ImVec2 uv1 = (  tolua_ext_luaval_to_imvec2_value(tolua_S,5,0));
+  int frame_padding = ((int)  tolua_tonumber(tolua_S,6,0));
+  ImVec4 bg_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,7,0));
+  ImVec4 tint_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,8,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'imageButton'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->imageButton(tex,size,uv0,uv1,frame_padding,bg_col,tint_col);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_imageButton03(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: imageButton of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_imageButton05
+static int tolua_main_ImGuiPresenter_imageButton05(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Sprite",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,4,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Sprite* sprite = ((Sprite*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  int frame_padding = ((int)  tolua_tonumber(tolua_S,4,-1));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'imageButton'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->imageButton(sprite,size,frame_padding);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_imageButton04(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: imageButton of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_imageButton06
+static int tolua_main_ImGuiPresenter_imageButton06(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Sprite",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Sprite* sprite = ((Sprite*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  int frame_padding = ((int)  tolua_tonumber(tolua_S,4,0));
+  ImVec4 bg_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,5,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'imageButton'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->imageButton(sprite,size,frame_padding,bg_col);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_imageButton05(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: imageButton of class  ImGuiPresenter */
+#ifndef TOLUA_DISABLE_tolua_main_ImGuiPresenter_imageButton07
+static int tolua_main_ImGuiPresenter_imageButton07(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ImGuiPresenter",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Sprite",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_ext_check_is_table(tolua_S,3,"ImVec2",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_ext_check_is_table(tolua_S,5,"ImVec4",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,6,&tolua_err) || !tolua_ext_check_is_table(tolua_S,6,"ImVec4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ImGuiPresenter* self = (ImGuiPresenter*)  tolua_tousertype(tolua_S,1,0);
+  Sprite* sprite = ((Sprite*)  tolua_tousertype(tolua_S,2,0));
+  ImVec2 size = (  tolua_ext_luaval_to_imvec2_value(tolua_S,3,0));
+  int frame_padding = ((int)  tolua_tonumber(tolua_S,4,0));
+  ImVec4 bg_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,5,0));
+  ImVec4 tint_col = (  tolua_ext_luaval_to_imvec4_value(tolua_S,6,0));
+#if COCOS2D_DEBUG >= 1
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'imageButton'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->imageButton(sprite,size,frame_padding,bg_col,tint_col);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_main_ImGuiPresenter_imageButton06(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -11963,6 +12862,7 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetContentRegionAvail",tolua_main_ImGui_GetContentRegionAvail00);
    tolua_function(tolua_S,"GetWindowContentRegionMin",tolua_main_ImGui_GetWindowContentRegionMin00);
    tolua_function(tolua_S,"GetWindowContentRegionMax",tolua_main_ImGui_GetWindowContentRegionMax00);
+   tolua_function(tolua_S,"DockBuilderDockWindow",tolua_main_ImGui_DockBuilderDockWindow00);
   tolua_endmodule(tolua_S);
   tolua_function(tolua_S,"IM_COL32",tolua_main_IM_COL3200);
   tolua_constant(tolua_S,"ImGuiWindowFlags_None",ImGuiWindowFlags_None);
@@ -12305,6 +13205,34 @@ TOLUA_API int tolua_main_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"ImGuiCond_Once",ImGuiCond_Once);
   tolua_constant(tolua_S,"ImGuiCond_FirstUseEver",ImGuiCond_FirstUseEver);
   tolua_constant(tolua_S,"ImGuiCond_Appearing",ImGuiCond_Appearing);
+  tolua_cclass(tolua_S,"ImGuiPresenter","ImGuiPresenter","",NULL);
+  tolua_beginmodule(tolua_S,"ImGuiPresenter");
+   tolua_function(tolua_S,"getInstance",tolua_main_ImGuiPresenter_getInstance00);
+   tolua_function(tolua_S,"scaleAllByDPI",tolua_main_ImGuiPresenter_scaleAllByDPI00);
+   tolua_function(tolua_S,"enableDPIScale",tolua_main_ImGuiPresenter_enableDPIScale00);
+   tolua_function(tolua_S,"getContentZoomFactor",tolua_main_ImGuiPresenter_getContentZoomFactor00);
+   tolua_function(tolua_S,"removeFont",tolua_main_ImGuiPresenter_removeFont00);
+   tolua_function(tolua_S,"clearFonts",tolua_main_ImGuiPresenter_clearFonts00);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image00);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image01);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image02);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image03);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image04);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image05);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image06);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image07);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image08);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image09);
+   tolua_function(tolua_S,"image",tolua_main_ImGuiPresenter_image10);
+   tolua_function(tolua_S,"imageButton",tolua_main_ImGuiPresenter_imageButton00);
+   tolua_function(tolua_S,"imageButton",tolua_main_ImGuiPresenter_imageButton01);
+   tolua_function(tolua_S,"imageButton",tolua_main_ImGuiPresenter_imageButton02);
+   tolua_function(tolua_S,"imageButton",tolua_main_ImGuiPresenter_imageButton03);
+   tolua_function(tolua_S,"imageButton",tolua_main_ImGuiPresenter_imageButton04);
+   tolua_function(tolua_S,"imageButton",tolua_main_ImGuiPresenter_imageButton05);
+   tolua_function(tolua_S,"imageButton",tolua_main_ImGuiPresenter_imageButton06);
+   tolua_function(tolua_S,"imageButton",tolua_main_ImGuiPresenter_imageButton07);
+  tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;
 }

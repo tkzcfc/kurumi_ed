@@ -7,6 +7,9 @@ cc.exports.WinTag = enum {
     "ROLE",
     "GLOBAL_SCALE",
     "FONT_SETTING",
+    "PROJECT",
+    "LOG",
+    "CONTENT"
 }
 
 local WindowManager = require("app.imgui.WindowManager").new()
@@ -38,3 +41,17 @@ WindowManager:add(win, WinTag.GLOBAL_SCALE)
 win = require("app.imgui.window.FontSetting").new("Font", true)
 win:setWindowVisible(false)
 WindowManager:add(win, WinTag.FONT_SETTING)
+
+-- Project
+win = require("app.imgui.window.Project").new()
+WindowManager:add(win, WinTag.PROJECT)
+
+-- Log
+win = require("app.imgui.window.Log").new()
+WindowManager:add(win, WinTag.LOG)
+
+-- Content
+win = require("app.imgui.window.Content").new()
+WindowManager:add(win, WinTag.CONTENT)
+
+

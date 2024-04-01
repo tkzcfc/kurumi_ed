@@ -27,22 +27,21 @@ function MessageBox:iOnGUI()
     ImGui.Separator()
 
     msgBox_LayoutSize.x = ImGui.GetContentRegionAvail().x
-    ImGui.BeginHorizontal("h1", msgBox_LayoutSize, 0.5)
 
     msgBox_WidgetSize.x = msgBox_LayoutSize.x / (#self.btns + 1)
 
     for k, v in pairs(self.btns) do
-        ImGui.Spring(0.5)
         if ImGui.Button(v.btnText, msgBox_WidgetSize) then
             if v.call then
                 v.call()
             end
             self:close()
         end
-        ImGui.Spring(0.5)
-    end
 
-    ImGui.EndHorizontal()
+        if k ~= #self.btns then
+            ImGui.SameLine()
+        end
+    end
 end
 
 function MessageBox:setContent(content)

@@ -118,9 +118,9 @@ function M:onGUI()
 		ImGui.SameLine()
 		ImGui.PushItemWidth(280)
 		if self.pathConstraint then
-			enter_true, self.curEditDir = Tools:imgui_inputText("", self.curEditDir, 512, ImGuiInputTextFlags_ReadOnly)
+			enter_true, self.curEditDir = Tools:imgui_inputText("##editDir", self.curEditDir, 512, ImGuiInputTextFlags_ReadOnly)
 		else
-			enter_true, self.curEditDir = Tools:imgui_inputText("", self.curEditDir, 512, ImGuiInputTextFlags_EnterReturnsTrue)
+			enter_true, self.curEditDir = Tools:imgui_inputText("##editDir", self.curEditDir, 512, ImGuiInputTextFlags_EnterReturnsTrue)
 		end
 		if enter_true then
 			self:jump()
@@ -150,7 +150,7 @@ function M:onGUI()
 				self.contentRegionAvailWidth = ImGui.GetContentRegionAvail().x
 			end
 			local width = self.contentRegionAvailWidth
-			ImGui.BeginHorizontal("h1", {x = width, y = 40}, 0.5)
+			-- ImGui.BeginHorizontal("h1", {x = width, y = 40}, 0.5)
 
 			if ImGui.Button(STR("Yes"), {x = width / 2, y = 0}) and #self.newFolderName > 0 then
 				local path = self.curDir .. "/" .. Tools:UTS(self.newFolderName)
@@ -166,7 +166,7 @@ function M:onGUI()
 				ImGui.CloseCurrentPopup()
 			end
 
-			ImGui.EndHorizontal()
+			-- ImGui.EndHorizontal()
 			ImGui.EndPopup()
 		end
 
@@ -213,7 +213,7 @@ function M:onGUI()
 		ImGui.PopItemWidth()
 
 		ImGui.PushStyleVar(ImGuiStyleVar_ItemSpacing, {x = 8, y = 0})
-		ImGui.BeginHorizontal("h1", {x = childWidth, y = 40}, 0.5)
+		-- ImGui.BeginHorizontal("h1", {x = childWidth, y = 40}, 0.5)
 
 		local buttonW = childWidth / 2
 
@@ -263,7 +263,7 @@ function M:onGUI()
 			self.isOpen = false
 		end
 
-		ImGui.EndHorizontal()
+		-- ImGui.EndHorizontal()
 		ImGui.PopStyleVar()
 
 		if self.file_exists_tag then

@@ -9,66 +9,62 @@ function MainScene:onCreate()
 	self:addChild(context)
 
     context:registerLuaHandle("onDockBuilder", function(dock)
-        dump(dock, "FFFFFFFFFFFFFF")
+        ImGui.DockBuilderDockWindow("Project", dock.dock_id_left_top)
+        ImGui.DockBuilderDockWindow("Log", dock.docker_id_center_bottom)
+        ImGui.DockBuilderDockWindow("Content", dock.docker_id_center)
+        
     end)
 
-	-- local ilayer = context:getIlayer()
- --    ilayer:registerLuaHandle("onGUIBegin", function()
- --        _MyG.IsOnGUI = true
- --        G_SysEventEmitter:emit(SysEvent.ON_GUI_BEGIN)
- --    end)
+    context:registerLuaHandle("onGUIBegin", function()
+        _MyG.IsOnGUI = true
+        G_SysEventEmitter:emit(SysEvent.ON_GUI_BEGIN)
+    end)
 
- --    ilayer:registerLuaHandle("onGUI", function()
- --        G_SysEventEmitter:emit(SysEvent.ON_GUI)
- --    end)
+    context:registerLuaHandle("onGUI", function()
+        G_SysEventEmitter:emit(SysEvent.ON_GUI)
+    end)
 
- --    ilayer:registerLuaHandle("onGUIEnd", function()
- --        G_SysEventEmitter:emit(SysEvent.ON_GUI_POPUP)
- --        G_SysEventEmitter:emit(SysEvent.ON_GUI_END)
- --        _MyG.IsOnGUI = false
- --    end)
+    context:registerLuaHandle("onGUIEnd", function()
+        G_SysEventEmitter:emit(SysEvent.ON_GUI_POPUP)
+        G_SysEventEmitter:emit(SysEvent.ON_GUI_END)
+        _MyG.IsOnGUI = false
+    end)
 
     
- --    ilayer:registerLuaHandle("onGUI_Init", function()
- --    	self:onGUI_Init()
- --    end)
+    context:registerLuaHandle("onGUI_Init", function()
+    	self:onGUI_Init()
+    end)
 
- --    local rootNode = cc.Node:create()
- --    ilayer:addChild(rootNode, -1)
+    local rootNode = cc.Node:create()
+    context:addChild(rootNode)
 
- --    _MyG.MainScene = self
-	-- _MyG.edContext = context
-	-- _MyG.MainScene.ilayer = ilayer
-	-- _MyG.MainScene.rootNode = rootNode
+    _MyG.MainScene = self
+	_MyG.edContext = context
+	_MyG.MainScene.rootNode = rootNode
 end
 
 function MainScene:onGUI_Init()
     _MyG.ThemeManager:readTheme()
     
-    local ilayer = self.ilayer
-
     local DocumentManager = require("app.imgui.DocumentManager")
-    _MyG.TopDocumentManager = DocumentManager.new()
     _MyG.LeftDocumentManager = DocumentManager.new()
     _MyG.RightDocumentManager = DocumentManager.new()
     _MyG.BottomDocumentManager = DocumentManager.new()
     _MyG.CenterDocumentManager = DocumentManager.new()
 
-	require("app.logic.GUI_Bottom")
-	require("app.logic.GUI_Center")
-	require("app.logic.GUI_Left")
-	require("app.logic.GUI_Right")
-	require("app.logic.GUI_Top")
+	-- require("app.logic.GUI_Bottom")
+	-- require("app.logic.GUI_Center")
+	-- require("app.logic.GUI_Right")
 	require("app.logic.GUI_MenuBar")
 	require("app.logic.GUI_Popup")
 	require("app.logic.GUI_Window")
 
-    _MyG.SupportChineseFont = false
-    for k, v in pairs(_MyG.SupportFonts) do
-        if ilayer:setChineseFont(v.fullPath, v.fontSize) then
-            _MyG.SupportChineseFont = true
-        end
-    end
+    -- _MyG.SupportChineseFont = false
+    -- for k, v in pairs(_MyG.SupportFonts) do
+    --     if ilayer:setChineseFont(v.fullPath, v.fontSize) then
+    --         _MyG.SupportChineseFont = true
+    --     end
+    -- end
 
     local loadChineseFont = false
     -- 首次启动默认选中文
