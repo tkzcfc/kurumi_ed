@@ -430,6 +430,8 @@ function post_output_hook(package)
 
     replace("tolua_pushcppstring(tolua_S,(const char*)", "tolua_pushcppstring(tolua_S,")
 
+    replace("\"cc.", "\"ax.")
+
     result = string.gsub(result, "toluafix_totable%(tolua_S,.-\"LUA_FUNCTION\"%);", "//未实现\n   assert(0);")
 
 	replace(

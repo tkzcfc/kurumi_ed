@@ -118,14 +118,8 @@ void EditorContext::testSequentity()
 EditorContext::EditorContext()
 	: m_backgroundNode(NULL)
 	, m_initGUITag(false)
-	, m_leftPaneWidth(0.0f)
-	, m_centerPaneWidth(0.0f)
-	, m_rightPaneWidth(0.0f)
-	, m_topPanelHeight(0.0f)
-	, m_bottomPanelHeight(0.0f)
-	, m_centerPaneHeight(0.0f)
-	, m_rightPaneWidthTmp(0.0f)
-	, m_bottomPaneWidthTmp(0.0f)
+    , m_openDockspace(true)
+    , m_redock(false)
 {}
 
 EditorContext::~EditorContext()
@@ -166,163 +160,159 @@ bool EditorContext::init()
 	return true;
 }
 
-Node* EditorContext::getBackgroundNode()
-{
-	return m_backgroundNode;
-}
-
-void EditorContext::initGUI()
-{
-	if(m_initGUITag)
-	{
-		return;
-	}
-	m_initGUITag = true;
-
-	auto& io = ImGui::GetIO();
-
-	/// <summary>
-	/// 范围设置
-	/// </summary>
-	auto winSize = Director::getInstance()->getWinSize();
-	bothSidesPanelMaxWidth = winSize.width * 0.3f;
-	topPanelMaxHeight = winSize.height * 0.05f;
-	bottomPanelMaxHeight = winSize.height * 0.4f;
-
-	float DefaultWidth = winSize.width * 0.2f;
-
-	m_leftPaneWidth = DefaultWidth;
-	m_centerPaneWidth = 0;
-	m_rightPaneWidth = DefaultWidth;
-
-	m_topPanelHeight = topPanelMinHeight;
-	m_bottomPanelHeight = bottomPanelMaxHeight;
-
-	m_rightPaneWidthTmp = std::fabs(bothSidesPanelMaxWidth - m_leftPaneWidth);
-	m_bottomPaneWidthTmp = std::fabs(topPanelMaxHeight - m_topPanelHeight);
-}
-
 void EditorContext::onGUI()
 {
-	auto& color = ImGui::GetStyle().Colors[ImGuiCol_WindowBg];
-	_director->setClearColor(Color4F(color.x, color.y, color.z, color.w));
-	
-	initGUI();
+    if (!m_initGUITag)
+    {
+        m_initGUITag = true;
+        callLuaGUI("onGUI_Init");
+    }
 
-    ImGuiIO& io = ImGui::GetIO();
+    const ImGuiViewport* viewport = ImGui::GetMainViewport();
+    ImGui::SetNextWindowPos(viewport->Pos);
+    ImGui::SetNextWindowSize(viewport->Size);
+    ImGui::SetNextWindowViewport(viewport->ID);
+    ImGui::SetNextWindowBgAlpha(0.0f);
 
-    ImGuiWindowFlags flags = ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoCollapse |
-                                 ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar |
-                                 ImGuiWindowFlags_MenuBar;
+    ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
+    window_flags |=
+        ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+    window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
 
-    ImGui::SetNextWindowPos(ImVec2(0, 0));
-    ImGui::SetNextWindowSize(io.DisplaySize);
-    ImGui::Begin("Content", nullptr, flags);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
 
-	// bar
-	if (ImGui::BeginMenuBar())
-	{
-		callLuaGUI("onGUI_MenuBar");
-		ImGui::EndMenuBar();
-	}
+    ImGui::Begin("DockSpace", &m_openDockspace, window_flags);
+    ImGui::PopStyleVar(3);
 
-	splitter("##Splitter_L_R", true, getSplitterThickness(), &m_leftPaneWidth, &m_rightPaneWidthTmp, bothSidesPanelMinWidth, 0.0f);
+    // bar
+    if (ImGui::BeginMenuBar())
+    {
+        callLuaGUI("onGUI_MenuBar");
+        ImGui::EndMenuBar();
+    }
 
-	if (ImGui::BeginChild("context_left", ImVec2(m_leftPaneWidth - getSplitterThickness(), 0), true))
-	{
-		callLuaGUI("onGUI_Left");
-	}
-	ImGui::EndChild();
+    if (ImGui::DockBuilderGetNode(ImGui::GetID("MyDockspace")) == nullptr || m_redock)
+    {
+        m_redock             = false;
+        ImGuiID dockspace_id = ImGui::GetID("MyDockspace");
+        ImGui::DockBuilderRemoveNode(dockspace_id);                             // Clear out existing layout
+        ImGui::DockBuilderAddNode(dockspace_id, ImGuiDockNodeFlags_DockSpace);  // Add empty node
+        ImGui::DockBuilderSetNodeSize(dockspace_id, ImGui::GetMainViewport()->Size);
+        
+        ImGuiID dock_main_id = dockspace_id;
+        ImGuiID dock_id_left_top =
+            ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Left, 0.20f, nullptr, &dock_main_id);
+        ImGuiID dock_id_left_bottom =
+            ImGui::DockBuilderSplitNode(dock_id_left_top, ImGuiDir_Down, 0.3f, nullptr, &dock_id_left_top);
 
-	//ImGui::SameLine(0.0f, 12.0f);
-	ImGui::SameLine();
+        // 主窗口占百分之60
+        ImGuiID docker_id_center_bottom = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Left, 0.60f, nullptr, &dock_main_id);
+        ImGuiID docker_id_center =
+            ImGui::DockBuilderSplitNode(docker_id_center_bottom, ImGuiDir_Up, 0.70f, nullptr,
+                                                               &docker_id_center_bottom);
 
-	if (ImGui::BeginChild("context_right_all", ImVec2(0, 0)))
-	{
-		m_centerPaneWidth = ImGui::GetContentRegionAvail().x - m_rightPaneWidth;
-		splitter("##Splitter_C_R", true, getSplitterThickness(), &m_centerPaneWidth, &m_rightPaneWidth, ImGui::GetContentRegionAvail().x - bothSidesPanelMaxWidth, bothSidesPanelMinWidth);
-
-		if (ImGui::BeginChild("context_center_all", ImVec2(m_centerPaneWidth, 0)))
-		{
-			splitter("##Splitter_T_B", false, getSplitterThickness(), &m_topPanelHeight, &m_bottomPaneWidthTmp, topPanelMinHeight, 0);
-			if (ImGui::BeginChild("context_top", ImVec2(0, m_topPanelHeight), true))
-			{
-				callLuaGUI("onGUI_Top");
-			}
-			ImGui::EndChild();
-
-			auto avali = ImGui::GetContentRegionAvail();
-			m_centerPaneHeight = avali.y - m_bottomPanelHeight;
-			splitter("##Splitter_C_B", false, getSplitterThickness(), &m_centerPaneHeight, &m_bottomPanelHeight, avali.y - bottomPanelMaxHeight, bottomPanelMinHeight);
-			if (ImGui::BeginChild("context_center", ImVec2(0, m_centerPaneHeight), false, ImGuiWindowFlags_NoBackground))
-			{
-				callLuaGUI("onGUI_Center");
-			}
-			ImGui::EndChild();
-
-			if (ImGui::BeginChild("context_bottom", ImVec2(0, 0)))
-			{
-				callLuaGUI("onGUI_Bottom");
-			}
-			ImGui::EndChild();
-		}
-		ImGui::EndChild();
-
-		//ImGui::SameLine(0.0f, 12.0f);
-		ImGui::SameLine();
-
-		if (ImGui::BeginChild("context_right", ImVec2(0, 0), true))
-		{
-			callLuaGUI("onGUI_Right");
-		}
-		ImGui::EndChild();
-	}
-	ImGui::EndChild();
+        ImGuiID docker_id_right_bottom = 0;
+        ImGuiID docker_id_right_top =
+            ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Down, 0.3f, nullptr, &docker_id_right_bottom);
 
 
-	//////////////////////////////////////////////////////////////////////////
-	// overlay
-	const float DISTANCE = 10.0f;
-	static int corner = 3;
-	static bool open_overlay = true;
+        auto handle = this->getLuaHandle("onDockBuilder");
+        if (handle && handle->isvalid())
+        {
+            handle->ppush();
 
-	if (open_overlay)
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		if (corner != -1)
-		{
-			ImVec2 window_pos = ImVec2((corner & 1) ? io.DisplaySize.x - DISTANCE : DISTANCE, (corner & 2) ? io.DisplaySize.y - DISTANCE : DISTANCE);
-			ImVec2 window_pos_pivot = ImVec2((corner & 1) ? 1.0f : 0.0f, (corner & 2) ? 1.0f : 0.0f);
-			ImGui::SetNextWindowPos(window_pos, ImGuiCond_Always, window_pos_pivot);
-		}
-		ImGui::SetNextWindowBgAlpha(0.35f); // Transparent background
-		if (ImGui::Begin("runtime_information", &open_overlay, (corner != -1 ? ImGuiWindowFlags_NoMove : 0) | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav))
-		{
-			char buffer[32] = { 0 };
-			sprintf(buffer, "FPS:%.1f / %.3f", _director->getFrameRate(), _director->getSecondsPerFrame());
-			ImGui::Text(buffer);
+            auto L = LuaFunction::G_L;
+            lua_newtable(L);
 
-			auto currentCalls = (unsigned long)_director->getRenderer()->getDrawnBatches();
-			auto currentVerts = (unsigned long)_director->getRenderer()->getDrawnVertices();
-			sprintf(buffer, "GL calls:%6lu", currentCalls);
-			ImGui::Text(buffer);
+            lua_pushstring(L, "dock_id_left_top");
+            lua_pushinteger(L, (lua_Integer)dock_id_left_top);
+            lua_rawset(L, -3);
 
-			sprintf(buffer, "GL verts:%6lu", currentVerts);
-			ImGui::Text(buffer);
+            lua_pushstring(L, "dock_id_left_bottom");
+            lua_pushinteger(L, (lua_Integer)dock_id_left_bottom);
+            lua_rawset(L, -3);
 
-			if (ImGui::BeginPopupContextWindow())
-			{
-				if (ImGui::MenuItem("Custom", NULL, corner == -1)) corner = -1;
-				if (ImGui::MenuItem("Top-left", NULL, corner == 0)) corner = 0;
-				if (ImGui::MenuItem("Top-right", NULL, corner == 1)) corner = 1;
-				if (ImGui::MenuItem("Bottom-left", NULL, corner == 2)) corner = 2;
-				if (ImGui::MenuItem("Bottom-right", NULL, corner == 3)) corner = 3;
-				if (ImGui::MenuItem("Close")) open_overlay = false;
-				ImGui::EndPopup();
-			}
-		}
-		ImGui::End();
-	}
+            lua_pushstring(L, "docker_id_center");
+            lua_pushinteger(L, (lua_Integer)docker_id_center);
+            lua_rawset(L, -3);
+
+            lua_pushstring(L, "docker_id_center_bottom");
+            lua_pushinteger(L, (lua_Integer)docker_id_center_bottom);
+            lua_rawset(L, -3);
+
+            lua_pushstring(L, "docker_id_right_top");
+            lua_pushinteger(L, (lua_Integer)docker_id_right_top);
+            lua_rawset(L, -3);
+
+            lua_pushstring(L, "docker_id_right_bottom");
+            lua_pushinteger(L, (lua_Integer)docker_id_right_bottom);
+            lua_rawset(L, -3);
+
+            handle->pcall();
+        }
+
+        ImGui::DockBuilderFinish(dockspace_id);
+    }
+
+    ImGuiID dockspace_id               = ImGui::GetID("MyDockspace");
+    ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
+    ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
+
+    //////////////////////////////////////////////////////////////////////////
+    // overlay
+    const float DISTANCE     = 10.0f;
+    static int corner        = 3;
+    static bool open_overlay = true;
+
+    if (open_overlay)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        if (corner != -1)
+        {
+            ImVec2 window_pos = ImVec2((corner & 1) ? io.DisplaySize.x - DISTANCE : DISTANCE,
+                                       (corner & 2) ? io.DisplaySize.y - DISTANCE : DISTANCE);
+            ImVec2 window_pos_pivot = ImVec2((corner & 1) ? 1.0f : 0.0f, (corner & 2) ? 1.0f : 0.0f);
+            ImGui::SetNextWindowPos(window_pos, ImGuiCond_Always, window_pos_pivot);
+        }
+        ImGui::SetNextWindowBgAlpha(0.35f);  // Transparent background
+        if (ImGui::Begin("runtime_information", &open_overlay,
+                         (corner != -1 ? ImGuiWindowFlags_NoMove : 0) | ImGuiWindowFlags_NoDecoration |
+                             ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings |
+                             ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav))
+        {
+            char buffer[32] = {0};
+            sprintf(buffer, "FPS:%.1f / %.3f", _director->getFrameRate(), _director->getSecondsPerFrame());
+            ImGui::Text(buffer);
+
+            auto currentCalls = (unsigned long)_director->getRenderer()->getDrawnBatches();
+            auto currentVerts = (unsigned long)_director->getRenderer()->getDrawnVertices();
+            sprintf(buffer, "GL calls:%6lu", currentCalls);
+            ImGui::Text(buffer);
+
+            sprintf(buffer, "GL verts:%6lu", currentVerts);
+            ImGui::Text(buffer);
+
+            if (ImGui::BeginPopupContextWindow())
+            {
+                if (ImGui::MenuItem("Custom", NULL, corner == -1))
+                    corner = -1;
+                if (ImGui::MenuItem("Top-left", NULL, corner == 0))
+                    corner = 0;
+                if (ImGui::MenuItem("Top-right", NULL, corner == 1))
+                    corner = 1;
+                if (ImGui::MenuItem("Bottom-left", NULL, corner == 2))
+                    corner = 2;
+                if (ImGui::MenuItem("Bottom-right", NULL, corner == 3))
+                    corner = 3;
+                if (ImGui::MenuItem("Close"))
+                    open_overlay = false;
+                ImGui::EndPopup();
+            }
+        }
+        ImGui::End();
+    }
 
     ImGui::End();
 }
@@ -335,21 +325,4 @@ void EditorContext::callLuaGUI(const char* name)
 		handle->ppush();
 		handle->pcall();
 	}
-}
-
-
-float EditorContext::getSplitterThickness()
-{
-	return 4.0f * Tools::getImgUIGlobalScale();
-}
-
-bool EditorContext::splitter(const char* sp_name, bool split_vertically, float thickness, float* size1, float* size2, float min_size1, float min_size2, float splitter_long_axis_size)
-{
-	ImGuiContext* g = ImGui::GetCurrentContext();
-	ImGuiWindow* window = g->CurrentWindow;
-	ImGuiID id = window->GetID(sp_name);
-	ImRect bb;
-	bb.Min = window->DC.CursorPos + (split_vertically ? ImVec2(*size1, 0.0f) : ImVec2(0.0f, *size1));
-	bb.Max = bb.Min + ImGui::CalcItemSize(split_vertically ? ImVec2(thickness, splitter_long_axis_size) : ImVec2(splitter_long_axis_size, thickness), 0.0f, 0.0f);
-	return ImGui::SplitterBehavior(bb, id, split_vertically ? ImGuiAxis_X : ImGuiAxis_Y, size1, size2, min_size1, min_size2, 0.0f);
 }

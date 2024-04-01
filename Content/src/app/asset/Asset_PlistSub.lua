@@ -68,7 +68,7 @@ end
 
 local cache = {}
 
-local shareTextureCache = cc.TextureCache:getInstance()
+local shareTextureCache = cc.Director:getInstance():getTextureCache()
 
 function Asset_PlistSub:_onItemHovered()
 	local textureName = self.cacheTextureName

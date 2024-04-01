@@ -1,6 +1,6 @@
 /*
 ** Lua binding: game
-** Generated automatically by tolua++-1.0.92 on 03/29/24 18:11:05.
+** Generated automatically by tolua++-1.0.92 on 04/01/24 12:26:24.
 */
 
 #ifndef __cplusplus
@@ -203,12 +203,12 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"std::vector<std::string>");
  tolua_usertype(tolua_S,"CLine");
  tolua_usertype(tolua_S,"StringArray");
- tolua_usertype(tolua_S,"cc.DrawNode");
+ tolua_usertype(tolua_S,"ax.DrawNode");
  tolua_usertype(tolua_S,"CCircle");
  tolua_usertype(tolua_S,"Vec2Value");
- tolua_usertype(tolua_S,"cc.Texture2D");
+ tolua_usertype(tolua_S,"ax.Texture2D");
  tolua_usertype(tolua_S,"ImVec2");
- tolua_usertype(tolua_S,"cc.Node");
+ tolua_usertype(tolua_S,"ax.Node");
  tolua_usertype(tolua_S,"CSequentity");
 }
 
@@ -528,7 +528,7 @@ static int tolua_game_Tools_isInRect00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"Tools",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"cc.Node",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Node",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,5,&tolua_err)
@@ -779,7 +779,7 @@ static int tolua_game_Tools_getImguiTextureIDByTexture00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"Tools",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"cc.Texture2D",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Texture2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -1313,7 +1313,7 @@ static int tolua_game_Tools_enumerateChildren00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"Tools",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"cc.Node",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.Node",0,&tolua_err) ||
      !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_ext_check_isfunction(tolua_S,4,"LuaFunction",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,5,&tolua_err)
@@ -2909,7 +2909,7 @@ static int tolua_game_CRect_debugDraw00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"CRect",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"cc.DrawNode",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.DrawNode",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -3325,7 +3325,7 @@ static int tolua_game_CCircle_debugDraw00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"CCircle",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"cc.DrawNode",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.DrawNode",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -4041,7 +4041,7 @@ static int tolua_game_CLine_debugDraw00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"CLine",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"cc.DrawNode",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.DrawNode",0,&tolua_err) ||
      !tolua_isboolean(tolua_S,3,1,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
@@ -4526,7 +4526,7 @@ static int tolua_game_CPolygon_debugDraw00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"CPolygon",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"cc.DrawNode",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ax.DrawNode",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -5042,262 +5042,6 @@ static int tolua_game_EditorContext_create00(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getBackgroundNode of class  EditorContext */
-#ifndef TOLUA_DISABLE_tolua_game_EditorContext_getBackgroundNode00
-static int tolua_game_EditorContext_getBackgroundNode00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getBackgroundNode'", NULL);
-#endif
-  {
-   Node* tolua_ret = (Node*)  self->getBackgroundNode();
-    tolua_ext_object_to_luaval<Node>(tolua_S,(void*)tolua_ret,"cc.Node");
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getBackgroundNode'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getLeftPaneWidth of class  EditorContext */
-#ifndef TOLUA_DISABLE_tolua_game_EditorContext_getLeftPaneWidth00
-static int tolua_game_EditorContext_getLeftPaneWidth00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getLeftPaneWidth'", NULL);
-#endif
-  {
-   float tolua_ret = (float)  self->getLeftPaneWidth();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getLeftPaneWidth'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getCenterPaneWidth of class  EditorContext */
-#ifndef TOLUA_DISABLE_tolua_game_EditorContext_getCenterPaneWidth00
-static int tolua_game_EditorContext_getCenterPaneWidth00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getCenterPaneWidth'", NULL);
-#endif
-  {
-   float tolua_ret = (float)  self->getCenterPaneWidth();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getCenterPaneWidth'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getRightPaneWidth of class  EditorContext */
-#ifndef TOLUA_DISABLE_tolua_game_EditorContext_getRightPaneWidth00
-static int tolua_game_EditorContext_getRightPaneWidth00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getRightPaneWidth'", NULL);
-#endif
-  {
-   float tolua_ret = (float)  self->getRightPaneWidth();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getRightPaneWidth'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getTopPanelHeight of class  EditorContext */
-#ifndef TOLUA_DISABLE_tolua_game_EditorContext_getTopPanelHeight00
-static int tolua_game_EditorContext_getTopPanelHeight00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTopPanelHeight'", NULL);
-#endif
-  {
-   float tolua_ret = (float)  self->getTopPanelHeight();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getTopPanelHeight'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getBottomPanelHeight of class  EditorContext */
-#ifndef TOLUA_DISABLE_tolua_game_EditorContext_getBottomPanelHeight00
-static int tolua_game_EditorContext_getBottomPanelHeight00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getBottomPanelHeight'", NULL);
-#endif
-  {
-   float tolua_ret = (float)  self->getBottomPanelHeight();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getBottomPanelHeight'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getCenterPaneHeight of class  EditorContext */
-#ifndef TOLUA_DISABLE_tolua_game_EditorContext_getCenterPaneHeight00
-static int tolua_game_EditorContext_getCenterPaneHeight00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getCenterPaneHeight'", NULL);
-#endif
-  {
-   float tolua_ret = (float)  self->getCenterPaneHeight();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getCenterPaneHeight'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getSplitterThickness of class  EditorContext */
-#ifndef TOLUA_DISABLE_tolua_game_EditorContext_getSplitterThickness00
-static int tolua_game_EditorContext_getSplitterThickness00(lua_State* tolua_S)
-{
-#if COCOS2D_DEBUG >= 1
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EditorContext",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EditorContext* self = (EditorContext*)  tolua_tousertype(tolua_S,1,0);
-#if COCOS2D_DEBUG >= 1
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getSplitterThickness'", NULL);
-#endif
-  {
-   float tolua_ret = (float)  self->getSplitterThickness();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#if COCOS2D_DEBUG >= 1
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getSplitterThickness'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7741,17 +7485,9 @@ TOLUA_API int tolua_game_open (lua_State* tolua_S)
    tolua_function(tolua_S,"clear",tolua_game_Logger_clear00);
    tolua_function(tolua_S,"setTitle",tolua_game_Logger_setTitle00);
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"EditorContext","EditorContext","cc.Node",NULL);
+  tolua_cclass(tolua_S,"EditorContext","EditorContext","ax.Node",NULL);
   tolua_beginmodule(tolua_S,"EditorContext");
    tolua_function(tolua_S,"create",tolua_game_EditorContext_create00);
-   tolua_function(tolua_S,"getBackgroundNode",tolua_game_EditorContext_getBackgroundNode00);
-   tolua_function(tolua_S,"getLeftPaneWidth",tolua_game_EditorContext_getLeftPaneWidth00);
-   tolua_function(tolua_S,"getCenterPaneWidth",tolua_game_EditorContext_getCenterPaneWidth00);
-   tolua_function(tolua_S,"getRightPaneWidth",tolua_game_EditorContext_getRightPaneWidth00);
-   tolua_function(tolua_S,"getTopPanelHeight",tolua_game_EditorContext_getTopPanelHeight00);
-   tolua_function(tolua_S,"getBottomPanelHeight",tolua_game_EditorContext_getBottomPanelHeight00);
-   tolua_function(tolua_S,"getCenterPaneHeight",tolua_game_EditorContext_getCenterPaneHeight00);
-   tolua_function(tolua_S,"getSplitterThickness",tolua_game_EditorContext_getSplitterThickness00);
    tolua_function(tolua_S,"registerLuaHandle",tolua_game_EditorContext_registerLuaHandle00);
    tolua_function(tolua_S,"unregisterLuaHandle",tolua_game_EditorContext_unregisterLuaHandle00);
    tolua_function(tolua_S,"clearLuaHandle",tolua_game_EditorContext_clearLuaHandle00);

@@ -9,6 +9,9 @@ CREATE_OPENGL_VIEW_TML_IN_CPP = true
 local function main()
     require "config"
     require "axmol.init"
+    require "axmol.core.deprecated"
+
+    package.loaded["lfs"] = lfs
 
     cc.exports.logL = print
 	cc.exports.logI = print

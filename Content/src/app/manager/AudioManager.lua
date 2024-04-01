@@ -7,7 +7,7 @@ local AudioManager = class("AudioManager", import(".BaseManager"))
 function AudioManager:override_onInit()
     AudioManager.super.override_onInit(self)
 
-    ccexp.AudioEngine:lazyInit()
+    cc.AudioEngine:lazyInit()
 
     -- 音乐开关
     self.bIsOpenMusic = _MyG.SysSetManager:getProperty("isOpenMusic")
@@ -39,10 +39,10 @@ function AudioManager:playBackMusic(file_name, loop, delay)
 
     if delay > 0 then
         delayCall(function ()
-            self.iBackMusicID = ccexp.AudioEngine:play2d(file_name, loop, self.fMusicVolume)
+            self.iBackMusicID = cc.AudioEngine:play2d(file_name, loop, self.fMusicVolume)
         end, delay)
     else
-        self.iBackMusicID = ccexp.AudioEngine:play2d(file_name, loop, self.fMusicVolume)
+        self.iBackMusicID = cc.AudioEngine:play2d(file_name, loop, self.fMusicVolume)
     end
 
     return true
@@ -52,7 +52,7 @@ function AudioManager:stopBackMusic()
     if not self.bIsOpenMusic then return end
 
     if self.iBackMusicID then
-        ccexp.AudioEngine:stop(self.iBackMusicID)
+        cc.AudioEngine:stop(self.iBackMusicID)
         self.iBackMusicID = nil
     end
     self.strBackgroundMusicName = nil
@@ -66,7 +66,7 @@ function AudioManager:pauseBackMusic()
     if not self.bIsOpenMusic then return end
 
     if self.iBackMusicID then
-        ccexp.AudioEngine:pause(self.iBackMusicID)
+        cc.AudioEngine:pause(self.iBackMusicID)
     end
 end
 
@@ -74,14 +74,14 @@ function AudioManager:resumeBackMusic()
     if not self.bIsOpenMusic then return end
 
     if self.iBackMusicID then
-        ccexp.AudioEngine:resume(self.iBackMusicID)
+        cc.AudioEngine:resume(self.iBackMusicID)
     end
 end
 
 function AudioManager:playSound(file, loop)
     loop = loop or false
-    local id = ccexp.AudioEngine:play2d(file, loop, self.fEffectVolume)
-    ccexp.AudioEngine:setFinishCallback(id, function (c1, c2)
+    local id = cc.AudioEngine:play2d(file, loop, self.fEffectVolume)
+    cc.AudioEngine:setFinishCallback(id, function (c1, c2)
         self.tSoundIds[c1] = nil
     end)
     self.tSoundIds[id] = file
@@ -91,7 +91,7 @@ end
 function AudioManager:stopSound(soundId)
     if not self.bIsOpenEffect then return end
 
-    ccexp.AudioEngine:stop(soundId)
+    cc.AudioEngine:stop(soundId)
 
     self.tSoundIds[soundId] = nil
 end
@@ -99,13 +99,13 @@ end
 function AudioManager:pauseSound(soundId)
     if not self.bIsOpenEffect then return end
 
-    ccexp.AudioEngine:pause(soundId)
+    cc.AudioEngine:pause(soundId)
 end
 
 function AudioManager:resumeSound(soundId)
     if not self.bIsOpenEffect then return end
 
-    ccexp.AudioEngine:resume(soundId)
+    cc.AudioEngine:resume(soundId)
 end
 
 function AudioManager:stopAllSounds()
@@ -152,7 +152,7 @@ function AudioManager:setBackgroundVolume(volume)
     _MyG.SysSetManager:setProperty("fMusicVolume", self.fMusicVolume)
 
     if self.iBackMusicID then
-        ccexp.AudioEngine:setVolume(self.iBackMusicID, volume)
+        cc.AudioEngine:setVolume(self.iBackMusicID, volume)
     end
 end
 
@@ -165,11 +165,11 @@ function AudioManager:getEffectVolume()
 end
 
 function AudioManager:preload(file, func)
-    ccexp.AudioEngine:preload(file, func)
+    cc.AudioEngine:preload(file, func)
 end
 
 function AudioManager:uncache(file)
-    ccexp.AudioEngine:uncache(file)
+    cc.AudioEngine:uncache(file)
 end
 
 function AudioManager:setEffectVolume(volume)
@@ -183,7 +183,7 @@ function AudioManager:setEffectVolume(volume)
 
     for k, v in pairs(self.tSoundIds) do
         if v ~= nil then
-            ccexp.AudioEngine:setVolume(k, volume)
+            cc.AudioEngine:setVolume(k, volume)
         end
     end
 end

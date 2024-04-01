@@ -8,34 +8,38 @@ function MainScene:onCreate()
 	local context = EditorContext:create()
 	self:addChild(context)
 
-	local ilayer = context:getIlayer()
-    ilayer:registerLuaHandle("onGUIBegin", function()
-        _MyG.IsOnGUI = true
-        G_SysEventEmitter:emit(SysEvent.ON_GUI_BEGIN)
+    context:registerLuaHandle("onDockBuilder", function(dock)
+        dump(dock, "FFFFFFFFFFFFFF")
     end)
 
-    ilayer:registerLuaHandle("onGUI", function()
-        G_SysEventEmitter:emit(SysEvent.ON_GUI)
-    end)
+	-- local ilayer = context:getIlayer()
+ --    ilayer:registerLuaHandle("onGUIBegin", function()
+ --        _MyG.IsOnGUI = true
+ --        G_SysEventEmitter:emit(SysEvent.ON_GUI_BEGIN)
+ --    end)
 
-    ilayer:registerLuaHandle("onGUIEnd", function()
-        G_SysEventEmitter:emit(SysEvent.ON_GUI_POPUP)
-        G_SysEventEmitter:emit(SysEvent.ON_GUI_END)
-        _MyG.IsOnGUI = false
-    end)
+ --    ilayer:registerLuaHandle("onGUI", function()
+ --        G_SysEventEmitter:emit(SysEvent.ON_GUI)
+ --    end)
+
+ --    ilayer:registerLuaHandle("onGUIEnd", function()
+ --        G_SysEventEmitter:emit(SysEvent.ON_GUI_POPUP)
+ --        G_SysEventEmitter:emit(SysEvent.ON_GUI_END)
+ --        _MyG.IsOnGUI = false
+ --    end)
 
     
-    ilayer:registerLuaHandle("onInit", function()
-    	self:onGUI_Init()
-    end)
+ --    ilayer:registerLuaHandle("onGUI_Init", function()
+ --    	self:onGUI_Init()
+ --    end)
 
-    local rootNode = cc.Node:create()
-    ilayer:addChild(rootNode, -1)
+ --    local rootNode = cc.Node:create()
+ --    ilayer:addChild(rootNode, -1)
 
-    _MyG.MainScene = self
-	_MyG.edContext = context
-	_MyG.MainScene.ilayer = ilayer
-	_MyG.MainScene.rootNode = rootNode
+ --    _MyG.MainScene = self
+	-- _MyG.edContext = context
+	-- _MyG.MainScene.ilayer = ilayer
+	-- _MyG.MainScene.rootNode = rootNode
 end
 
 function MainScene:onGUI_Init()

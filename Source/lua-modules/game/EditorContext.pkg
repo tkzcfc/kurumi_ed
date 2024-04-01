@@ -6,18 +6,6 @@ public:
 
 	static EditorContext* create();
 	
-	cc.Node* getBackgroundNode();
-	
-	float getLeftPaneWidth() { return m_leftPaneWidth; }
-	float getCenterPaneWidth() { return m_centerPaneWidth; }
-	float getRightPaneWidth() { return m_rightPaneWidth; }
-
-	float getTopPanelHeight() { return m_topPanelHeight; }
-	float getBottomPanelHeight() { return m_bottomPanelHeight; }
-	float getCenterPaneHeight() { return m_centerPaneHeight; }
-	
-	float getSplitterThickness();
-	
 	/// LuaFunctionBond
 	void registerLuaHandle(std::string name, LUA_FUNCTION handle);
 
