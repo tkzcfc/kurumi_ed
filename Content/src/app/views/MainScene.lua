@@ -12,7 +12,7 @@ function MainScene:onCreate()
         ImGui.DockBuilderDockWindow("Project", dock.dock_id_left_top)
         ImGui.DockBuilderDockWindow("Log", dock.docker_id_center_bottom)
         ImGui.DockBuilderDockWindow("Content", dock.docker_id_center)
-        
+        ImGui.DockBuilderDockWindow("Property", dock.dock_id_right)
     end)
 
     context:registerLuaHandle("onGUIBegin", function()
@@ -53,8 +53,6 @@ function MainScene:onGUI_Init()
     _MyG.CenterDocumentManager = DocumentManager.new()
 
 	-- require("app.logic.GUI_Bottom")
-	-- require("app.logic.GUI_Center")
-	-- require("app.logic.GUI_Right")
 	require("app.logic.GUI_MenuBar")
 	require("app.logic.GUI_Popup")
 	require("app.logic.GUI_Window")

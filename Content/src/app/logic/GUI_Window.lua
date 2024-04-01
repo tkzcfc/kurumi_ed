@@ -9,7 +9,8 @@ cc.exports.WinTag = enum {
     "FONT_SETTING",
     "PROJECT",
     "LOG",
-    "CONTENT"
+    "CONTENT",
+    "PROPERTY",
 }
 
 local WindowManager = require("app.imgui.WindowManager").new()
@@ -53,5 +54,11 @@ WindowManager:add(win, WinTag.LOG)
 -- Content
 win = require("app.imgui.window.Content").new()
 WindowManager:add(win, WinTag.CONTENT)
+
+
+-- Property
+win = require("app.imgui.window.Property").new()
+WindowManager:add(win, WinTag.PROPERTY)
+
 
 

@@ -14,6 +14,7 @@ function Content:ctor()
 
     local render = axui.Layout:create()
     render:setClippingType(1)
+    render:setAnchorPoint(cc.p(0, 1))
     _MyG.MainScene.rootNode:addChild(render)
 
     self.render = render
@@ -29,7 +30,8 @@ function Content:ctor()
 end
 
 function Content:onGUI()
-    Tools:BeginWindow_NoClose(self.winName, ImGuiWindowFlags_NoMove)
+    --Tools:BeginWindow_NoClose(self.winName, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground)
+    Tools:BeginWindow_NoClose(self.winName, ImGuiWindowFlags_NoBackground)
 
     if centerDocumentManager:count() > 0 then
         self.renderGuiShow = true
@@ -87,27 +89,17 @@ end
 function Content:updateRenderSize()
     local edContext = _MyG.edContext
     local style = ImGui.GetStyle()
-    -- local thickness = edContext:getSplitterThickness()
-    local framePaddingY = style.FramePadding.y
 
-    local thickness = 2
+    local viewSize = _MyG.edContext:getMainViewportSize()
+    local viewPos = _MyG.edContext:getMainViewportPos()
+
     local pos = ImGui.GetWindowPos()
     local size = cc.size(ImGui.GetWindowWidth(), ImGui.GetWindowHeight())
-    --cc.size(edContext:getCenterPaneWidth(), edContext:getCenterPaneHeight())
 
-    -- local pos = cc.p(edContext:getLeftPaneWidth(), edContext:getBottomPanelHeight())
-    -- local size = cc.size(edContext:getCenterPaneWidth(), edContext:getCenterPaneHeight())
+    pos.x = pos.x - viewPos.x
+    pos.y = pos.y - viewPos.y
 
-    pos.x = pos.x + thickness * 3 + framePaddingY
-    pos.y = pos.y + thickness * 2 + framePaddingY
-
-    size.width = size.width - thickness - framePaddingY
-    size.height = size.height - thickness - style.IndentSpacing - framePaddingY
-
-    pos.x = G_Helper.win_2_visible_x(pos.x)
-    pos.y = G_Helper.win_2_visible_y(pos.y)
-    size.width = G_Helper.win_2_visible_x(size.width)
-    size.height = G_Helper.win_2_visible_y(size.height)
+    pos.y = viewSize.y - pos.y
 
     if size.height < 20 or size.width < 20 then
         self.renderCanShow = false
@@ -175,18 +167,18 @@ function Content:updateContainStatus()
     end
 
     local style = ImGui.GetStyle()
-    local framePaddingY = style.FramePadding.y
     local canvas_pos = ImGui.GetCursorScreenPos()
     local canvas_size = ImGui.GetContentRegionAvail()
     local mousePos = ImGui.GetIO().MousePos
     local mouse_pos_in_canvas = cc.p(mousePos.x - canvas_pos.x, mousePos.y - canvas_pos.y)
 
-    if mouse_pos_in_canvas.x >= 0 and mouse_pos_in_canvas.y >= framePaddingY and mouse_pos_in_canvas.x <= canvas_size.x and mouse_pos_in_canvas.y <= canvas_size.y then
+    if mouse_pos_in_canvas.x >= 0 and mouse_pos_in_canvas.y >= 0 and mouse_pos_in_canvas.x <= canvas_size.x and mouse_pos_in_canvas.y <= canvas_size.y then
         self.cache_isContainMouse = true
     else
         self.cache_isContainMouse = false
     end
     self.cache_mouse_pos_in_canvas = mouse_pos_in_canvas
+
 end
 
 
@@ -203,7 +195,7 @@ function Content:initEventDispatcher()
     G_SysEventEmitter:on(SysEvent.ON_MOUSE_SCROLL, function(event)
         if self:isContainMouse() then
             self.eventDispatcher:dispatchEvent(event)
-            -- print("scroll", _MyG.MouseEventDispatcher:getCursorX(), _MyG.MouseEventDispatcher:getCursorY())
+            print("scroll", _MyG.MouseEventDispatcher:getCursorX(), _MyG.MouseEventDispatcher:getCursorY())
         end
     end, self)
 

@@ -6,8 +6,8 @@ function Property:ctor()
 end
 
 function Property:onGUI()
-    Tools:BeginWindow_NoClose(self.winName, ImGuiWindowFlags_NoMove)
-
+    Tools:BeginWindow_NoClose(self.winName, ImGuiWindowFlags_HorizontalScrollbar)
+    G_SysEventEmitter:emit(SysEvent.ON_ATTRIBUTE_CONTENT_GUI)
     ImGui.End()
 end
 

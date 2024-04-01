@@ -22,6 +22,10 @@ public:
 
     void resetDock();
 
+    Vec2 getMainViewportSize();
+
+    Vec2 getMainViewportPos();
+
 private:
 
 	void onGUI();

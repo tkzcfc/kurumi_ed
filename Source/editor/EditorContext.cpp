@@ -114,6 +114,18 @@ void EditorContext::resetDock()
     m_redock = true;
 }
 
+Vec2 EditorContext::getMainViewportSize()
+{
+    const ImGuiViewport* viewport = ImGui::GetMainViewport();
+    return Vec2(viewport->Size.x, viewport->Size.y);
+}
+
+Vec2 EditorContext::getMainViewportPos()
+{
+    const ImGuiViewport* viewport = ImGui::GetMainViewport();
+    return Vec2(viewport->Pos.x, viewport->Pos.y);
+}
+
 bool EditorContext::init()
 {
 	if (!Node::init())
@@ -122,7 +134,7 @@ bool EditorContext::init()
 	}
 
     auto key = StringUtils::format("EditorContextLoop%p", this);
-    ImGuiPresenter::getInstance()->addRenderLoop(key, std::bind(&EditorContext::onGUI, this), nullptr);
+    ImGuiPresenter::getInstance()->addRenderLoop(key, std::bind(&EditorContext::onGUI, this), Director::getInstance()->getRunningScene());
 
 	//testSequentity();
 
@@ -145,10 +157,11 @@ void EditorContext::onGUI()
     ImGui::SetNextWindowViewport(viewport->ID);
     ImGui::SetNextWindowBgAlpha(0.0f);
 
-    ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
+    ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoInputs;
     window_flags |=
         ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-    window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+    window_flags |=
+        ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoBackground;
 
     ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
     ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
@@ -173,20 +186,17 @@ void EditorContext::onGUI()
         ImGui::DockBuilderSetNodeSize(dockspace_id, ImGui::GetMainViewport()->Size);
         
         ImGuiID dock_main_id = dockspace_id;
-        ImGuiID dock_id_left_top =
-            ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Left, 0.20f, nullptr, &dock_main_id);
+        ImGuiID dock_id_right, dock_id_left_top = 0;
+        ImGuiID dock_id_left = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Left, 0.20f, nullptr, &dock_id_right);
         ImGuiID dock_id_left_bottom =
-            ImGui::DockBuilderSplitNode(dock_id_left_top, ImGuiDir_Down, 0.3f, nullptr, &dock_id_left_top);
+            ImGui::DockBuilderSplitNode(dock_id_left, ImGuiDir_Down, 0.3f, nullptr, &dock_id_left_top);
 
         // 主窗口占百分之60
-        ImGuiID docker_id_center_bottom = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Left, 0.60f, nullptr, &dock_main_id);
+        ImGuiID docker_id_center_bottom =
+            ImGui::DockBuilderSplitNode(dock_id_right, ImGuiDir_Left, 0.75f, nullptr, &dock_id_right);
         ImGuiID docker_id_center =
             ImGui::DockBuilderSplitNode(docker_id_center_bottom, ImGuiDir_Up, 0.70f, nullptr,
                                                                &docker_id_center_bottom);
-
-        ImGuiID docker_id_right_bottom = 0;
-        ImGuiID docker_id_right_top =
-            ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Down, 0.3f, nullptr, &docker_id_right_bottom);
 
 
         auto handle = this->getLuaHandle("onDockBuilder");
@@ -213,13 +223,9 @@ void EditorContext::onGUI()
             lua_pushinteger(L, (lua_Integer)docker_id_center_bottom);
             lua_rawset(L, -3);
 
-            lua_pushstring(L, "docker_id_right_top");
-            lua_pushinteger(L, (lua_Integer)docker_id_right_top);
-            lua_rawset(L, -3);
-
-            lua_pushstring(L, "docker_id_right_bottom");
-            lua_pushinteger(L, (lua_Integer)docker_id_right_bottom);
-            lua_rawset(L, -3);
+             lua_pushstring(L, "dock_id_right");
+            lua_pushinteger(L, (lua_Integer)dock_id_right);
+             lua_rawset(L, -3);
 
             handle->pcall();
         }

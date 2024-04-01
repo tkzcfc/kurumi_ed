@@ -14,4 +14,8 @@ public:
 	void clearLuaHandle();
 
     void resetDock();
+
+    Vec2 getMainViewportSize();
+
+    Vec2 getMainViewportPos();
 };
