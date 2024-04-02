@@ -5,7 +5,7 @@
 local Plugin = import(".Plugin")
 local PluginLayerSize = class("PluginLayerSize", Plugin)
 
-local DefaultWorkSpaceRectColor = cc.c4f(0.9, 0, 1, 1)
+local DefaultWorkSpaceRectColor = cc.c4b(0.9 * 255, 0 * 255, 1 * 255, 1 * 255)
 
 function PluginLayerSize:ctor()
 	PluginLayerSize.super.ctor(self)
@@ -40,7 +40,7 @@ end
 function PluginLayerSize:setWorkSpaceRectColor(color)
 	color = color or DefaultWorkSpaceRectColor
 	self.workSpaceRectColor = color
-	self.workSpaceRectColor_Imgui = {color.r, color.g, color.b, color.a}
+	self.workSpaceRectColor_Imgui = {color.r / 255, color.g / 255, color.b / 255, color.a / 255}
 end
 
 function PluginLayerSize:setWorkSpaceSize(size)
@@ -56,7 +56,7 @@ function PluginLayerSize:onAttributeGUI()
 
     if ImGui.ColorEdit4(STR("EA_WORK_SPACE_COLOR"), self.workSpaceRectColor_Imgui) then
     	self:onAttributeChange(EditorEvent.ON_CHANGE_WORK_SPACE_COLOR)
-    	local color = cc.c4f(self.workSpaceRectColor_Imgui[1], self.workSpaceRectColor_Imgui[2], self.workSpaceRectColor_Imgui[3], self.workSpaceRectColor_Imgui[4])
+    	local color = cc.c4b(self.workSpaceRectColor_Imgui[1] * 255, self.workSpaceRectColor_Imgui[2] * 255, self.workSpaceRectColor_Imgui[3] * 255, self.workSpaceRectColor_Imgui[4] * 255)
     	self:setWorkSpaceRectColor(color)
     end
 end

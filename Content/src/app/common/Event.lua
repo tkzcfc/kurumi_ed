@@ -60,6 +60,7 @@ cc.exports.SysEvent = enum {
     "ON_ASSET_CONTENT_UPDATE",      -- 资源更新事件,发送此事件让资源管理器更新Content文件夹下的资源
     "ON_ASSET_COCOS_UPDATE",        -- 资源更新事件,发送此事件让资源管理器更新Cocos文件夹下的资源
     "ON_PRJ_USER_TMP_DATA_CHANGE",  -- 工程用户临时数据发生改变
+    "ON_PREVIEW_TEXTURE",           -- 预览纹理
 
 
     "ON_KEY_BOARD_SAVE",            -- 按键事件-保存 (Ctrl + S)

@@ -5,7 +5,7 @@
 local Plugin = import(".Plugin")
 local PluginRevivePoint = class("PluginRevivePoint", Plugin)
 
-local DefaultWorkSpaceRectColor = cc.c4f(0.9, 0, 1, 1)
+local DefaultWorkSpaceRectColor = cc.c4b(0.9 * 255, 0, 255, 255)
 
 function PluginRevivePoint:ctor()
 	PluginRevivePoint.super.ctor(self)

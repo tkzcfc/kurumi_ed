@@ -10,6 +10,7 @@ function MainScene:onCreate()
 
     context:registerLuaHandle("onDockBuilder", function(dock)
         ImGui.DockBuilderDockWindow("Project", dock.dock_id_left_top)
+        ImGui.DockBuilderDockWindow("Preview", dock.dock_id_left_bottom)
         ImGui.DockBuilderDockWindow("Log", dock.docker_id_center_bottom)
         ImGui.DockBuilderDockWindow("NodeTree", dock.docker_id_center_bottom)
         ImGui.DockBuilderDockWindow("Timeline", dock.docker_id_center_bottom)

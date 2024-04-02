@@ -4,7 +4,7 @@
 
 
 -- 边框线段颜色
-local lineColor = cc.c4f(0, 0.5, 1.0, 1)
+local lineColor = cc.c4b(0 * 255, 0.5 * 255, 1.0 * 255, 1 * 255)
 -- 线段宽度
 local default_lineWidth = 2
 

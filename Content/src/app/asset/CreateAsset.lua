@@ -25,7 +25,7 @@ local FILE_EMPTY_DATA_LAYER = clone(FILE_EMPTY_DATA)
 FILE_EMPTY_DATA_LAYER.context.plugins = {
     PluginLayerSize = {
         size = cc.p(_MyG.Editor_DesignResolution.width, _MyG.Editor_DesignResolution.height),
-        color = cc.c4f(0.9, 0, 1, 1),
+        color = cc.c4b(0.9 * 255, 0 * 255, 1 * 255, 1 * 255),
     }
 }
 

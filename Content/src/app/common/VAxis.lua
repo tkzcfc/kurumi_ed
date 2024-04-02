@@ -5,20 +5,20 @@
 local VAxis = class("VAxis", cc.DrawNode)
 
 -- 边框线段颜色
-local lineColor = cc.c4f(0, 0.5, 1.0, 1)
+local lineColor = cc.c4b(0 * 255, 0.5 * 255, 1.0 * 255, 1 * 255)
 
 -- X轴默认颜色
-local xCoordNormalColor = cc.c4f(0, 0.8, 0, 1)
+local xCoordNormalColor = cc.c4b(0 * 255, 0.8 * 255, 0 * 255, 1 * 255)
 -- Y轴默认颜色
-local yCoordNormalColor = cc.c4f(0.8, 0, 0, 1)
+local yCoordNormalColor = cc.c4b(0.8 * 255, 0 * 255, 0 * 255, 1 * 255)
 
 -- 矩形边框颜色
-local rectColorBorder = cc.c4f(0, 0, 1.0, 1)
+local rectColorBorder = cc.c4b(0 * 255, 0 * 255, 1.0 * 255, 1 * 255)
 -- 矩形填充颜色
-local rectColorFull = cc.c4f(0, 0, 1.0, 0.5)
+local rectColorFull = cc.c4b(0 * 255, 0 * 255, 1.0 * 255, 0.5 * 255)
 
 -- 鼠标与坐标轴重叠时颜色
-local overlapColor = cc.c4f(0.8, 0.8, 0, 1)
+local overlapColor = cc.c4b(0.8 * 255, 0.8 * 255, 0 * 255, 1 * 255)
 
 -- XY轴长度
 local coordHeight = 200

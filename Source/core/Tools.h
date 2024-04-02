@@ -42,18 +42,6 @@ public:
 
 	static PROCESS_INFORMATION* s_ProcessInfomation;
 
-	static void* getImguiTextureID(const std::string& key, bool isPlist = false);
-
-	static void retainImageuiTexture(void* textureId);
-
-	static void freeImageuiTexture(void* textureId);
-
-	static void* getImguiTextureIDByTexture(Texture2D* texture);
-
-	static int getImguiTextureWidth(const std::string& key, bool isPlist = false);
-
-	static int getImguiTextureHeight(const std::string& key, bool isPlist = false);
-
 	static bool imgui_inputText(const char* label, std::string& buf, unsigned int buf_size, unsigned int flags = 0);
 
 	static std::vector<std::string> getLogicalDriveStrings();
@@ -68,7 +56,6 @@ public:
 
 
 	// imgui
-	static Size getWindowSize();
 
 	static bool          BeginTabItem_NoClose(const char* label, ImGuiTabItemFlags flags = 0);
 
@@ -122,14 +109,6 @@ public:
 
 	static std::map<std::string, std::vector<std::string> > cache_plistSubs;
 
-	struct CacheTextureInfo
-	{
-		Texture2D* pTexture;
-		int refcount;
-	};
-	static std::map<void*, CacheTextureInfo> cacheTextureId;
-
-	static std::set<Texture2D*> permanentTextures;
 
 	static ImGuiStyle cacheStyle;
 	static bool initCacheStyle;

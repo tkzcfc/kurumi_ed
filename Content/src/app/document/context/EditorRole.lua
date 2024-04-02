@@ -387,16 +387,16 @@ function EditorRole:onTimelineGUI()
 end
 
 -- 角色底座范围颜色
-local bottom_color        = cc.c4f(1.0, 0.65, 0, 1)
-local bottom_full_color   = cc.c4f(1.0, 0.65, 0, 0.5)
+local bottom_color        = cc.c4b(1.0 * 255, 0.65 * 255, 0 * 255, 1 * 255)
+local bottom_full_color   = cc.c4b(1.0 * 255, 0.65 * 255, 0 * 255, 0.5 * 255)
 
 -- 角色身体范围颜色
-local body_color        = cc.c4f(0.0, 0.8, 0.0, 0.4)
-local body_full_color   = cc.c4f(0.0, 0.8, 0.0, 0.1)
+local body_color        = cc.c4b(0.0 * 255, 0.8 * 255, 0.0 * 255, 0.4 * 255)
+local body_full_color   = cc.c4b(0.0 * 255, 0.8 * 255, 0.0 * 255, 0.1 * 255)
 
 -- 角色半径颜色
-local radius_color      = cc.c4f(0.3, 0.3, 0.8, 1)
-local radius_full_color = cc.c4f(0.3, 0.3, 0.8, 0.3)
+local radius_color      = cc.c4b(0.3 * 255, 0.3 * 255, 0.8 * 255, 1 * 255)
+local radius_full_color = cc.c4b(0.3 * 255, 0.3 * 255, 0.8 * 255, 0.3 * 255)
 
 
 function EditorRole:syncRoleShape()

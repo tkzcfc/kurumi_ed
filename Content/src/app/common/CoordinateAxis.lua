@@ -26,8 +26,8 @@ function CoordinateAxis:ctor()
 end
 
 function CoordinateAxis:setLineLength(lineLength, xColor, yColor)
-	xColor = xColor or cc.c4f(1.0, 1.0, 1.0, 1.0)
-	yColor = yColor or cc.c4f(1.0, 1.0, 1.0, 1.0)
+	xColor = xColor or cc.c4b(1.0 * 255, 1.0 * 255, 1.0 * 255, 1.0 * 255)
+	yColor = yColor or cc.c4b(1.0 * 255, 1.0 * 255, 1.0 * 255, 1.0 * 255)
 
 	self.axisX:clear()
 	self.axisY:clear()

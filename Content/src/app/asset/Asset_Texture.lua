@@ -35,8 +35,8 @@ function Asset_Texture:_onItemHovered()
 		local scale = 500 / maxValue
 		width = width * scale
 		height = height * scale
-	end	
-	ImGui.Image(texture, {x = width, y = height})
+	end
+	ImGuiPresenter:getInstance():image(texture, {x = width, y = height})
 
 	ImGui.EndTooltip()
 end

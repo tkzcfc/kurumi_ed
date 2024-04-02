@@ -9,9 +9,9 @@ local BaseElement = class("BaseElement")
 BaseElement.isElementType = true
 BaseElement.type = "BaseElement"
 
-BaseElement.PointColor = cc.c4f(1.0, 1.0, 1.0, 1.0)
-BaseElement.LineColor = cc.c4f(0.1, 0.1, 1.0, 1.0)
--- BaseElement.LineColor = cc.c4f(1.0, 1.0, 1.0, 1.0)
+BaseElement.PointColor = cc.c4b(1.0 * 255, 1.0 * 255, 1.0 * 255, 1.0 * 255)
+BaseElement.LineColor = cc.c4b(0.1 * 255, 0.1 * 255, 1.0 * 255, 1.0 * 255)
+-- BaseElement.LineColor = cc.c4b(0.1 * 255, 0.1 * 255, 1.0 * 255, 1.0 * 255)
 
 
 local DRAW_LINE_OFFSET = 2

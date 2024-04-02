@@ -2,26 +2,6 @@ require("lfs")
 
 local director = cc.Director:getInstance()
 
-
-
-G_Helper.win_2_visible_x = function(value)
-    -- 底层在窗口大小改变时会自动将设计分辨率设置为当前窗口分辨率,此处直接返回值即可
-    return value
- --    local visibleSize = director:getVisibleSize()
- --    local winSize = Tools:getWindowSize()
-	-- local scale = visibleSize.width / winSize.width
-	-- return value * scale
-end
-
-G_Helper.win_2_visible_y = function(value)
-    -- 底层在窗口大小改变时会自动将设计分辨率设置为当前窗口分辨率,此处直接返回值即可
-    return value
- --    local visibleSize = director:getVisibleSize()
- --    local winSize = Tools:getWindowSize()
-	-- local scale = visibleSize.height / winSize.height
-	-- return value * scale
-end
-
 G_Helper.fmtPath = function(path)
 	path = string.gsub(path, "\\", "/")
 	path = string.gsub(path, "//", "/")

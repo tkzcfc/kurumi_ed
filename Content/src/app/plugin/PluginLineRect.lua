@@ -7,7 +7,7 @@ local PluginLineRect = class("PluginLineRect", Plugin)
 
 
 
-local CurEditLineColor = cc.c4f(1.0, 0, 0, 1.0)
+local CurEditLineColor = cc.c4b(255, 0, 0, 255)
 local CurEditLineColor_UINT = IM_COL32(255, 0, 0, 255)
 local LineColor_UINT = IM_COL32(0, 255, 0, 255)
 local RectColor_UINT = IM_COL32(231, 86, 34, 255)

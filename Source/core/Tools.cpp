@@ -4,8 +4,6 @@
 #include "commdlg.h"
 
 std::map<std::string, std::vector<std::string> > Tools::cache_plistSubs;
-std::map<void*, Tools::CacheTextureInfo> Tools::cacheTextureId;
-std::set<Texture2D*> Tools::permanentTextures;
 
 ImGuiStyle Tools::cacheStyle;
 bool Tools::initCacheStyle = false;
@@ -286,136 +284,6 @@ void Tools::runExe(std::string exe, std::string cmd)
 	}
 }
 
-void* Tools::getImguiTextureID(const std::string& key, bool isPlist)
-{
-	Texture2D* texture = NULL;
-	if (isPlist)
-	{
-		auto sf = SpriteFrameCache::getInstance()->getSpriteFrameByName(key);
-		if (sf)
-		{
-			texture = sf->getTexture();
-		}
-	}
-	else
-	{
-        texture = Director::getInstance()->getTextureCache()->addImage(key);
-	}
-	if (texture == NULL)
-	{
-		//assert(0);
-		return 0;
-	}
-
-	void* ptr = (void*)texture->getBackendTexture();
-	if (cacheTextureId.find(ptr) == cacheTextureId.end())
-	{
-		if (permanentTextures.count(texture) == 0)
-		{
-			texture->retain();
-			permanentTextures.insert(texture);
-		}
-	}
-
-	return ptr;
-}
-
-void Tools::retainImageuiTexture(void* textureId)
-{
-	auto it = cacheTextureId.find(textureId);
-	if (it != cacheTextureId.end())
-	{
-		it->second.refcount++;
-		it->second.pTexture->retain();
-		return;
-	}
-
-	for (auto& it : permanentTextures)
-	{
-		void* ptr = (void*)it->getBackendTexture();
-		if (ptr == textureId)
-		{
-			CacheTextureInfo info;
-			info.refcount = 1;
-			info.pTexture = it;
-			cacheTextureId.insert(std::make_pair(ptr, info));
-			permanentTextures.erase(it);
-			break;
-		}
-	}
-}
-
-void Tools::freeImageuiTexture(void* textureId)
-{
-	auto it = cacheTextureId.find(textureId);
-	if (it != cacheTextureId.end())
-	{
-		it->second.pTexture->release();
-		it->second.refcount--;
-		assert(it->second.refcount >= 0);
-		if (it->second.refcount <= 0)
-		{
-			cacheTextureId.erase(it);
-		}
-	}
-}
-
-void* Tools::getImguiTextureIDByTexture(Texture2D* texture)
-{
-	if (texture)
-	{
-		return (void*)texture->getBackendTexture();
-	}
-	return NULL;
-}
-
-int Tools::getImguiTextureWidth(const std::string& key, bool isPlist)
-{
-	Texture2D* texture = NULL;
-	if (isPlist)
-	{
-		auto sf = SpriteFrameCache::getInstance()->getSpriteFrameByName(key);
-		if (sf)
-		{
-			return (int)sf->getRect().size.width;
-		}
-	}
-	else
-	{
-		texture = Director::getInstance()->getTextureCache()->addImage(key);
-	}
-	if (texture == NULL)
-	{
-		//assert(0);
-		return 0;
-	}
-	return texture->getPixelsWide();
-}
-
-int Tools::getImguiTextureHeight(const std::string& key, bool isPlist)
-{
-	Texture2D* texture = NULL;
-	if (isPlist)
-	{
-		auto sf = SpriteFrameCache::getInstance()->getSpriteFrameByName(key);
-		if (sf)
-		{
-			return (int) sf->getRect().size.height;
-		}
-	}
-	else
-	{
-		texture = Director::getInstance()->getTextureCache()->addImage(key);
-	}
-	if (texture == NULL)
-	{
-		//assert(0);
-		return 0;
-	}
-	return texture->getPixelsHigh();
-}
-
-
 bool Tools::imgui_inputText(const char* label, std::string& buf, unsigned int buf_size, unsigned int flags/* = 0*/)
 {
 	static char maxInput_buf[1024];
@@ -532,11 +400,6 @@ uint32_t Tools::bor_uint32(uint32_t a, uint32_t b)
 int32_t Tools::bor_int32(int32_t a, int32_t b)
 {
 	return a | b;
-}
-
-Size Tools::getWindowSize()
-{
-        return Director::getInstance()->getVisibleSize();
 }
 
 bool          Tools::BeginTabItem_NoClose(const char* label, ImGuiTabItemFlags flags)

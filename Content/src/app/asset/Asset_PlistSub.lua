@@ -53,7 +53,7 @@ function Asset_PlistSub:init(fullPath)
 	self.property.isPlist 		= true
 
 	-- saveToFile 函数只能传入相对路径,此处没有加 WritablePath
-	self.saveToFileName = genCachePath_2(self.property.relativePath, self.textureName)
+	self.saveToFileName = genCachePath_1(self.property.relativePath, self.textureName)
 	-- 在读取图片时加上 WritablePath
 	self.cacheTextureName = cc.FileUtils:getInstance():getWritablePath() .. self.saveToFileName
 
@@ -68,46 +68,34 @@ end
 
 local cache = {}
 
-local shareTextureCache = cc.Director:getInstance():getTextureCache()
+local textureCache = cc.Director:getInstance():getTextureCache()
 
 function Asset_PlistSub:_onItemHovered()
 	local textureName = self.cacheTextureName
 
 	if self.genTextureTag then
-		local textureID = Tools:getImguiTextureID(textureName)
-		if textureID == nil then
-			return
-		end
+		local texture = textureCache:addImage(textureName)
+		if texture then
+			ImGui.BeginTooltip()
 
-		if cache.textureID ~= textureID then
-			if cache.textureID ~= nil then
-				Tools:freeImageuiTexture(cache.textureID)
-			end
-			Tools:retainImageuiTexture(textureID)
-			textureCleanup()
+			local width = texture:getPixelsWide()
+			local height = texture:getPixelsHigh()
+			ImGui.Text(string.format("%d*%d", width, height))
 
-			local imageW = Tools:getImguiTextureWidth(textureName)
-			local imageH = Tools:getImguiTextureHeight(textureName)
-			local showTextureInfo = string.format("%d*%d", imageW, imageH)
-			local maxValue = math.max(imageW, imageH)
+			local maxValue = math.max(width, height)
 			if maxValue > 500 then
 				local scale = 500 / maxValue
-				imageW = imageW * scale
-				imageH = imageH * scale
+				width = width * scale
+				height = height * scale
 			end
-			cache["textureInfo"] = showTextureInfo
-			cache["textureID"] = textureID
-			cache["imageSize"] = cc.p(imageW, imageH)
-		end
+			ImGuiPresenter:getInstance():image(texture, {x = width, y = height})
 
-		ImGui.BeginTooltip()
-		ImGui.Text(cache.textureInfo)
-		ImGui.Image(cache.textureID, cache.imageSize)
-		ImGui.EndTooltip()
+			ImGui.EndTooltip()
+		end
 	else
 		self.genTextureTag = true
 
-		local texture = shareTextureCache:getTextureForKey(textureName)
+		local texture = textureCache:getTextureForKey(textureName)
 		if not texture then
 			os.mkdirpath(self.cacheTextureDirName)
 

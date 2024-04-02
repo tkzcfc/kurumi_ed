@@ -13,6 +13,7 @@ cc.exports.WinTag = enum {
     "PROPERTY",
     "NODETREE",
     "TIMELINE",
+    "PREVIEW"
 }
 
 local WindowManager = require("app.imgui.WindowManager").new()
@@ -35,7 +36,7 @@ win = require("app.imgui.window.GlobalScaleWindow").new("Global Scale", true)
 win:setWindowVisible(false)
 WindowManager:add(win, WinTag.GLOBAL_SCALE)
 
--- GlobalScaleWindow
+-- FontSetting
 win = require("app.imgui.window.FontSetting").new("Font", true)
 win:setWindowVisible(false)
 WindowManager:add(win, WinTag.FONT_SETTING)
@@ -68,3 +69,8 @@ WindowManager:add(win, WinTag.TIMELINE)
 -- Role
 win = require("app.imgui.window.Role").new()
 WindowManager:add(win, WinTag.ROLE)
+
+-- Preview
+win = require("app.imgui.window.Preview").new()
+win:setWindowVisible(false)
+WindowManager:add(win, WinTag.PREVIEW)

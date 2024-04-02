@@ -22,18 +22,6 @@ public:
 	
 	static void runExe(std::string exe, std::string cmd);
 	
-	static void* getImguiTextureID(std::string key, bool isPlist = false);
-	
-	static void retainImageuiTexture(void* textureId);
-	
-	static void freeImageuiTexture(void* textureId);
-	
-	static void* getImguiTextureIDByTexture(cc.Texture2D* texture);
-
-	static int getImguiTextureWidth(std::string key, bool isPlist = false);
-
-	static int getImguiTextureHeight(std::string key, bool isPlist = false);
-	
 	static bool imgui_inputText(const char* label, std::string& buf, unsigned int buf_size, unsigned int flags = 0);
 	
 	static std::vector<std::string> getLogicalDriveStrings();
@@ -45,9 +33,7 @@ public:
 	static int bor_int32(int a, int b);
 	
 	static unsigned int bor_uint32(unsigned int a, unsigned int b);
-	
-	static Size getWindowSize();
-	
+		
 	static bool          BeginTabItem_NoClose(const char* label, int flags = 0);
 	
 	static ImVec2 getMouseClickedPos(int index);
