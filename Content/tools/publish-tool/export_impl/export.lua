@@ -40,13 +40,19 @@ local function is_empty_table(tb)
     return true
 end
 
+local function fmt_var_name(name)
+    local varName = "_" .. tostring(name)
+    if tonumber(name) ~= nil then
+        varName = "_var" .. tostring(name)
+    end
+    return varName
+end
 
 ----------------------------------------------------------------------------------------------
 local M = {}
 
 -- @brief 导出数据到lua
 function M:exportToLua(data)
-
     local curType = tostring(data.content.type)
     curType = string.lower(curType)
 
@@ -333,13 +339,12 @@ function M:_fmtToLua_Auto(parentName, data, fullNodeTreePath)
     end
 
     for k,v in pairs(data.child) do
-        self:_fmtToLua_Auto(data.data.name, v, fullNodeTreePath)
+        self:_fmtToLua_Auto(fmt_var_name(data.data.name), v, fullNodeTreePath)
     end
 end
 
-
 function M:fmt_Node(parentName, data, curType, fullNodeTreePath)
-    local curName = tostring(data.name)
+    local curName = fmt_var_name(data.name)
 
     if data.anchorPoint then
         if data.anchorPoint.x == 0.5 and data.anchorPoint.y == 0.5 then
@@ -407,14 +412,14 @@ end
 function M:fmtToLua_widget(parentName, data, curType, fullNodeTreePath)
     -- "assetFile": "xx.asset",
 
-    local varFileName = strFmt("%s_luafile", data.name)
+    local varFileName = strFmt("%s_luafile", fmt_var_name(data.name))
     self:output_fmt("local %s = require(%q)", varFileName, fmt_require(data.assetFile))
-    self:output_fmt("local %s = %s:loadNode()", data.name, varFileName)
-    self:output_fmt("%s.luaFileInfo = %s", data.name, varFileName)
+    self:output_fmt("local %s = %s:loadNode()", fmt_var_name(data.name), varFileName)
+    self:output_fmt("%s.luaFileInfo = %s", fmt_var_name(data.name), varFileName)
 
     self:fmt_Node(parentName, data, curType, fullNodeTreePath)
 
-    self:output_fmt("self:onSpawnWidget(%s)\n", data.name)
+    self:output_fmt("self:onSpawnWidget(%s)\n", fmt_var_name(data.name))
 end
 
 -- sprite
@@ -425,9 +430,9 @@ function M:fmtToLua_sprite(parentName, data, curType, fullNodeTreePath)
 
     if data.isPlist then
         self:output_fmt("cc.SpriteFrameCache:getInstance():addSpriteFrames(%q)", data.plistFileName)
-        self:output_fmt("local %s = cc.Sprite:createWithSpriteFrameName(%q)", data.name, data.textureName)
+        self:output_fmt("local %s = cc.Sprite:createWithSpriteFrameName(%q)", fmt_var_name(data.name), data.textureName)
     else
-        self:output_fmt("local %s = cc.Sprite:create(%q)", data.name, data.textureName)
+        self:output_fmt("local %s = cc.Sprite:create(%q)", fmt_var_name(data.name), data.textureName)
     end
 
     self:fmt_Node(parentName, data, curType, fullNodeTreePath)
@@ -441,18 +446,18 @@ function M:fmtToLua_image(parentName, data, curType, fullNodeTreePath)
 
     if data.isPlist then
         self:output_fmt("cc.SpriteFrameCache:getInstance():addSpriteFrames(%q)", data.plistFileName)
-        self:output_fmt("local %s = ccui.ImageView:create()", data.name)
-        self:output_fmt("%s:loadTexture(%q, 1)", data.name, data.textureName)
+        self:output_fmt("local %s = ccui.ImageView:create()", fmt_var_name(data.name))
+        self:output_fmt("%s:loadTexture(%q, 1)", fmt_var_name(data.name), data.textureName)
     else
-        self:output_fmt("local %s = ccui.ImageView:create()", data.name)
-        self:output_fmt("%s:loadTexture(%q, 0)", data.name, data.textureName)
+        self:output_fmt("local %s = ccui.ImageView:create()", fmt_var_name(data.name))
+        self:output_fmt("%s:loadTexture(%q, 0)", fmt_var_name(data.name), data.textureName)
     end
 
     if data.ignoreContent ~= nil then
         if data.ignoreContent then
-            self:output_fmt("%s:ignoreContentAdaptWithSize(true)", data.name)
+            self:output_fmt("%s:ignoreContentAdaptWithSize(true)", fmt_var_name(data.name))
         else
-            self:output_fmt("%s:ignoreContentAdaptWithSize(false)", data.name)
+            self:output_fmt("%s:ignoreContentAdaptWithSize(false)", fmt_var_name(data.name))
         end
     end
 
@@ -463,7 +468,7 @@ end
 function M:fmtToLua_cocostudiofile(parentName, data, curType, fullNodeTreePath)
     -- "scriptFile": "CustomFile.lua",
 
-    local name_lua = data.name .. "_lua"
+    local name_lua = fmt_var_name(data.name) .. "_lua"
 
     self:output_fmt("local %s = require('%s')", name_lua, fmt_require_lua(data.scriptFile))
 
@@ -472,14 +477,14 @@ function M:fmtToLua_cocostudiofile(parentName, data, curType, fullNodeTreePath)
     self:output_fmt("    %s.root:runAction(%s.animation)", name_lua, name_lua)
     self:output_fmt("end")
 
-    self:output_fmt("local %s = %s.root", data.name, name_lua)
+    self:output_fmt("local %s = %s.root", fmt_var_name(data.name), name_lua)
 
     self:fmt_Node(parentName, data, curType, fullNodeTreePath)
 end
 
 -- armaturefile
 function M:fmtToLua_armaturefile(parentName, data, curType, fullNodeTreePath)
-    local name = data.name
+    local name = fmt_var_name(data.name)
 
     self:output_fmt("local %s = ccs.Armature:create()", name)
 
