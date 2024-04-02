@@ -47,26 +47,22 @@ function MainScene:onCreate()
 	_MyG.MainScene.rootNode = rootNode
 end
 
-function MainScene:onGUI_Init()
-    _MyG.ThemeManager:readTheme()
-    
+function MainScene:onGUI_Init()    
     local DocumentManager = require("app.imgui.DocumentManager")
     _MyG.LeftDocumentManager = DocumentManager.new()
     _MyG.RightDocumentManager = DocumentManager.new()
     _MyG.BottomDocumentManager = DocumentManager.new()
     _MyG.CenterDocumentManager = DocumentManager.new()
 
-	-- require("app.logic.GUI_Bottom")
 	require("app.logic.GUI_MenuBar")
 	require("app.logic.GUI_Popup")
 	require("app.logic.GUI_Window")
 
-    -- _MyG.SupportChineseFont = false
-    -- for k, v in pairs(_MyG.SupportFonts) do
-    --     if ilayer:setChineseFont(v.fullPath, v.fontSize) then
-    --         _MyG.SupportChineseFont = true
-    --     end
-    -- end
+    _MyG.SupportChineseFont = false
+    for k, v in pairs(_MyG.SupportFonts) do
+        addImGuiFont(v.fullPath, v.fontSize, 1)
+        _MyG.SupportChineseFont = true
+    end
 
     local loadChineseFont = false
     -- 首次启动默认选中文

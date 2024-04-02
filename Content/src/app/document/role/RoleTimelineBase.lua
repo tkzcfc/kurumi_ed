@@ -15,7 +15,7 @@ local aniInterval = 1 / 60
 local STEP_SCALE = math.floor(curInterval / aniInterval)
 
 function RoleTimelineBase:ctor(editorRole, name)
-	RoleTimelineBase.super.ctor(self, name)
+    RoleTimelineBase.super.ctor(self, name)
 
     self.editorRole = editorRole
  
@@ -43,7 +43,16 @@ function RoleTimelineBase:ctor(editorRole, name)
     -- 此处不处理快速行为所以这个值只能大于等于1
     self.playSlowScale = 1
     
-	_MyG.WindowManager:showWindow(WinTag.ROLE, true)
+    _MyG.WindowManager:showWindow(WinTag.ROLE, true)
+
+    -- 同步时间轴时间
+    G_SysEventEmitter:on(SysEvent.ON_GUI_END, function()
+        local current = self.sequentity:getCurrentTime()
+        if self.curTime ~= current then
+            self.curTime = current
+            self:onTimeChange()
+        end
+    end, editorRole)
 end
 
 -- @override
@@ -62,13 +71,6 @@ end
 function RoleTimelineBase:onGUI()
     RoleTimelineBase.super.onGUI(self)
     self.sequentity:onGUI()
-
-    local current = self.sequentity:getCurrentTime()
-
-    if self.curTime ~= current then
-        self.curTime = current
-        self:onTimeChange()
-    end
 end
 
 -- @brief 隐藏
@@ -99,11 +101,11 @@ function RoleTimelineBase:onShow()
 end
 
 function RoleTimelineBase:canRemove()
-	return false
+    return false
 end
 
 function RoleTimelineBase:canClose()
-	return false
+    return false
 end
 
 -- @brief 调整形状渲染器数量
@@ -164,13 +166,13 @@ end
 
 -- @brief 属性改变时调用
 function RoleTimelineBase:onAttributeChange(attributeName)
-	local mem = self:doPartMementoGen(attributeName)
-	if mem ~= nil then
-		self.editorRole:saveSnapshot(self.editorRole, true, attributeName, mem)
-	else
-		-- 保存整体
-		self.editorRole:saveSnapshot()
-	end
+    local mem = self:doPartMementoGen(attributeName)
+    if mem ~= nil then
+        self.editorRole:saveSnapshot(self.editorRole, true, attributeName, mem)
+    else
+        -- 保存整体
+        self.editorRole:saveSnapshot()
+    end
 end
 
 -- @brief 保存局部快照时,此函数返回改变属性要存储的数据
@@ -193,16 +195,18 @@ local Texture_Btn_Next = EditorIconContent:get(EditorIcon.BUTTON_NEXT)
 local Texture_Btn_Play = EditorIconContent:get(EditorIcon.BUTTON_PLAY)
 local Texture_Btn_Pause = EditorIconContent:get(EditorIcon.BUTTON_PAUSE)
 local btn_size = cc.p(32, 32)
+local layout_size = cc.p(0, 0)
 
 -- @brief 时间轴左上角GUI绘制
 function RoleTimelineBase:onSequentityLTGUI()
+    layout_size.x = ImGui.GetContentRegionAvailWidth()
+    ImGui.BeginHorizontal("h1", layout_size, -1)
+
     -- 上一帧
     if ImGui.ImageButton(Texture_Btn_Pre, btn_size) then
         self:step(-1)
         self:stopAutoPlay()
     end
-
-    ImGui.SameLine()
 
     -- 播放/暂停
     if self.isPlaying then
@@ -215,8 +219,6 @@ function RoleTimelineBase:onSequentityLTGUI()
         end
     end
 
-    ImGui.SameLine()
-
     -- 下一帧
     if ImGui.ImageButton(Texture_Btn_Next, btn_size) then
         self:step(1)
@@ -227,20 +229,20 @@ function RoleTimelineBase:onSequentityLTGUI()
 
     -- local showValue = 1 - ((self.playSlowScale - 1) / 10.0)
     -- local ok, curScale = ImGui.SliderFloat("scale", showValue, 0.1, 1, "%.1f")
-	-- if ok then
+    -- if ok then
     --     curScale = math.max(curScale, 0.1)
     --     curScale = math.min(curScale, 1)
     --     self.playSlowScale = (1 - curScale) * 10 + 1
     --     self.playSlowScale = math.floor(self.playSlowScale)
-	-- end
+    -- end
 
-    -- ImGui.Spring(0.5)
-    ImGui.SameLine()
-    
+    ImGui.Spring(0.5)
     local ok, loop = ImGui.Checkbox("loop", self.isPlayLoop)
     if ok then
         self.isPlayLoop = loop
     end
+    
+    ImGui.EndHorizontal()
 end
 
 -- @brief
@@ -311,7 +313,7 @@ function RoleTimelineBase:startAutoPlay()
     self.isPlaying = true
     self.delayCount = self.playSlowScale
     
-	self.schedule_id = cc.Director:getInstance():getScheduler():scheduleScriptFunc(function()
+    self.schedule_id = cc.Director:getInstance():getScheduler():scheduleScriptFunc(function()
         self.delayCount = self.delayCount - 1
         if self.delayCount <= 0 then
             self.delayCount = self.playSlowScale

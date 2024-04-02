@@ -7,7 +7,6 @@ _MyG.arrManagers        = {}
 
 _MyG.SysSetManager      = require("app.manager.SysSetManager").new()
 _MyG.AudioManager       = require("app.manager.AudioManager").new()
-_MyG.ThemeManager       = require("app.manager.ThemeManager").new()
 
 -- G_SysEventEmitter:on("event_appWillExit", function()
 --     for k,v in pairs(_MyG.arrManagers) do

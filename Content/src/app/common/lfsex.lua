@@ -10,7 +10,7 @@ if logE then
 end
 
 local function fmtpath(path, isdir)
-	path = string.gsub(path, "\\", "/")
+	path = Tools:replaceString(path, "\\", "/")
 	if isdir then
 		if string.sub(path, -1, -1) == "/" then
 			return path

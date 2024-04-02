@@ -22,6 +22,9 @@ function MouseEventDispatcher:ctor()
     end
 
 	local function onMouseScroll(event)
+        if math.abs(event:getScrollY()) <= 0.0001 then
+            return
+        end
 		self.cursorX = event:getCursorX()
 		self.cursorY = event:getCursorY()
 		G_SysEventEmitter:emit(SysEvent.ON_MOUSE_SCROLL, event)

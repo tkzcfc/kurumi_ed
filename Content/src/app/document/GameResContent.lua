@@ -25,7 +25,7 @@ local function clearRepeat(t)
     for k, v in pairs(t) do
         if not map[v] then
             map[v] = true
-            table.insert(out, v)
+            table.insert(out, G_Helper.fmtPath(v))
         end 
     end
     return out

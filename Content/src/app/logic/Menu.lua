@@ -65,24 +65,15 @@ local function showMainMenuBar()
         ImGui.EndMenu()
     end
 
-    if ImGui.BeginMenu(STR("settings")) then
-        if ImGui.MenuItem(STR("ZoomSettings")) then
-            _MyG.WindowManager:showWindow(WinTag.GLOBAL_SCALE, true)
-        end
-        if ImGui.MenuItem(STR("FontSettings")) then
-            _MyG.WindowManager:showWindow(WinTag.FONT_SETTING, true)
-        end
-        ImGui.EndMenu()
-    end
-
-    if ImGui.BeginMenu(STR("Theme")) then
-        for k, v in pairs(_MyG.ThemeManager:getNames()) do
-            if ImGui.MenuItem(v, "", _MyG.ThemeManager:isSelect(v), true) then
-                _MyG.ThemeManager:select(v)
-            end
-        end
-        ImGui.EndMenu()
-    end
+    -- if ImGui.BeginMenu(STR("settings")) then
+    --     if ImGui.MenuItem(STR("ZoomSettings")) then
+    --         _MyG.WindowManager:showWindow(WinTag.GLOBAL_SCALE, true)
+    --     end
+    --     if ImGui.MenuItem(STR("FontSettings")) then
+    --         _MyG.WindowManager:showWindow(WinTag.FONT_SETTING, true)
+    --     end
+    --     ImGui.EndMenu()
+    -- end
 end
 G_SysEventEmitter:on(SysEvent.ON_GUI_MAIN_MENUBAR, showMainMenuBar, SysEvent.TAG)
 

@@ -52,9 +52,6 @@ function SysSetManager:reloadData()
 end
 
 function SysSetManager:initProperty()
-	-- 当前主题名称
-	self:initPair("curThemeName", EValueType.EString)
-
 	-- 是否开启音乐
 	self:initPair("isOpenMusic", EValueType.EBool, true)
 	-- 是否开启音效

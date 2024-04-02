@@ -19,6 +19,7 @@ extern "C" {
 #include "game/lua_game.h"
 
 #include "axmol.h"
+#include "ImGuiPresenter.h"
 
 using namespace ax;
 
@@ -69,6 +70,17 @@ int lua_release_print(lua_State* L)
 }
 }
 
+int addImGuiFont(lua_State* L)
+{
+    std::string fontFile = ((std::string)tolua_tocppstring(L, 1, 0));
+    float fontSize       = ((float)tolua_tonumber(L, 2, 0));
+    int glyphRange       = ((int)tolua_tonumber(L, 3, 0));
+
+    extension::ImGuiPresenter::getInstance()->addFont(fontFile, fontSize,
+                                                      (extension::ImGuiPresenter::CHS_GLYPH_RANGE)glyphRange);
+    return 0;
+}
+
 void preload_lua_modules(lua_State *L)
 {
 	//lfs
@@ -102,6 +114,7 @@ void preload_lua_modules(lua_State *L)
     const luaL_Reg global_functions[] = {
         {"print", Lua_Print::lua_print},
         {"release_print", Lua_Print::lua_release_print},
+        {"addImGuiFont", addImGuiFont},
         {nullptr, nullptr}
     };
     luaL_register(L, "_G", global_functions);

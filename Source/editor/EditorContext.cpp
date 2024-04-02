@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "sequentity/Sequentity.h"
 #include "core/Tools.h"
+#include "Theme.h"
 
 USING_NS_AX;
 USING_NS_AX_EXT;
@@ -146,6 +147,7 @@ void EditorContext::onGUI()
     if (!m_initGUITag)
     {
         m_initGUITag = true;
+        Theme::styleDefault();
         callLuaGUI("onGUI_Init");
     }
 

@@ -87,5 +87,11 @@ function KeyboardStateMng:setKeyCodePressed(keyCode, isPressed)
     self.stateMap[keyCode] = isPressed
 end
 
+-- @brief 是否可以缩放编辑区域内容
+function KeyboardStateMng:canScrollEditContext()
+    -- return not self:haskeyCodePressed()
+    return true
+end
+
 return KeyboardStateMng
 

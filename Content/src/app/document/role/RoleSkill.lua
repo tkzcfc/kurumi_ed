@@ -32,8 +32,7 @@ function RoleSkill:ctor(editorRole)
 
 	-- 添加支持的轨道类型
 	self.supportTracks = {
-		require("app.document.role.tracks.ForceTrack"),
-		require("app.document.role.tracks.ImpulseTrack"),
+		require("app.document.role.tracks.PhysicalForceTrack"),
 		require("app.document.role.tracks.AudioTrack"),
 		require("app.document.role.tracks.ScriptTrack"),
 		require("app.document.role.tracks.AttackTrack"),
@@ -120,20 +119,14 @@ end
 -- @override
 function RoleSkill:onEventMoveTime(track_count, channel_count, event_count, curTime, channel)
 	local channelType = channel.type
-	print("channelType---------->>>", channelType)
 	if channelType == 0 then
 		return
 	end
 
-	
 	-- 通道
 	if channelType > BASE_VALUE then
 		local channelIndex = math.floor(channelType / BASE_VALUE)
 		local conditionIndex = channelType % BASE_VALUE
-		
-		print("channelType", channelType, curTime)
-		print("channelIndex", channelIndex)
-		print("conditionIndex", conditionIndex)
 
 		local actInfo = self.dataInfo[self.curDataIndex]
 		if actInfo == nil then return end
@@ -197,13 +190,15 @@ function RoleSkill:onClickSequentityChannel(track_count, channel_count, channel)
 		if curChannel then
 			if self.curEditChannelIndex == channelIndex then
 				if curChannel.curIndex == conditionIndex then
-					channel.is_active = false
-					curChannel.curIndex = -1
+					-- curChannel.curIndex = -1
 				else
 					curChannel.curIndex = conditionIndex
+					oRoutine(o_once(function()
+						self:syncSequentity()
+					end))
 				end
 			else
-				channel.is_active = true
+				curChannel.curIndex = conditionIndex
 				oRoutine(o_once(function()
 					self:selectChannelIndex(channelIndex)
 				end))
@@ -421,6 +416,8 @@ function RoleSkill:onGUI_TrackList()
 		for k, v in pairs(self.supportTracks) do
 			if ImGui.Selectable(STR(v.NameLang)) then
 				v:newTrack(function(data)
+					self:onAttributeChange(EditorEvent.ON_CHANGE_ROLE_SKILL)
+					
 					table.insert(curSkillData.tracks, data)
 
 					self:selectTrackIndex(#curSkillData.tracks)
@@ -757,7 +754,9 @@ function RoleSkill:syncSequentity()
 			else
 				-- 自动往后延展
 				event.length = maxTime - event.time
-				if event.length <= 0 then asset(0) end
+				if event.length <= 0 then
+					event.length = 1 
+				end
 			end
 		
 			event.enabled = true
