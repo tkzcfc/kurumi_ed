@@ -702,7 +702,9 @@ end
 
 local cjson = require("cjson")
 function Functions:encodeJson(data)
-	data = convertTable(data)
+	if ax then
+		data = convertTable(data)
+	end
     return cjson.encode(data)
 end
 
