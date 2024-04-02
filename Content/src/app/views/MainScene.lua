@@ -16,7 +16,7 @@ function MainScene:onCreate()
         ImGui.DockBuilderDockWindow("Timeline", dock.docker_id_center_bottom)
         ImGui.DockBuilderDockWindow("Content", dock.docker_id_center)
         ImGui.DockBuilderDockWindow("Property", dock.dock_id_right)
-        ImGui.DockBuilderDockWindow("Role", dock.dock_id_right)
+        -- ImGui.DockBuilderDockWindow("Role", dock.dock_id_right)
     end)
 
     context:registerLuaHandle("onGUIBegin", function()

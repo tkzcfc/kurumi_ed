@@ -2,6 +2,7 @@
 
 #include "mugen/base/GComponent.h"
 #include "mugen/act/GSkill.h"
+#include "mugen/GGameDef.h"
 
 NS_G_BEGIN
 
@@ -44,6 +45,9 @@ public:
 	// 按键抬起
 	void onKeyUp(G_BIT_TYPE key);
 
+	// 判断按键是否按下
+	bool isKeyDown(G_BIT_TYPE key);
+
 private:
 
 	void doSkillEx(int32_t id);
@@ -55,6 +59,7 @@ private:
 
 	G_SYNTHESIZE(G_BIT_TYPE, m_status, Status);
 	G_SYNTHESIZE(G_BIT_TYPE, m_flags, Flags);
+	G_SYNTHESIZE(GActorOrientation, m_orientation, Orientation);
 
 public:
 

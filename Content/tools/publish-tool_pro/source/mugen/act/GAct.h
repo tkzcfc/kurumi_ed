@@ -5,9 +5,8 @@
 #include "frame/GAudioFrame.h"
 #include "frame/GCollisionFrame.h"
 #include "frame/GEventFrame.h"
-#include "frame/GForceFrame.h"
+#include "frame/GPhysicalForceFrame.h"
 #include "frame/GFrame.h"
-#include "frame/GImpulseFrame.h"
 #include "frame/TriggerEvent.h"
 #include "frame/GScriptFrame.h"
 

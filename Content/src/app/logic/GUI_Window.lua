@@ -68,6 +68,7 @@ WindowManager:add(win, WinTag.TIMELINE)
 
 -- Role
 win = require("app.imgui.window.Role").new()
+win:setWindowVisible(false)
 WindowManager:add(win, WinTag.ROLE)
 
 -- Preview

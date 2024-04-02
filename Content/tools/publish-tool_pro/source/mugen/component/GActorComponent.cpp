@@ -12,6 +12,7 @@ GActorComponent::GActorComponent()
 {
 	m_nextSkillId = INVALID_SKILL_ID;
 	m_defaultSkillId = INVALID_SKILL_ID;
+	m_orientation = GActorOrientation::RIGHT;
 
 	lastKeyDown = curKeyDown = G_KEY_NONE;
 }
@@ -153,7 +154,27 @@ void GActorComponent::doSkill(int32_t id)
 
 // 按键按下
 void GActorComponent::onKeyDown(G_BIT_TYPE key)
-{}
+{
+	switch (key)
+	{
+	case G_KEY_MOVE_LEFT:
+	{
+		if (G_BIT_NO_EQUAL(m_flags, Flag_Lock_Orientation))
+		{
+			m_orientation = GActorOrientation::LEFT;
+		}
+	}break;
+	case G_KEY_MOVE_RIGHT:
+	{
+		if (G_BIT_NO_EQUAL(m_flags, Flag_Lock_Orientation))
+		{
+			m_orientation = GActorOrientation::RIGHT;
+		}
+	}break;
+	default:
+		break;
+	}
+}
 
 // 按键持续按下
 void GActorComponent::onKeepPress(G_BIT_TYPE key)
@@ -162,5 +183,11 @@ void GActorComponent::onKeepPress(G_BIT_TYPE key)
 // 按键抬起
 void GActorComponent::onKeyUp(G_BIT_TYPE key)
 {}
+
+// 判断按键是否按下
+bool GActorComponent::isKeyDown(G_BIT_TYPE key)
+{
+	return G_BIT_EQUAL(curKeyDown, key);
+}
 
 NS_G_END

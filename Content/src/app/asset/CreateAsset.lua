@@ -2,6 +2,7 @@
 -- @Date:   2021-07-24 16:47:47
 -- @remark: 
 
+local json = require("cjson")
 local Asset = require("app.asset.Asset")
 
 local AssetCreate = {}

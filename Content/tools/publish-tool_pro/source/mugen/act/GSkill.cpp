@@ -138,6 +138,7 @@ bool GSkill::step()
 		m_curFrame += m_actions[i]->getFrameLength();
 	}
 	m_curFrame += m_curAction->getElapsed();
+	m_curFrame++;
 
 	// update
 	m_track->apply(m_curFrame);

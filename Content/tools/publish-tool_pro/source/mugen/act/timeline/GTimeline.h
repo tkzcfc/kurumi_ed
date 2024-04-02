@@ -1,10 +1,6 @@
 ﻿#pragma once
 
-#include "../frame/GCollisionFrame.h"
-#include "../frame/GForceFrame.h"
-#include "../frame/GImpulseFrame.h"
-#include "../frame/GEventFrame.h"
-#include "../frame/GAudioFrame.h"
+#include "../frame/GFrame.h"
 
 NS_G_BEGIN
 

@@ -143,12 +143,12 @@ end
 
 
     self:output("local M = {}")
-    self:output("M.widgets = {}")
     
     -- loadNode
     self:output("")
     self:output("-- 节点加载")
     self:output("function M:loadNode()")
+    self:output("self.widgets = {}")
     self:output("local _rootNode = cc.Node:create()\n")
 
     for k,v in pairs(children) do
@@ -193,7 +193,7 @@ end
         end
     end
 
-    self.widgets = nil
+    self.widgets = {}
 
     self.widget_line_rect_data = {}
     self.widget_line_rect_data["line_data"] = t_lines

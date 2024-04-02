@@ -87,6 +87,21 @@ enum class GActorStatus
 	RUN     = G_FIXED_VALUE << 3,
 };
 
+
+//////////////////////////////////////////////////////////////////////////////
+/// 标签定义
+
+// 被锁定方向
+static const G_BIT_TYPE Flag_Lock_Orientation = G_FIXED_VALUE << 1;
+
+//////////////////////////////////////////////////////////////////////////////
+// 朝向定义
+enum class GActorOrientation : G_BIT_TYPE
+{
+	LEFT,
+	RIGHT,
+};
+
 //////////////////////////////////////////////////////////////////////////////
 // 值类型定义
 enum class GValueType
@@ -95,6 +110,12 @@ enum class GValueType
 	VALUE_PERCENTAGE = 0,
 	// 绝对值
 	VALUE_ABSOLUTE,
+};
+
+enum class GForceOrientation
+{
+	Positive_Direction, // 正方向(actor面向的方向)
+	Negative_Direction, // 反方向(actor背面的方向)
 };
 
 NS_G_END

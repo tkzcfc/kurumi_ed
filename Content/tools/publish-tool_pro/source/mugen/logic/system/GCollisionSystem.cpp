@@ -5,6 +5,7 @@
 #include "mugen/component/GAvatarComponent.h"
 #include "mugen/component/GCollisionComponent.h"
 #include "mugen/collision/GCollision.h"
+#include "mugen/act/frame/GCollisionFrame.h"
 
 NS_G_BEGIN
 

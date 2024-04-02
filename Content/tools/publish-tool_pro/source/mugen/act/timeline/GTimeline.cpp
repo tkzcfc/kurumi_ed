@@ -54,13 +54,9 @@ bool GTimeline::deserialize(GByteBuffer& byteBuffer)
 			{
 				pFrame = new GCollisionFrame();
 			}
-			else if (type == GFrameType::FORCE_FRAME)
+			else if (type == GFrameType::PHYSICAL_FORCE_FRAME)
 			{
-				pFrame = new GForceFrame();
-			}
-			else if (type == GFrameType::IMPULSE_FRAME)
-			{
-				pFrame = new GImpulseFrame();
+				pFrame = new GPhysicalForceFrame();
 			}
 			else if (type == GFrameType::EVENT_FRAME)
 			{

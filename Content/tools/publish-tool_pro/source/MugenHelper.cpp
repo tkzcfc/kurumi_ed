@@ -4,8 +4,7 @@
 #include "mugen/act/frame/GCollisionFrame.h"
 #include "mugen/act/frame/GAudioFrame.h"
 #include "mugen/act/frame/GEventFrame.h"
-#include "mugen/act/frame/GForceFrame.h"
-#include "mugen/act/frame/GImpulseFrame.h"
+#include "mugen/act/frame/GPhysicalForceFrame.h"
 
 #include "mugen/collision/GShapeAABB.h"
 #include "mugen/collision/GShapePolygon.h"
@@ -24,6 +23,9 @@ USING_NS_G;
 
 std::vector<std::string> MugenHelper::s_errLog;
 std::vector<std::string> MugenHelper::s_waring;
+std::string MugenHelper::s_errsActName;
+std::string MugenHelper::s_errskillName;
+
 
 static GFrame* createFrameByType(json& track, int32_t index, GFrameType type, int32_t startFrame, int32_t frameLen)
 {
@@ -115,9 +117,9 @@ static GFrame* createFrameByType(json& track, int32_t index, GFrameType type, in
 		}
 	}
 	break;
-	case ng::FORCE_FRAME:
+	case ng::PHYSICAL_FORCE_FRAME:
 	{
-		auto curFramePtr = new GForceFrame();
+		auto curFramePtr = new GPhysicalForceFrame();
 		pFrame = curFramePtr;
 		curFramePtr->setTriggerMaxCount(frame["triggerMaxCount"]);
 		curFramePtr->setTriggerInterval(frame["triggerInterval"]);
@@ -127,26 +129,12 @@ static GFrame* createFrameByType(json& track, int32_t index, GFrameType type, in
 		auto x = deal_float(frame["force"]["x"]);
 		auto y = deal_float(frame["force"]["y"]);
 		auto z = deal_float(frame["force"]["z"]);
-		curFramePtr->setForce(GFixedVec3(x, y, z));
+		curFramePtr->setValue(GFixedVec3(x, y, z));
 		curFramePtr->setValueType((GValueType)frame["valueType"].get<int>());
+		curFramePtr->setForceOrientation((GForceOrientation)frame["forceOrientation"].get<int>());
+		curFramePtr->setForceType((GPhysicalForceType)frame["forceType"].get<int>());
 	}
 	break;
-	case ng::IMPULSE_FRAME:
-	{
-		auto curFramePtr = new GImpulseFrame();
-		pFrame = curFramePtr;
-		curFramePtr->setTriggerMaxCount(frame["triggerMaxCount"]);
-		curFramePtr->setTriggerInterval(frame["triggerInterval"]);
-		curFramePtr->setStartFrame(frame["time"]);
-		curFramePtr->setFrameLen(frame["len"]);
-
-		auto x = deal_float(frame["impulse"]["x"]);
-		auto y = deal_float(frame["impulse"]["y"]);
-		auto z = deal_float(frame["impulse"]["z"]);
-		curFramePtr->setImpulse(GFixedVec3(x, y, z));
-		curFramePtr->setValueType((GValueType)frame["valueType"].get<int>());
-	}
-		break;
 	case ng::EVENT_FRAME:
 	{
 		G_ASSERT(0);
@@ -205,10 +193,11 @@ static GFrame* createFrameByType(json& track, int32_t index, GFrameType type, in
 
 static void addTracksToSkill(GSkill* skill, json& tracks, int32_t startFrame, int32_t frameLen)
 {
-	auto timeline = new GTimeline();
 
 	for (auto i = 0; i < tracks.size(); ++i)
 	{
+		auto timeline = new GTimeline();
+
 		auto track = tracks[i];
 
 		int32_t type = track["type"];
@@ -222,9 +211,9 @@ static void addTracksToSkill(GSkill* skill, json& tracks, int32_t startFrame, in
 				timeline->addFrame(frame, (GFrameType)type);
 			}
 		}
-	}
 
-	skill->getTrack()->addTimeline(timeline);
+		skill->getTrack()->addTimeline(timeline);
+	}
 }
 
 
@@ -271,9 +260,10 @@ static void exportChannels(GSkill* skill, json& curSkillInfo)
 		channel->setInterruptType((GInterruptType)data["interruptType"].get<int>());
 
 		auto conditions = data["conditions"];
+
 		for (auto j = 0; j < conditions.size(); ++j)
 		{
-			auto pCondition = exportCondition(conditions[i]);
+			auto pCondition = exportCondition(conditions[j]);
 			if (pCondition)
 			{
 				channel->addCondition(pCondition);
@@ -320,6 +310,8 @@ NS_G::GEntity* MugenHelper::serializeRole(const char* content)
 		{
 			auto curSkillInfo = skillInfo[i];
 
+			s_errskillName = curSkillInfo["name"].get<std::string>();
+
 			auto skill = new GSkill();
 			skill->setName(curSkillInfo["name"]);
 			skill->setId(curSkillInfo["id"]);
@@ -332,6 +324,7 @@ NS_G::GEntity* MugenHelper::serializeRole(const char* content)
 			for (auto j = 0; j < arrActInfo.size(); ++j)
 			{
 				auto curAct = arrActInfo[j];
+
 				int32_t actId = curAct["id"];
 				int32_t loopCount = curAct["loopCount"];
 
@@ -356,6 +349,7 @@ NS_G::GEntity* MugenHelper::serializeRole(const char* content)
 						action->setPlayName(curActInfo["playName"]);
 						skill->addAction(action);
 						
+						s_errsActName = action->getName();
 						// 将动作中的事件帧添加到技能中
 						addTracksToSkill(skill, curActInfo["tracks"], curFrame, len);
 
@@ -372,6 +366,8 @@ NS_G::GEntity* MugenHelper::serializeRole(const char* content)
 				skill->setTotalFrame(curFrame);
 			}
 
+			addTracksToSkill(skill, curSkillInfo["tracks"], 0, curFrame);
+
 			// 技能通道
 			auto cnit = curSkillInfo.find("channels");
 			if (curSkillInfo.end() != cnit)
@@ -379,6 +375,10 @@ NS_G::GEntity* MugenHelper::serializeRole(const char* content)
 				exportChannels(skill, curSkillInfo);
 			}
 		}
+
+
+		s_errsActName = "";
+		s_errskillName = "";
 
 		auto staticCom = new GStaticDataComponent();
 		actorCom->addComponent(staticCom);
@@ -485,6 +485,9 @@ bool MugenHelper::serializeRoleToFile(const char* content, const char* filename)
 {
 	GEntityManager::getInstance()->clear();
 
+	s_errsActName = "";
+	s_errskillName = "";
+
 	int32_t oldCount = GObject::getObjectCount();
 
 	s_waring.clear();
@@ -534,6 +537,7 @@ bool MugenHelper::serializeRoleToFile(const char* content, const char* filename)
 	return true;
 }
 
+
 std::vector<std::string> MugenHelper::errors()
 {
 	return s_errLog;
@@ -546,6 +550,8 @@ std::vector<std::string> MugenHelper::warings()
 
 void MugenHelper::addError(const std::string& err)
 {
+	s_errLog.push_back(fmt::format("actName: {0}", s_errsActName));
+	s_errLog.push_back(fmt::format("skillName: {0}", s_errskillName));
 	s_errLog.push_back(err);
 }
 
