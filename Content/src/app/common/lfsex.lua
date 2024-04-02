@@ -81,8 +81,8 @@ function os.mkdirpath(path)
         if pos then
             idx = pos + 1
             local dirname = string.sub(path, 1, pos)
-            local iter = lfs.dir(dirname)
-            if iter and not iter() then
+            local iter, dir_obj = lfs.dir(dirname)
+            if iter and not iter(dir_obj) then
                 local ok, msg = lfs.mkdir(dirname)
                 if not ok then
                     log("mkdir", dirname)

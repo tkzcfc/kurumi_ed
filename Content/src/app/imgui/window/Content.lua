@@ -14,6 +14,7 @@ function Content:ctor()
 
     local render = axui.Layout:create()
     render:setClippingType(1)
+    render:setClippingEnabled(true)
     render:setAnchorPoint(cc.p(0, 1))
     _MyG.MainScene.rootNode:addChild(render)
 
@@ -30,8 +31,7 @@ function Content:ctor()
 end
 
 function Content:onGUI()
-    --Tools:BeginWindow_NoClose(self.winName, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground)
-    Tools:BeginWindow_NoClose(self.winName, ImGuiWindowFlags_NoBackground)
+    local showWindow = Tools:BeginWindow_NoClose(self.winName, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground)
 
     if centerDocumentManager:count() > 0 then
         self.renderGuiShow = true
@@ -42,7 +42,7 @@ function Content:onGUI()
         self.renderGuiShow = false
     end
 
-    self.render:setVisible(self.renderGuiShow and self.renderCanShow)
+    self.render:setVisible(self.renderGuiShow and self.renderCanShow and showWindow)
 
     ImGui.End()
 end
@@ -195,7 +195,7 @@ function Content:initEventDispatcher()
     G_SysEventEmitter:on(SysEvent.ON_MOUSE_SCROLL, function(event)
         if self:isContainMouse() then
             self.eventDispatcher:dispatchEvent(event)
-            print("scroll", _MyG.MouseEventDispatcher:getCursorX(), _MyG.MouseEventDispatcher:getCursorY())
+            -- print("scroll", _MyG.MouseEventDispatcher:getCursorX(), _MyG.MouseEventDispatcher:getCursorY())
         end
     end, self)
 

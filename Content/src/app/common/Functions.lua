@@ -71,7 +71,6 @@ end
 function Functions:writeTableToFile(tab, filePath)
 	local success, ok = xpcall(function()
 		local content = Functions:encodeJson(tab)
-		-- content = Tools:prettyJson(content)
 		if not Functions:writeToFile(content, filePath) then
 			logE(string.format("Failed to write file %q", tostring(filePath)))
 			return false

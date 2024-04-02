@@ -1,6 +1,7 @@
-#include "Tools.h"
+﻿#include "Tools.h"
 #include <windows.h>
 #include "sequentity/Sequentity.h"
+#include "commdlg.h"
 
 std::map<std::string, std::vector<std::string> > Tools::cache_plistSubs;
 std::map<void*, Tools::CacheTextureInfo> Tools::cacheTextureId;
@@ -35,71 +36,71 @@ std::string Tools::wstringToString(const std::wstring& InStr)
 
 bool Tools::openFileMultiSelect(const std::string& InFilter, StringArray* OutPathArr)
 {
-	//std::wstring wsFilter = stringToWString(Utf8ToGbk(InFilter));
-	//
-	//wchar_t szFilterBuf[512];
-	//memset(szFilterBuf, '\0', sizeof(szFilterBuf));
-	//lstrcpy(szFilterBuf, wsFilter.c_str());
+	std::wstring wsFilter = stringToWString(Utf8ToGbk(InFilter));
+	
+	wchar_t szFilterBuf[512];
+	memset(szFilterBuf, '\0', sizeof(szFilterBuf));
+	lstrcpy(szFilterBuf, wsFilter.c_str());
 
-	//OPENFILENAME ofn;
-	//TCHAR szOpenFileNames[80 * MAX_PATH];
-	//TCHAR szPath[MAX_PATH];
-	//TCHAR szFileName[80 * MAX_PATH];
-	//TCHAR* p;
-	//int nLen = 0;
-	//ZeroMemory(&ofn, sizeof(ofn));
-	//ofn.Flags = OFN_EXPLORER | OFN_ALLOWMULTISELECT;
-	//ofn.lStructSize = sizeof(ofn);
-	//ofn.lpstrFile = szOpenFileNames;
-	//ofn.nMaxFile = sizeof(szOpenFileNames);
-	//ofn.lpstrFile[0] = '\0';
-	//ofn.lpstrFilter = szFilterBuf;//TEXT("All Files(*.*)\0*.*\0");
-	//if (GetOpenFileName(&ofn))
-	//{
-	//	//把第一个文件名前的复制到szPath,即:
-	//	//如果只选了一个文件,就复制到最后一个'\'
-	//	//如果选了多个文件,就复制到第一个NULL字符
-	//	lstrcpyn(szPath, szOpenFileNames, ofn.nFileOffset);
+	OPENFILENAME ofn;
+	TCHAR szOpenFileNames[80 * MAX_PATH];
+	TCHAR szPath[MAX_PATH];
+	TCHAR szFileName[80 * MAX_PATH];
+	TCHAR* p = NULL;
+	int nLen = 0;
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.Flags = OFN_EXPLORER | OFN_ALLOWMULTISELECT;
+	ofn.lStructSize = sizeof(ofn);
+	ofn.lpstrFile = szOpenFileNames;
+	ofn.nMaxFile = sizeof(szOpenFileNames);
+	ofn.lpstrFile[0] = '\0';
+	ofn.lpstrFilter = szFilterBuf;//TEXT("All Files(*.*)\0*.*\0");
+	if (GetOpenFileName(&ofn))
+	{
+		//把第一个文件名前的复制到szPath,即:
+		//如果只选了一个文件,就复制到最后一个'\'
+		//如果选了多个文件,就复制到第一个NULL字符
+		lstrcpyn(szPath, szOpenFileNames, ofn.nFileOffset);
 
-	//	//当只选了一个文件时,下面这个NULL字符是必需的.
-	//	//这里不区别对待选了一个和多个文件的情况
-	//	szPath[ofn.nFileOffset] = '\0';
-	//	nLen = lstrlen(szPath);
+		//当只选了一个文件时,下面这个NULL字符是必需的.
+		//这里不区别对待选了一个和多个文件的情况
+		szPath[ofn.nFileOffset] = '\0';
+		nLen = lstrlen(szPath);
 
-	//	//如果选了多个文件,则必须加上'\\'
-	//	if (szPath[nLen - 1] != '\\')   
-	//	{
-	//		lstrcat(szPath, TEXT("\\"));
-	//	}
+		//如果选了多个文件,则必须加上'\\'
+		if (szPath[nLen - 1] != '\\')   
+		{
+			lstrcat(szPath, TEXT("\\"));
+		}
 
-	//	//把指针移到第一个文件
-	//	p = szOpenFileNames + ofn.nFileOffset; 
+		//把指针移到第一个文件
+		p = szOpenFileNames + ofn.nFileOffset; 
 
 
-	//	std::string filterExtension = FileUtils::getInstance()->getFileExtension(InFilter);
+		//std::string filterExtension = FileUtils::getInstance()->getFileExtension(InFilter);
 
-	//	ZeroMemory(szFileName, sizeof(szFileName));
-	//	while (*p)
-	//	{
-	//		std::wstring wspath = szPath;
-	//		wspath.append(p);
+		ZeroMemory(szFileName, sizeof(szFileName));
+		while (*p)
+		{
+			std::wstring wspath = szPath;
+			wspath.append(p);
 
-	//		if (OutPathArr)
-	//		{
-	//			std::string fullpath = GbkToUtf8(wstringToString(wspath));
-	//			OutPathArr->addString(fullpath);
-	//			//std::string extension = FileUtils::getInstance()->getFileExtension(fullpath);
-	//			//if (filterExtension == extension)
-	//			//{
-	//			//	OutPathArr->addString(fullpath);
-	//			//}
-	//		}
+			if (OutPathArr)
+			{
+				std::string fullpath = GbkToUtf8(wstringToString(wspath));
+				OutPathArr->addString(fullpath);
+				//std::string extension = FileUtils::getInstance()->getFileExtension(fullpath);
+				//if (filterExtension == extension)
+				//{
+				//	OutPathArr->addString(fullpath);
+				//}
+			}
 
-	//		//移至下一个文件
-	//		p += lstrlen(p) + 1;    
-	//	}
-	//	return true;
-	//}
+			//移至下一个文件
+			p += lstrlen(p) + 1;    
+		}
+		return true;
+	}
 	return false;
 }
 
@@ -606,7 +607,7 @@ std::string Tools::prettyJson(const char* json)
 	//docu.Accept(writer);
 
 	//return buffer.GetString();
-        return "";
+    return json;
 }
 
 int Tools::imguiComboUserdata(const char* label, int current_item)

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "axmol.h"
-#include "ilayer/ILayer.h"
 #include "lua_function/LuaFunctionBond.h"
 
 USING_NS_AX;

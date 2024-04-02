@@ -51,11 +51,16 @@ role.roleSize = {x = 50, y = 85, z = 10}
 -- 质量
 role.mass = 1
 -- 移动速度
-role.velocity = {x = 10, y = 10, z = 0}
+role.moveSpeed = {x = 10, y = 10, z = 0}
 -- 跳跃冲力(只有y有效)
 role.impulsion = {x = 0, y = 10, z = 0}
+-- 力
+role.force = {x = 0, y = 10, z = 0}
 -- 资源朝向
 role.directionLeft = false
+
+role.defaultSkillIndex = 1
+
 FILE_EMPTY_ROLE.context.role = role
 
 ---------------------------------------------------------- [data] ----------------------------------------------------------

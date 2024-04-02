@@ -1,1 +1,1 @@
-{"type":"map","data":{"children":{},"context":{"plugins":{}}}}
+{"type":"map","data":{"context":{"_renderScale":1,"_renderPos":[0,0],"plugins":{"PluginRevivePoint":{"revivePoints":{},"userdata":{}},"PluginRefResources":{"refs":{},"userdata":[{"type":0,"name":"","data":0}]},"PluginMapLayer":{"gameLayerAsset":"abc\/ddd.asset","backgroundAssets":{},"foregroundAssets":[""]}}},"children":[{"type":"Layer","child":{},"data":{"isOpenFolder":true,"assetFile":"abc\/ddd.asset","name":"gameLayer","position":[0,0],"contentSize":[0,0],"userdata":{}}}]}}
