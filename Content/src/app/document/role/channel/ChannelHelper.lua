@@ -17,6 +17,11 @@ end
 local checkTypeOptions = enum_options("GChannelCheckType")
 local interruptTypeOptions = enum_options("GInterruptType")
 
+G_SysEventEmitter:on(SysEvent.ON_CHANGE_LANG, function()
+    checkTypeOptions = enum_options("GChannelCheckType")
+    interruptTypeOptions = enum_options("GInterruptType")
+end, SysEvent.TAG)
+
 
 local right_click_index = 0
 -- @brief 
@@ -122,7 +127,7 @@ function ChannelHelper:onGUI_ChannelInfo(channel, roleSkillContext, onChangeChan
         local newIndex = Tools:imguiCombo_OneLiner(STR("NextSkill"), index - 1, roleSkillContext.editorRole:getSkillNameOptions())
         if index ~= newIndex + 1 then
             onChangeChannelPreCB()
-            channel.nextSkillId = roleSkillContext.dataInfo[index + 1].id
+            channel.nextSkillId = roleSkillContext.dataInfo[newIndex + 1].id
         end
         
         ---------------------------------------------------------------------- 通道检测类型 ----------------------------------------------------------------------
@@ -147,7 +152,9 @@ function ChannelHelper:onGUI_ChannelInfo(channel, roleSkillContext, onChangeChan
         local conditions = channel.conditions
         local curCondition = conditions[curIndex]
         if curCondition then
+            ImGui.PushID("channel_info_right" .. tostring(curIndex))
             ConditionMap[curCondition.type]:onGUI_ConditionInfo(curCondition, onChangeChannelPreCB, roleSkillContext)
+            ImGui.PopID()
         end
     ImGui.EndChild()
 end

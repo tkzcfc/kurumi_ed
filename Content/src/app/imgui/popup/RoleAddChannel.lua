@@ -5,6 +5,15 @@
 
 local RoleAddChannel = class("RoleAddChannel", require("app.imgui.Popup"))
 
+local checkTypeOptions = enum_options("GChannelCheckType")
+local interruptTypeOptions = enum_options("GInterruptType")
+
+G_SysEventEmitter:on(SysEvent.ON_CHANGE_LANG, function()
+    checkTypeOptions = enum_options("GChannelCheckType")
+    interruptTypeOptions = enum_options("GInterruptType")
+end, SysEvent.TAG)
+
+
 function RoleAddChannel:ctor(name)
     RoleAddChannel.super.ctor(self, name)
     
@@ -16,10 +25,7 @@ function RoleAddChannel:ctor(name)
     self.nextSkillIndex = 1
 
     self.checkType = GChannelCheckType.Continuous
-    self.checkTypeOptions = enum_options("GChannelCheckType")
-
     self.interruptType = GInterruptType.PROMPTLY
-    self.interruptTypeOptions = enum_options("GInterruptType")
 end
 
 -- @override
@@ -44,10 +50,10 @@ function RoleAddChannel:iOnGUI()
     end
 
     ---------------------------------------------------------------------- 通道检测类型 ----------------------------------------------------------------------
-    self.checkType = Tools:imguiCombo_OneLiner(STR("GChannelCheckType"), self.checkType, self.checkTypeOptions)
+    self.checkType = Tools:imguiCombo_OneLiner(STR("GChannelCheckType"), self.checkType, checkTypeOptions)
     
     ---------------------------------------------------------------------- 通道检测类型 ----------------------------------------------------------------------
-    self.interruptType = Tools:imguiCombo_OneLiner(STR("GInterruptType"), self.interruptType, self.interruptTypeOptions)
+    self.interruptType = Tools:imguiCombo_OneLiner(STR("GInterruptType"), self.interruptType, interruptTypeOptions)
 
     if ImGui.Button("OK", cc.p(-1, 0)) then
         self:dispatchEvent()

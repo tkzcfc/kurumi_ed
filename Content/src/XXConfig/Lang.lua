@@ -75,6 +75,7 @@ M.Data['EA_ROTATION'] = {cn = '旋转', en = 'Rotation'}
 M.Data['Other'] = {cn = '其他', en = 'Other'}
 M.Data['PROJECT_OPEN_FAIL'] = {cn = '工程打开失败', en = 'Project open failed'}
 M.Data['CAN_NOT_CHANGE_PARENT_WIDGET'] = {cn = 'Widget\'类型的元素不允许改变父节点', en = 'The type \'Widget\' does not allow changing the parent node'}
+M.Data['CAN_NOT_CHANGE_PARENT_IN_LAYER'] = {cn = '不能在\'layer\'中改变元素父节点', en = 'Cannot change element parent node in \'layer\''}
 M.Data['EA_NODE_MOVE_TO_ROOT_ITEM'] = {cn = '移动到根节点', en = 'move to root'}
 M.Data['EA_USER_DATA'] = {cn = '用户数据', en = 'Userdata'}
 M.Data['NO_RES_USE_DEFAILT_FMT'] = {cn = '找不到资源%q,使用默认资源%q', en = '%q not found, use default resource %q'}
@@ -179,6 +180,7 @@ M.Data['AddCondition'] = {cn = '添加条件', en = 'Add Condition'}
 M.Data['GFrameType'] = {cn = '帧类型', en = 'GFrameType'}
 M.Data['GFrameType.ATT_COLLISION_FRAME'] = {cn = '攻击帧', en = 'ATT_COLLISION_FRAME'}
 M.Data['GFrameType.DEF_COLLISION_FRAME'] = {cn = '防御帧', en = 'DEF_COLLISION_FRAME'}
+M.Data['GFrameType.PHYSICAL_FORCE_FRAME'] = {cn = '物理力施加', en = 'PHYSICAL_FORCE_FRAME'}
 M.Data['GFrameType.FORCE_FRAME'] = {cn = '力施加', en = 'FORCE_FRAME'}
 M.Data['GFrameType.IMPULSE_FRAME'] = {cn = '冲力施加', en = 'IMPULSE_FRAME'}
 M.Data['GFrameType.EVENT_FRAME'] = {cn = '事件帧<不可选>', en = 'EVENT_FRAME'}
@@ -200,7 +202,16 @@ M.Data['role_skill_tracks'] = {cn = '帧事件列表', en = 'tracks'}
 M.Data['role_skill_channels'] = {cn = '转换通道列表', en = 'channels'}
 M.Data['condition_begin_frame'] = {cn = '起始帧', en = 'Begin Frame'}
 M.Data['condition_frame_len'] = {cn = '帧长度', en = 'Frame len'}
-M.length = 197
+M.Data['GForceOrientation'] = {cn = '力方向', en = 'GForceOrientation'}
+M.Data['GForceOrientation.Positive_Direction'] = {cn = '正方向', en = 'Positive_Direction'}
+M.Data['GForceOrientation.Negative_Direction'] = {cn = '反方向', en = 'Negative_Direction'}
+M.Data['Value'] = {cn = '值', en = 'Value'}
+M.Data['GPhysicalForceType'] = {cn = '力类型', en = 'GPhysicalForceType'}
+M.Data['GPhysicalForceType.FORCE'] = {cn = '力', en = 'FORCE'}
+M.Data['GPhysicalForceType.IMPULSE'] = {cn = '冲力', en = 'IMPULSE'}
+M.Data['GPhysicalForceType.MOVEMENT'] = {cn = '匀速移动', en = 'MOVEMENT'}
+M.Data['Disassembly'] = {cn = '拆解子图', en = 'Disassembly'}
+M.length = 208
 
 function M.getData(key)
     return M.Data[key]

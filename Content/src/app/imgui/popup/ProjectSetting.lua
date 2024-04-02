@@ -25,7 +25,7 @@ function ProjectSetting:iOnGUI()
 
     ImGui.PushItemWidth(280)
     local _, newText = Tools:imgui_inputText("##publish_dir", edConfig.publishDir, 512, 0)
-    edConfig.publishDir = newText
+    edConfig.publishDir = Tools:replaceString(newText, "\\", "/")
     ImGui.PopItemWidth()
 
     -- 设置游戏资源目录
@@ -35,7 +35,7 @@ function ProjectSetting:iOnGUI()
 
     ImGui.PushItemWidth(280)
     local _, newText = Tools:imgui_inputText("##game_res", edConfig.gameResDir, 512, 0)
-    edConfig.gameResDir = newText
+    edConfig.gameResDir = Tools:replaceString(newText, "\\", "/")
     ImGui.PopItemWidth()
 
     -- 设置发布时是否拷贝资源文件

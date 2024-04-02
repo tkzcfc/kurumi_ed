@@ -372,8 +372,7 @@ function BaseEditorCocos:onMouseScroll(event)
         end
     end
 
-    --没有按键按下，进行整体缩放
-    if not _MyG.KeyboardStateMng:haskeyCodePressed() then
+    if _MyG.KeyboardStateMng:canScrollEditContext() then
         local pos = cc.p(event:getCursorX(), event:getCursorY())
         local convertpos = self.render:convertToNodeSpace(pos)
     

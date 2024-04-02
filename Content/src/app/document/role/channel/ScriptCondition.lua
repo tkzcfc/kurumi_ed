@@ -106,14 +106,14 @@ function ScriptCondition:onGUI_ConditionInfo(curCondition, onChangeChannelPreCB,
     end
     
     -- 脚本文件
-    ok, value = Tools:imgui_inputText(STR("ScriptFile"), curCondition.scriptFile, 128, ImGuiInputTextFlags_EnterReturnsTrue)
+    ok, value = Tools:imgui_inputText(STR("ScriptFile"), curCondition.scriptFile, 128, 0)
     if ok then
         onChangeChannelPreCB()
         curCondition.scriptFile = value
     end
     
     -- 参数
-    ok, value = Tools:imgui_inputText(STR("ScriptArg"), curCondition.argStr, MAX_SCRIPT_ARG_LEN, ImGuiInputTextFlags_EnterReturnsTrue)
+    ok, value = Tools:imgui_inputText(STR("ScriptArg"), curCondition.argStr, MAX_SCRIPT_ARG_LEN, 0)
     if ok then
         onChangeChannelPreCB()
         curCondition.argStr = value

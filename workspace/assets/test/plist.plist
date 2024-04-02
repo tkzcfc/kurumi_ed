@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>global/plist/pmd.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{623,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{623,40}</string>
+			</dict>
+			<key>global/plist/ui_toast_bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{623,0},{229,54}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{229,54}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>plist.png</string>
+			<key>realTextureFileName</key>
+			<string>plist.png</string>
+			<key>size</key>
+			<string>{852,54}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>852</integer>
+			<key>height</key>
+			<integer>54</integer>
+		</dict>
+	</dict>
+</plist>

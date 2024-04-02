@@ -12,38 +12,27 @@ cc.exports.ShapeType = enum {
 -- // 帧类型
 cc.exports.GFrameType = enum {
     -- 攻击
-	"ATT_COLLISION_FRAME",
+    "ATT_COLLISION_FRAME",
     -- 防御
-	"DEF_COLLISION_FRAME",
-    -- 力施加
-	"FORCE_FRAME",
-    -- 冲力施加
-	"IMPULSE_FRAME",
+    "DEF_COLLISION_FRAME",
+    -- 物理相关力施加
+    "PHYSICAL_FORCE_FRAME",
     -- 事件帧
-	"EVENT_FRAME",
+    "EVENT_FRAME",
     -- 音频帧
-	"AUDIO_FRAME",
+    "AUDIO_FRAME",
     -- 自定义脚本
-	"SCRIPT_FRAME",
+    "SCRIPT_FRAME",
     -- 标记修改
-	"MODIFY_FLAGS_FRAME",
+    "MODIFY_FLAGS_FRAME",
     -- 未知类型
-	"UNKNOWN_FRAME"
+    "UNKNOWN_FRAME"
 }
 
 cc.exports.ShapeTypeNameLang = {
     [ShapeType.RECT] = "Rect",  -- STR("Rect")
     [ShapeType.POLYGON] = "Polygon",-- STR("Polygon")
     [ShapeType.CIRCLE] = "Circle",-- STR("Polygon")
-}
-cc.exports.FrameTypeNameLang = {
-    [GFrameType.ATT_COLLISION_FRAME] = "AttackFrame",  -- STR("AttackFrame")
-    [GFrameType.DEF_COLLISION_FRAME] = "DefenseFrame",-- STR("DefenseFrame")
-    [GFrameType.FORCE_FRAME] = "ForceFrame",-- STR("ForceFrame")
-    [GFrameType.IMPULSE_FRAME] = "ImpulseFrame",-- STR("ImpulseFrame")
-    [GFrameType.EVENT_FRAME] = "EventFrame",-- STR("EventFrame")
-    [GFrameType.AUDIO_FRAME] = "AudioFrame",-- STR("AudioFrame")
-    [GFrameType.SCRIPT_FRAME] = "ScriptFrame",-- STR("ScriptFrame")
 }
 
 -- 多边形最大顶点数量
@@ -94,7 +83,23 @@ cc.exports.GInterruptType = enum {
     
     -- // 不中断
 	-- "NONE",	
-};
+}
+
+cc.exports.GForceOrientation = enum {
+    -- // 正方向(actor面向的方向)
+    "Positive_Direction",
+    -- // 反方向(actor背面的方向)
+    "Negative_Direction",
+}
+
+cc.exports.GPhysicalForceType = enum {
+    -- // 力
+    "FORCE",
+    -- // 冲力
+    "IMPULSE",
+    -- // 匀速移动
+    "MOVEMENT",
+}
 
 local format = string.format
 local sort_func = function(a, b)

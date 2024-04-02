@@ -33,7 +33,7 @@ end
 
 -- @brief 元素改变父节点回调
 function EditorLayer:elementChangeParentHook(tar, newParent)
-    logW(STR("CAN_NOT_CHANGE_PARENT_WIDGET"))
+    logW(STR("CAN_NOT_CHANGE_PARENT_IN_LAYER"))
     return false
     -- if tar.type == "Widget" then
     --     logW(STR("CAN_NOT_CHANGE_PARENT_WIDGET"))

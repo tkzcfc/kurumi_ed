@@ -9,6 +9,8 @@ ScriptTrack.Type = GFrameType.SCRIPT_FRAME
 
 local MAX_SCRIPT_ARG_LEN = 128
 
+local InputFlags = 0--ImGuiInputTextFlags_EnterReturnsTrue
+
 
 -- @brief 创建新的轨道
 function ScriptTrack:newTrack(cb)
@@ -49,15 +51,15 @@ function ScriptTrack:newTrack(cb)
         end
         
         -- 脚本文件
-        ok, value = Tools:imgui_inputText(STR("ScriptFile"), scriptFile, 128, ImGuiInputTextFlags_EnterReturnsTrue)
+        ok, value = Tools:imgui_inputText(STR("ScriptFile"), scriptFile, 128, InputFlags)
         scriptFile = value
         
         -- 参数
-        ok, value = Tools:imgui_inputText(STR("ScriptArg"), argStr, MAX_SCRIPT_ARG_LEN, ImGuiInputTextFlags_EnterReturnsTrue)
+        ok, value = Tools:imgui_inputText(STR("ScriptArg"), argStr, MAX_SCRIPT_ARG_LEN, InputFlags)
         argStr = value
     
         -- name
-        ok, value = Tools:imgui_inputText(STR("Name"), curText, 128, ImGuiInputTextFlags_EnterReturnsTrue)
+        ok, value = Tools:imgui_inputText(STR("Name"), curText, 128, InputFlags)
         curText = value
         
         ImGui.Separator()
@@ -97,14 +99,14 @@ end
 
 function ScriptTrack:onGUI_FrameCustomTrackInfo(frame, track, curTime, maxTime, onChangePreCB, onChangeFinishCB, context)
     -- 脚本文件
-    local ok, value = Tools:imgui_inputText(STR("ScriptFile"), frame.scriptFile, 128, ImGuiInputTextFlags_EnterReturnsTrue)
+    local ok, value = Tools:imgui_inputText(STR("ScriptFile"), frame.scriptFile, 128, InputFlags)
     if ok then
         onChangePreCB()
         frame.scriptFile = value
     end
 
     -- 脚本参数
-    ok, value = Tools:imgui_inputText(STR("ScriptArg"), frame.argStr, MAX_SCRIPT_ARG_LEN, ImGuiInputTextFlags_EnterReturnsTrue)
+    ok, value = Tools:imgui_inputText(STR("ScriptArg"), frame.argStr, MAX_SCRIPT_ARG_LEN, InputFlags)
     if ok then
         onChangePreCB()
         frame.argStr = value
