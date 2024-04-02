@@ -253,7 +253,7 @@ function RoleAddSkill:dispatchEvent()
         skillInfo.nextSkillId = self.nextSkillId
         skillInfo.loopCount = self.loopCount
         skillInfo.loopActionIndex = self.loopActionIndex
-        skillInfo.tracks = {}
+        skillInfo.channels = {}
     
         self.onConformCallback(skillInfo)
     end

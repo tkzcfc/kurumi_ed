@@ -10,6 +10,7 @@ local function main()
     require "config"
     require "axmol.init"
     require "axmol.core.deprecated"
+    require "axmol.ui.DeprecatedUIEnum"
 
     package.loaded["lfs"] = lfs
 

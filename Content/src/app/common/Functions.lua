@@ -670,8 +670,39 @@ function Functions:getRefResourcesByAssetJsonData(jsonData)
 	return {}
 end
 
+local convertFunc = {
+	_vec2mt = function(t, key)
+		 key = string.lower(key)
+		if string.find(key, "point") then
+			return {x = t.x, y = t.y}
+		elseif string.find(key, "size") then
+			return {width = t.x, height = t.y}
+		else
+			return {x = t.x, y = t.y, width = t.x, height = t.y}
+		end		
+	end,
+	_vec3mt = function(t) return {x = t.x, y = t.y, z = t.z} end,
+	_vec4mt = function(t) return {x = t.x, y = t.y, z = t.z, w = t.w} end,
+}
+
+local convertTable
+convertTable = function(tab)
+	for k, v in pairs(tab) do
+		if type(v) == "table" then
+			local mt = getmetatable(v)
+			if mt and mt.__name and convertFunc[mt.__name] then
+				tab[k] = convertFunc[mt.__name](v, k)
+			else
+				tab[k] = convertTable(v)
+			end
+		end
+	end
+	return tab
+end
+
 local cjson = require("cjson")
 function Functions:encodeJson(data)
+	data = convertTable(data)
     return cjson.encode(data)
 end
 

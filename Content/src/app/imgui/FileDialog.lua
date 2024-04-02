@@ -150,7 +150,6 @@ function M:onGUI()
 				self.contentRegionAvailWidth = ImGui.GetContentRegionAvail().x
 			end
 			local width = self.contentRegionAvailWidth
-			-- ImGui.BeginHorizontal("h1", {x = width, y = 40}, 0.5)
 
 			if ImGui.Button(STR("Yes"), {x = width / 2, y = 0}) and #self.newFolderName > 0 then
 				local path = self.curDir .. "/" .. Tools:UTS(self.newFolderName)
@@ -162,11 +161,11 @@ function M:onGUI()
 					print("err", err)
 				end
 			end
+			ImGui.SameLine()
 			if ImGui.Button(STR("Cancel"), {x = width / 2, y = 0}) then
 				ImGui.CloseCurrentPopup()
 			end
 
-			-- ImGui.EndHorizontal()
 			ImGui.EndPopup()
 		end
 
@@ -213,7 +212,6 @@ function M:onGUI()
 		ImGui.PopItemWidth()
 
 		ImGui.PushStyleVar(ImGuiStyleVar_ItemSpacing, {x = 8, y = 0})
-		-- ImGui.BeginHorizontal("h1", {x = childWidth, y = 40}, 0.5)
 
 		local buttonW = childWidth / 2
 
@@ -258,12 +256,12 @@ function M:onGUI()
 				end
 			end
 		end
+		ImGui.SameLine()
 
 		if ImGui.Button(STR("Cancel"), {x = buttonW, y = 0}) then
 			self.isOpen = false
 		end
 
-		-- ImGui.EndHorizontal()
 		ImGui.PopStyleVar()
 
 		if self.file_exists_tag then

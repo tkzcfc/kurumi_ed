@@ -193,18 +193,16 @@ local Texture_Btn_Next = EditorIconContent:get(EditorIcon.BUTTON_NEXT)
 local Texture_Btn_Play = EditorIconContent:get(EditorIcon.BUTTON_PLAY)
 local Texture_Btn_Pause = EditorIconContent:get(EditorIcon.BUTTON_PAUSE)
 local btn_size = cc.p(32, 32)
-local layout_size = cc.p(0, 0)
 
 -- @brief 时间轴左上角GUI绘制
 function RoleTimelineBase:onSequentityLTGUI()
-    layout_size.x = ImGui.GetContentRegionAvail().x
-    ImGui.BeginHorizontal("h1", layout_size, -1)
-
     -- 上一帧
     if ImGui.ImageButton(Texture_Btn_Pre, btn_size) then
         self:step(-1)
         self:stopAutoPlay()
     end
+
+    ImGui.SameLine()
 
     -- 播放/暂停
     if self.isPlaying then
@@ -216,6 +214,8 @@ function RoleTimelineBase:onSequentityLTGUI()
             self:startAutoPlay()
         end
     end
+
+    ImGui.SameLine()
 
     -- 下一帧
     if ImGui.ImageButton(Texture_Btn_Next, btn_size) then
@@ -234,13 +234,13 @@ function RoleTimelineBase:onSequentityLTGUI()
     --     self.playSlowScale = math.floor(self.playSlowScale)
 	-- end
 
-    ImGui.Spring(0.5)
+    -- ImGui.Spring(0.5)
+    ImGui.SameLine()
+    
     local ok, loop = ImGui.Checkbox("loop", self.isPlayLoop)
     if ok then
         self.isPlayLoop = loop
     end
-    
-    ImGui.EndHorizontal()
 end
 
 -- @brief

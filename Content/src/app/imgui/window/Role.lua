@@ -2,7 +2,7 @@
 -- @Date   : 2021-9-22 11:08:13
 -- @remark : 角色信息窗口
 
-local RoleInfoWindow = class("RoleInfoWindow", require("app.imgui.Window"))
+local Role = class("Role", require("app.imgui.Window"))
 
 
 ------------------------------------------------ Role Action Document ------------------------------------------------
@@ -51,8 +51,9 @@ end
 
 
 
-function RoleInfoWindow:ctor(...)
-    RoleInfoWindow.super.ctor(self, ...)
+function Role:ctor()
+    Role.super.ctor(self, self.__cname, true)
+    
     self.docMng = require("app.imgui.DocumentManager").new()
     self.docMng:addDocument(RoleActionDoc.new(RoleDocName[RoleDocType.ACTION]))
     self.docMng:addDocument(RoleSkillDoc.new(RoleDocName[RoleDocType.SKILL]))
@@ -65,8 +66,8 @@ function RoleInfoWindow:ctor(...)
     end, self)
 end
 
-function RoleInfoWindow:onGUI_Window()
+function Role:onGUI_Window()
     self.docMng:onGUI()
 end
 
-return RoleInfoWindow
+return Role
